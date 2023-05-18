@@ -1,4 +1,4 @@
-package common.api_setup.base_configuration;
+package common.api_setup.base;
 
 import base.config.FileControlUtil;
 
