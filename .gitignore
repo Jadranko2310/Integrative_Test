@@ -2,15 +2,20 @@
 /shelf/
 /workspace.xml
 
-### IntelliJ IDEA ###
-*.idea
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-<<<<<<< HEAD
-.idea/workspace.xml
-=======
 
-## Allure ##
-*.allure
+# User-specific stuff
+*.idea
+.idea/**/workspace.xml
+.idea/**/vcs.xml
+.idea/**/checkstyle-idea.xml
+.idea/**/compiler.xml
+.idea/**/encodings.xml
+.idea/**/jarRepositories.xml
+.idea/**/misc.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Allure
+*allure-results
