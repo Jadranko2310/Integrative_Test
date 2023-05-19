@@ -11,6 +11,7 @@ import io.restassured.specification.ResponseSpecification;
 import lombok.Getter;
 import lombok.Setter;
 import org.testng.asserts.SoftAssert;
+import setup.common.helpers.TokenGenerator;
 import setup.common.specification.Constants;
 
 @Getter
