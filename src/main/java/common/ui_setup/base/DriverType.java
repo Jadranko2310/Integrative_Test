@@ -1,4 +1,4 @@
-package ui_setup.base;
+package common.ui_setup.base;
 
 public enum DriverType {
 

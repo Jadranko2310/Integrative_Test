@@ -1,5 +1,6 @@
-package ui_setup.pom;
+package common.ui_setup.pom;
 
+import common.ui_setup.base.SetupConstants;
 import lombok.Getter;
 import lombok.Setter;
 import org.openqa.selenium.Keys;
@@ -10,7 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ui_setup.base.SetupConstants;
 
 import java.time.Duration;
 
