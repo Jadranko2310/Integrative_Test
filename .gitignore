@@ -34,7 +34,7 @@
 .idea/**/workplace.xml
 
 # Allure
-*allure-results
+allure-results/
 
 # Target
 target/
