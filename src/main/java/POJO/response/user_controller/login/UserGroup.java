@@ -1,15 +1,13 @@
-package POJO.response.login;
+package POJO.response.user_controller.login;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class User {
+public class UserGroup {
 
   private int id;
-  private String email;
+  private String key;
   private String name;
-  private UserGroup userGroup;
-
 }

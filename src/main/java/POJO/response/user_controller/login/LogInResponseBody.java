@@ -1,4 +1,4 @@
-package POJO.response.login;
+package POJO.response.user_controller.login;
 
 import lombok.Getter;
 import lombok.Setter;

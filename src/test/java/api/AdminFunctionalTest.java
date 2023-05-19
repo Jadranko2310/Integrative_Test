@@ -1,24 +1,20 @@
 package api;
 
-import POJO.response.login.LogInResponseBody;
-import POJO.response.user_values.UserValuesList;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import io.restassured.common.mapper.TypeRef;
+import POJO.response.user_controller.login.LogInResponseBody;
+import POJO.response.user_controller.users_list.GetAllUsersResponseBody;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
 import setup.common.helpers.TokenGenerator;
 import setup.common.specification.Constants;
-import specification.api.request.GetUserValues;
+import specification.api.request.GetUsersList;
 import specification.api.request.LogIn;
-
-import java.util.List;
 
 public class AdminFunctionalTest extends BaseAPITest {
 
   TokenGenerator token = new TokenGenerator(Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
   LogIn logIn = new LogIn();
-  GetUserValues getUserValues = new GetUserValues();
+  GetUsersList getAllUsers = new GetUsersList();
 
 
   @Test
@@ -32,11 +28,12 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test
   public void getUsersValues() {
-    response = getUserValues
-            .getListOfUsersBaseValues(token.getToken());
-    List<UserValuesList> userValuesLists = response.as(new TypeRef<>() {});
+    response = getAllUsers.list(token.getToken());
+
+    GetAllUsersResponseBody responseBody = response.as(GetAllUsersResponseBody.class);
 
     Assert.assertEquals(response.statusCode(), 200);
-    Assert.assertEquals(userValuesLists.get(0).getId(), 8);
+    Assert.assertEquals(responseBody.getContent().get(0).getName(), "Apple Review User");
+
   }
 }

@@ -25,7 +25,7 @@ public class Constants {
   public static final String LOG_IN = dotenv.get("LOGIN");
 
   // USER CONTROLLER
-  public static final String ALL_USER_DETAILS = dotenv.get("ALL_USER_DETAILS");
+  public static final String ALL_USERS = dotenv.get("ALL_USERS");
 
 
   // USER CREDENTIALS
