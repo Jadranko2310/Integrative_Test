@@ -1,17 +1,17 @@
 package setup.common.specification;
-
 import io.github.cdimascio.dotenv.Dotenv;
-import org.checkerframework.checker.signature.qual.IdentifierOrPrimitiveType;
-import setup.common.helpers.FileControlUtil;
 
+/**
+ * Defining all constants needed for project:
+ * BE endpoints
+ * FE URLS
+ * User credentials
+ */
 public class Constants {
-
-  public static final FileControlUtil fileControlEndpoints;
-
 
   static {
     try {
-      fileControlEndpoints = new FileControlUtil(FileControlUtil.ENDPOINTS);
+      /*fileControlEndpoints = new FileControlUtil(FileControlUtil.ENDPOINTS);*/
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
@@ -20,17 +20,14 @@ public class Constants {
   static Dotenv dotenv = Dotenv.configure().load();
 
   // ENDPOINTS
+  public static final String BASE_URI = dotenv.get("BASE_URI");
 
-  // BASE URI
-  public static final String BASE_URI = fileControlEndpoints.getValue("BASE_URI");
-
-  public static final String LOG_IN = fileControlEndpoints.getValue("LOGIN");
+  public static final String LOG_IN = dotenv.get("LOGIN");
 
 
   // USER CREDENTIALS
 
   // ADMIN
-
   public static final String ADMIN_EMAIL = dotenv.get("ADMIN_EMAIL");
   public static final String ADMIN_PASS = dotenv.get("ADMIN_PASS");
 }
