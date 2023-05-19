@@ -1,4 +1,4 @@
-package common.ui_setup.base;
+package setup.ui.base;
 
 /**
  * Setting string values from properties files.

@@ -1,4 +1,4 @@
-package common.ui_setup.base;
+package setup.ui.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.Getter;

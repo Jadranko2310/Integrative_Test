@@ -1,6 +1,6 @@
-package common.api_setup.base;
+package setup.api;
 
-import base.config.FileControlUtil;
+import setup.common.helpers.FileControlUtil;
 
 public class Endpoints {
 

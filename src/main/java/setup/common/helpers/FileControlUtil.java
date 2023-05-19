@@ -1,4 +1,4 @@
-package base.config;
+package setup.common.helpers;
 
 import java.util.Properties;
 

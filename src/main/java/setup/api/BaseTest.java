@@ -1,4 +1,4 @@
-package common.api_setup.base;
+package setup.api;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.ResponseSpecBuilder;
