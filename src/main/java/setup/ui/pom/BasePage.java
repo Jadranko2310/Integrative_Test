@@ -1,6 +1,6 @@
-package common.ui_setup.pom;
+package setup.ui.pom;
 
-import common.ui_setup.base.SetupConstants;
+import setup.ui.base.SetupConstants;
 import lombok.Getter;
 import lombok.Setter;
 import org.openqa.selenium.Keys;
