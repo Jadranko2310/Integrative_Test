@@ -1,10 +1,9 @@
-package setup.api;
+package setup.common.helpers;
 
-import setup.common.helpers.FileControlUtil;
-
-public class Endpoints {
+public class Constants {
 
   public static final FileControlUtil fileControlEndpoints;
+
 
   static {
     try {
@@ -15,5 +14,11 @@ public class Endpoints {
   }
 
   // ENDPOINTS
+
+  // BASE URI
   public static final String BASE_URI = fileControlEndpoints.getValue("BASE_URI");
+
+  public static final String LOG_IN_ADMIN = fileControlEndpoints.getValue("ADMIN_LOGIN");
+  
+
 }
