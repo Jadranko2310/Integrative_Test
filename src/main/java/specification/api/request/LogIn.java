@@ -6,10 +6,10 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import setup.api.BaseTest;
+import setup.api.BaseAPITest;
 import setup.common.specification.Constants;
 
-public class LogIn extends BaseTest {
+public class LogIn extends BaseAPITest {
 
   public Response request(String email, String password) {
     request = RestAssured
