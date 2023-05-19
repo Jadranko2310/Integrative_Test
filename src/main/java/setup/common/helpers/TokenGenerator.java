@@ -1,6 +1,6 @@
 package setup.common.helpers;
 
-import POJO.response.login.LogInResponseBody;
+import POJO.response.user_controller.login.LogInResponseBody;
 import lombok.Getter;
 import lombok.Setter;
 import setup.api.BaseAPITest;
