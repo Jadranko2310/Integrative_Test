@@ -15,7 +15,7 @@ import setup.common.specification.Constants;
 
 @Getter
 @Setter
-public abstract class BaseTest {
+public abstract class BaseAPITest {
 
   protected RequestSpecification request;
   protected ResponseSpecification responseSpecification;
@@ -25,7 +25,7 @@ public abstract class BaseTest {
   /**
    * Defining request and response specification.
    */
-  public BaseTest() {
+  public BaseAPITest() {
     this.request = RestAssured
             .given()
             .baseUri(Constants.BASE_URI)
