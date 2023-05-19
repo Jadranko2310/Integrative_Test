@@ -21,8 +21,11 @@ public class Constants {
 
   // ENDPOINTS
   public static final String BASE_URI = dotenv.get("BASE_URI");
-
+  // AUTHORIZATION CONTROLLER
   public static final String LOG_IN = dotenv.get("LOGIN");
+
+  // USER CONTROLLER
+  public static final String ALL_USER_DETAILS = dotenv.get("ALL_USER_DETAILS");
 
 
   // USER CREDENTIALS

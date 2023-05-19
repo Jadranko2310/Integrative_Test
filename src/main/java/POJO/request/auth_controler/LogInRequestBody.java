@@ -1,4 +1,4 @@
-package POJO.request;
+package POJO.request.auth_controler;
 
 import lombok.Getter;
 import lombok.Setter;
