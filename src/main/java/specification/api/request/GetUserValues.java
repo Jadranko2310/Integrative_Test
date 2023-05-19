@@ -7,9 +7,8 @@ import setup.common.specification.Constants;
 
 public class GetUserValues extends BaseAPITest {
 
-  public Response getListOfUsersBaseValues(String email, String pass) {
-    TokenGenerator tokenGenerator = new TokenGenerator(email, pass);
-    return request.header("Authorization", tokenGenerator.getToken())
+  public Response getListOfUsersBaseValues(String token) {
+    return request.header("Authorization", token)
             .get(Constants.ALL_USER_DETAILS);
   }
 }
