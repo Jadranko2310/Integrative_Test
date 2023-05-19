@@ -11,6 +11,7 @@ import io.restassured.specification.ResponseSpecification;
 import lombok.Getter;
 import lombok.Setter;
 import org.testng.asserts.SoftAssert;
+import setup.common.helpers.Constants;
 
 @Getter
 @Setter
@@ -27,7 +28,7 @@ public abstract class BaseTest {
   public BaseTest() {
     this.request = RestAssured
             .given()
-            .baseUri(Endpoints.BASE_URI)
+            .baseUri(Constants.BASE_URI)
             .contentType(ContentType.JSON)
             .filter(new RequestLoggingFilter())
             .filter(new ResponseLoggingFilter())
