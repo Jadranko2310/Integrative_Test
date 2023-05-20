@@ -12,6 +12,12 @@ import java.util.List;
 
 public class UserDataCleanUp {
 
+  private final String token;
+
+  public UserDataCleanUp() {
+    this.token = tokenGenerator.getToken();
+  }
+
   TokenGenerator tokenGenerator = new TokenGenerator
           (Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
 
@@ -20,7 +26,7 @@ public class UserDataCleanUp {
   DeleteRequest deleteRequest = new DeleteRequest();
 
   public GetAllUsersResponseBody getUsersList() {
-    Response response = getUsersList.list(tokenGenerator.getToken());
+    Response response = getUsersList.list(token);
     return response.as(GetAllUsersResponseBody.class);
   }
 
@@ -30,7 +36,7 @@ public class UserDataCleanUp {
       return;
     }
     for (Content content: contentList) {
-      deleteRequest.delete(content.getId(), tokenGenerator.getToken());
+      deleteRequest.delete(content.getId(), token);
     }
   }
 }
