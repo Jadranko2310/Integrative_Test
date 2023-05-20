@@ -8,15 +8,9 @@ import setup.common.specification.Constants;
 public class NewUser extends BaseAPITest {
 
 
-  public Response create (String email,
-                          String pass,
-                          String name,
-                          String phone,
-                          String token) {
-    User newUser = new User(email, pass, name, phone);
-
+  public Response create (User user, String token) {
     return request.header("Authorization", token)
-            .body(newUser)
+            .body(user)
             .post(Constants.CREATE_USER);
   }
 }

@@ -1,5 +1,7 @@
 package api;
 
+import POJO.request.user_controler.User;
+import POJO.request.user_controler.UserType;
 import POJO.response.user_controller.login.LogInResponseBody;
 import POJO.response.user_controller.users_list.GetAllUsersResponseBody;
 import org.testng.Assert;
@@ -31,13 +33,10 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test
   public void creatingNewUser() {
-    response = newUser.create("testuser@gmail.com",
-            "passs234",
-            "User Userovic",
-            "+38765225883",
-            token.getToken());
+    User predefinedUser = new User(UserType.STANDARD);
+    response = newUser.create(predefinedUser, token.getToken());
 
-    Assert.assertEquals(response.statusCode(), 200);
+    Assert.assertEquals(response.statusCode(), 201);
   }
 
   @Test

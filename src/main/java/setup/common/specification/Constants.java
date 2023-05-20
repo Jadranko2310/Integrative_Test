@@ -30,6 +30,16 @@ public class Constants {
 
 
   // USER CREDENTIALS
+  public static final String REGULAR_USER_EMAIL = dotenv.get("REGULAR_USER_EMAIL");
+  public static final String REGULAR_USER_PASS = dotenv.get("REGULAR_USER_PASS");
+  public static final String REGULAR_USER_NAME = dotenv.get("REGULAR_USER_NAME");
+  public static final String REGULAR_USER_PHONE = dotenv.get("REGULAR_USER_PHONE");
+  // Invalid
+  public static final String INVALID_EMAIL = dotenv.get("INVALID_EMAIL");
+  public static final String INVALID_PASS = dotenv.get("INVALID_PASS");
+  public static final String INVALID_NAME = dotenv.get("INVALID_NAME");
+  public static final String INVALID_PHONE = dotenv.get("INVALID_PHONE");
+
 
   // ADMIN
   public static final String ADMIN_EMAIL = dotenv.get("ADMIN_EMAIL");
