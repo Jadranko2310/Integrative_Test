@@ -12,6 +12,7 @@ import io.restassured.specification.ResponseSpecification;
 import lombok.Getter;
 import lombok.Setter;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.asserts.SoftAssert;
 import setup.common.specification.Constants;
 
@@ -23,8 +24,6 @@ public abstract class BaseAPITest {
   protected ResponseSpecification responseSpecification;
   protected Response response;
   protected SoftAssert softAssert;
-
-
 
   /**
    * Defining request and response specification.
@@ -47,9 +46,19 @@ public abstract class BaseAPITest {
     this.softAssert = new SoftAssert();
   }
 
+  /**
+   * TestNG specification. Defining before and after suite.
+   */
+
+  DataHandler dataHandler = new DataHandler();
+
+  @BeforeSuite
+  public void prepareData() {
+    dataHandler.prepareData();
+  }
+
   @AfterSuite
   public void cleanUp() {
-    DataHandler dataHandler = new DataHandler();
     dataHandler.cleanData();
   }
 }

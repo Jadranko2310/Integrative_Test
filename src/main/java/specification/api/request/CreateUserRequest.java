@@ -11,7 +11,6 @@ import setup.common.specification.Constants;
 
 public class CreateUserRequest {
 
-
   public Response create (User user, String token) {
     RequestSpecification request = RestAssured
             .given()

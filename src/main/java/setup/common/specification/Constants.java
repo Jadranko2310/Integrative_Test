@@ -40,6 +40,17 @@ public class Constants {
   public static final String INVALID_PASS = dotenv.get("INVALID_PASS");
   public static final String INVALID_NAME = dotenv.get("INVALID_NAME");
   public static final String INVALID_PHONE = dotenv.get("INVALID_PHONE");
+  // PREP DETAILS
+  // User - update
+  public static final String USER_UPDATE_EMAIL = dotenv.get("USER_UPDATE_EMAIL");
+  public static final String USER_UPDATE_PASS = dotenv.get("USER_UPDATE_PASS");
+  public static final String USER_UPDATE_NAME = dotenv.get("USER_UPDATE_NAME");
+  public static final String USER_UPDATE_PHONE = dotenv.get("USER_UPDATE_PHONE");
+  // User delete
+  public static final String USER_DELETE_EMAIL = dotenv.get("USER_DELETE_EMAIL");
+  public static final String USER_DELETE_PASS = dotenv.get("USER_DELETE_PASS");
+  public static final String USER_DELETE_NAME = dotenv.get("USER_DELETE_NAME");
+  public static final String USER_DELETE_PHONE = dotenv.get("USER_DELETE_PHONE");
 
 
   // ADMIN
