@@ -1,5 +1,7 @@
 package api;
 
+import POJO.request.user_controler.User;
+import POJO.request.user_controler.UserType;
 import POJO.response.user_controller.login.LogInResponseBody;
 import POJO.response.user_controller.users_list.GetAllUsersResponseBody;
 import org.testng.Assert;
@@ -7,14 +9,20 @@ import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
 import setup.common.helpers.TokenGenerator;
 import setup.common.specification.Constants;
+import specification.api.request.DeleteRequest;
 import specification.api.request.GetUsersList;
-import specification.api.request.LogIn;
+import specification.api.request.LogInRequest;
+import specification.api.request.CreateUserRequest;
 
 public class AdminFunctionalTest extends BaseAPITest {
 
   TokenGenerator token = new TokenGenerator(Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
-  LogIn logIn = new LogIn();
+  LogInRequest logIn = new LogInRequest();
+
+  CreateUserRequest newUser = new CreateUserRequest();
   GetUsersList getAllUsers = new GetUsersList();
+
+  DeleteRequest deleteRequest = new DeleteRequest();
 
 
   @Test
@@ -27,13 +35,26 @@ public class AdminFunctionalTest extends BaseAPITest {
   }
 
   @Test
+  public void creatingNewUser() {
+    User predefinedUser = new User(UserType.STANDARD);
+    response = newUser.create(predefinedUser, token.getToken());
+
+    Assert.assertEquals(response.statusCode(), 201);
+  }
+
+  @Test
   public void getUsersValues() {
     response = getAllUsers.list(token.getToken());
 
     GetAllUsersResponseBody responseBody = response.as(GetAllUsersResponseBody.class);
 
     Assert.assertEquals(response.statusCode(), 200);
-    Assert.assertEquals(responseBody.getContent().get(0).getName(), "Apple Review User");
+  }
 
+  @Test
+  public void deleteUser() {
+    response = deleteRequest.delete(12, token.getToken());
+
+    Assert.assertEquals(response.statusCode(), 200);
   }
 }

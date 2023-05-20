@@ -4,7 +4,7 @@ import POJO.response.user_controller.login.LogInResponseBody;
 import lombok.Getter;
 import lombok.Setter;
 import setup.api.BaseAPITest;
-import specification.api.request.LogIn;
+import specification.api.request.LogInRequest;
 
 /**
  * Will generate token for API requests.
@@ -15,6 +15,7 @@ public class TokenGenerator extends BaseAPITest {
 
   private String token;
 
+
   public TokenGenerator() {
   }
 
@@ -23,11 +24,10 @@ public class TokenGenerator extends BaseAPITest {
   }
 
   private String accessToken(String email, String pass) {
-    LogIn logIn = new LogIn();
+    LogInRequest logIn = new LogInRequest();
     response = logIn.request(email, pass);
     LogInResponseBody body = response.body().as(LogInResponseBody.class);
 
-    String preparedToken = "Bearer " + body.getAccessToken().toString();
-    return preparedToken;
+    return "Bearer " + body.getAccessToken();
   }
 }
