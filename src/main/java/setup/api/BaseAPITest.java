@@ -1,7 +1,6 @@
 package setup.api;
 
-import data.cleanup.AdminActivityCleanup;
-import data.cleanup.CleanUp;
+import data.handling.DataHandler;
 import io.restassured.RestAssured;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -14,7 +13,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.testng.annotations.AfterSuite;
 import org.testng.asserts.SoftAssert;
-import setup.common.helpers.TokenGenerator;
 import setup.common.specification.Constants;
 
 @Getter
@@ -25,6 +23,7 @@ public abstract class BaseAPITest {
   protected ResponseSpecification responseSpecification;
   protected Response response;
   protected SoftAssert softAssert;
+
 
 
   /**
@@ -48,8 +47,9 @@ public abstract class BaseAPITest {
     this.softAssert = new SoftAssert();
   }
 
-  @AfterSuite
-  public void cleanup() {
-    CleanUp.cleanTestData();
-  }
+/*  @AfterSuite
+  public void cleanUp() {
+    DataHandler dataHandler = new DataHandler();
+    dataHandler.cleanUpTestData();
+  }*/
 }

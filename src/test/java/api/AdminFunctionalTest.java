@@ -11,15 +11,15 @@ import setup.common.helpers.TokenGenerator;
 import setup.common.specification.Constants;
 import specification.api.request.DeleteRequest;
 import specification.api.request.GetUsersList;
-import specification.api.request.LogIn;
-import specification.api.request.NewUser;
+import specification.api.request.LogInRequest;
+import specification.api.request.CreateUserRequest;
 
 public class AdminFunctionalTest extends BaseAPITest {
 
   TokenGenerator token = new TokenGenerator(Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
-  LogIn logIn = new LogIn();
+  LogInRequest logIn = new LogInRequest();
 
-  NewUser newUser = new NewUser();
+  CreateUserRequest newUser = new CreateUserRequest();
   GetUsersList getAllUsers = new GetUsersList();
 
   DeleteRequest deleteRequest = new DeleteRequest();
