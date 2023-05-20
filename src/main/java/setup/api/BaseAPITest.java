@@ -47,9 +47,9 @@ public abstract class BaseAPITest {
     this.softAssert = new SoftAssert();
   }
 
-/*  @AfterSuite
+  @AfterSuite
   public void cleanUp() {
     DataHandler dataHandler = new DataHandler();
-    dataHandler.cleanUpTestData();
-  }*/
+    dataHandler.cleanData();
+  }
 }

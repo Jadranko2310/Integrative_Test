@@ -2,7 +2,7 @@ package data.handling;
 
 public interface IDataHandler {
 
-  public void prepareTestData();
+  public void prepareData();
 
-  public void cleanUpTestData();
+  public void cleanData();
 }
