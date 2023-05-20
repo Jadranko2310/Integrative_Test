@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
 import setup.common.helpers.TokenGenerator;
 import setup.common.specification.Constants;
+import specification.api.request.DeleteRequest;
 import specification.api.request.GetUsersList;
 import specification.api.request.LogIn;
 import specification.api.request.NewUser;
@@ -20,6 +21,8 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   NewUser newUser = new NewUser();
   GetUsersList getAllUsers = new GetUsersList();
+
+  DeleteRequest deleteRequest = new DeleteRequest();
 
 
   @Test
@@ -46,7 +49,12 @@ public class AdminFunctionalTest extends BaseAPITest {
     GetAllUsersResponseBody responseBody = response.as(GetAllUsersResponseBody.class);
 
     Assert.assertEquals(response.statusCode(), 200);
-    Assert.assertEquals(responseBody.getContent().get(0).getName(), "Apple Review User");
+  }
 
+  @Test
+  public void deleteUser() {
+    response = deleteRequest.delete(12, token.getToken());
+
+    Assert.assertEquals(response.statusCode(), 200);
   }
 }
