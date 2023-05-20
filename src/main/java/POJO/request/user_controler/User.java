@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import setup.common.specification.Constants;
 
+import javax.swing.*;
+import java.lang.annotation.Target;
+
 @Getter
 @Setter
 public class User {
@@ -34,6 +37,18 @@ public class User {
         this.password = Constants.INVALID_PASS;
         this.name = Constants.INVALID_NAME;
         this.password = Constants.INVALID_NAME;
+      }
+      case PRE_FOR_UPDATE -> {
+        this.email = Constants.USER_UPDATE_EMAIL;
+        this.password = Constants.USER_UPDATE_PASS;
+        this.name = Constants.USER_UPDATE_NAME;
+        this.phone = Constants.USER_UPDATE_PHONE;
+      }
+      case PREP_FOR_DELETE -> {
+        this.email = Constants.USER_DELETE_EMAIL;
+        this.password = Constants.USER_DELETE_PASS;
+        this.name = Constants.USER_DELETE_NAME;
+        this.phone = Constants.USER_DELETE_EMAIL;
       }
     }
   }

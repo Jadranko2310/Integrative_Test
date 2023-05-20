@@ -53,7 +53,11 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test
   public void deleteUser() {
-    response = deleteRequest.delete(12, token.getToken());
+    response = getAllUsers.list(token.getToken());
+    GetAllUsersResponseBody responseBody = response.as(GetAllUsersResponseBody.class);
+
+    int firstId = responseBody.getContent().get(0).getId();
+    response = deleteRequest.delete(firstId, token.getToken());
 
     Assert.assertEquals(response.statusCode(), 200);
   }
