@@ -14,7 +14,7 @@ import lombok.Setter;
 import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
 import setup.common.helpers.TokenGenerator;
-import setup.common.specification.Constants;
+import setup.common.constants.UserConstants;
 import specification.api.request.*;
 
 @Getter
@@ -22,7 +22,7 @@ import specification.api.request.*;
 public class AdminFunctionalTest extends BaseAPITest {
 
 
-  TokenGenerator token = new TokenGenerator(Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
+  TokenGenerator token = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
   LogInRequest logIn = new LogInRequest();
   CreateUserRequest newUser = new CreateUserRequest();
   GetUsersListRequest getAllUsers = new GetUsersListRequest();
@@ -35,7 +35,7 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test
   public void adminLogIn() {
-    response = logIn.request(Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
+    response = logIn.request(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
     LogInResponseBody responseBody = response.getBody().as(LogInResponseBody.class);
 
     customAssert.assertCommonStatusCodeAndResponseTime(response);
@@ -68,7 +68,7 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test
   public void updateUser() throws Exception {
-    int userID = userIDFromListsersId.find(Constants.USER_UPDATE_EMAIL, token.getToken());
+    int userID = userIDFromListsersId.find(UserConstants.USER_UPDATE_EMAIL, token.getToken());
     UpdateUserRequestBody requestBody = new UpdateUserRequestBody();
     requestBody.setEmail("updateduser@gmail.com");
     requestBody.setName("User Updated");
@@ -84,7 +84,7 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test
   public void deleteUser() throws Exception {
-    int userID = userIDFromListsersId.find(Constants.USER_DELETE_EMAIL, token.getToken());
+    int userID = userIDFromListsersId.find(UserConstants.USER_DELETE_EMAIL, token.getToken());
 
     response = deleteRequest.delete(userID, token.getToken());
 

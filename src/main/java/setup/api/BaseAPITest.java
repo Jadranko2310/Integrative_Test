@@ -14,7 +14,7 @@ import lombok.Setter;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.asserts.SoftAssert;
-import setup.common.specification.Constants;
+import setup.common.constants.APIConstants;
 
 @Getter
 @Setter
@@ -32,7 +32,7 @@ public abstract class BaseAPITest {
   public BaseAPITest() {
     this.request = RestAssured
             .given()
-            .baseUri(Constants.BASE_URI)
+            .baseUri(APIConstants.BASE_URI)
             .contentType(ContentType.JSON)
             .filter(new RequestLoggingFilter())
             .filter(new ResponseLoggingFilter())
@@ -48,7 +48,7 @@ public abstract class BaseAPITest {
   }
 
   /**
-   * TestNG specification. Defining before and after suite.
+   * TestNG's specification. Defining before and after suite.
    */
 
   DataHandler dataHandler = new DataHandler();

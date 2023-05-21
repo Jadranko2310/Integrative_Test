@@ -12,8 +12,6 @@ public class CustomAssert extends BaseAPITest {
   GetUsersListRequest getAllUsers = new GetUsersListRequest();
   UserIDFromList userIDFromList = new UserIDFromList();
 
-
-
   public void assertCommonStatusCodeAndResponseTime(Response response) {
     softAssert.assertEquals(response.statusCode(), 200,
             "status code not 200");
@@ -22,7 +20,7 @@ public class CustomAssert extends BaseAPITest {
     softAssert.assertAll("These are the issues");
   }
 
-  public void assertCommonBadRequestAndResponseTime(Response response) {
+  public void assertBadRequestAndResponseTime(Response response) {
     softAssert.assertEquals(response.statusCode(), 400,
             "status code not 400");
     softAssert.assertTrue(response.time() < 3000,

@@ -2,7 +2,7 @@ package data.handling;
 
 import POJO.request.user_controler.User;
 import org.testng.annotations.DataProvider;
-import setup.common.specification.Constants;
+import setup.common.constants.UserConstants;
 
 public class PreTestDataProvider {
 
@@ -11,18 +11,18 @@ public class PreTestDataProvider {
     return new Object[][]{
             {
                     new User(
-                            Constants.USER_UPDATE_EMAIL,
-                            Constants.USER_UPDATE_PASS,
-                            Constants.USER_UPDATE_NAME,
-                            Constants.USER_UPDATE_PHONE
+                            UserConstants.USER_UPDATE_EMAIL,
+                            UserConstants.USER_UPDATE_PASS,
+                            UserConstants.USER_UPDATE_NAME,
+                            UserConstants.USER_UPDATE_PHONE
                     )
             },
             {
                     new User(
-                            Constants.USER_UPDATE_EMAIL,
-                            Constants.USER_UPDATE_PASS,
-                            Constants.USER_UPDATE_NAME,
-                            Constants.USER_UPDATE_PHONE
+                            UserConstants.USER_UPDATE_EMAIL,
+                            UserConstants.USER_UPDATE_PASS,
+                            UserConstants.USER_UPDATE_NAME,
+                            UserConstants.USER_UPDATE_PHONE
                     )
             }
     };

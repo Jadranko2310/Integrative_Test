@@ -13,11 +13,11 @@ import data.provider.LogInData;
 import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
 import setup.common.helpers.TokenGenerator;
-import setup.common.specification.Constants;
+import setup.common.constants.UserConstants;
 import specification.api.request.*;
 
 public class AdminNegativeTest extends BaseAPITest {
-  TokenGenerator tokenNegative = new TokenGenerator(Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
+  TokenGenerator tokenNegative = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
   UserIDFromList usersId = new UserIDFromList();
   CustomAssert customAssert = new CustomAssert();
   LogInRequest logIn = new LogInRequest();
@@ -41,13 +41,13 @@ public class AdminNegativeTest extends BaseAPITest {
   public void createUserRequestWithInvalidBody() {
     User user = new User();
     user.setEmail("");
-    user.setPassword(Constants.REGULAR_USER_PASS);
-    user.setName(Constants.REGULAR_USER_NAME);
-    user.setPhone(Constants.REGULAR_USER_PHONE);
+    user.setPassword(UserConstants.REGULAR_USER_PASS);
+    user.setName(UserConstants.REGULAR_USER_NAME);
+    user.setPhone(UserConstants.REGULAR_USER_PHONE);
 
     response = newUser.create(user, tokenNegative.getToken());
     CreateUserResponseBody createUserResponseBody = response.as(CreateUserResponseBody.class);
-    customAssert.assertCommonBadRequestAndResponseTime(response);
+    customAssert.assertBadRequestAndResponseTime(response);
     softAssert.assertEquals(createUserResponseBody.getEmail(),
             "Field is mandatory", "error message not as expected");
   }
@@ -65,7 +65,7 @@ public class AdminNegativeTest extends BaseAPITest {
 
   @Test
   public void updateUserWithInvalidEmailFormat() throws Exception {
-    int userID = usersId.find(Constants.USER_UPDATE_EMAIL, tokenNegative.getToken());
+    int userID = usersId.find(UserConstants.USER_UPDATE_EMAIL, tokenNegative.getToken());
     UpdateUserRequestBody requestBody = new UpdateUserRequestBody();
     requestBody.setEmail("notReqularEmail.com");
     requestBody.setName("User Updated");
@@ -76,7 +76,7 @@ public class AdminNegativeTest extends BaseAPITest {
     InvalidRequestUpdateResponseBody responseBody =
             response.as(InvalidRequestUpdateResponseBody.class);
 
-    customAssert.assertCommonBadRequestAndResponseTime(response);
+    customAssert.assertBadRequestAndResponseTime(response);
     softAssert.assertEquals(responseBody.getEmail(),
             "must be a well-formed email address",
             "Email message not as expected");
