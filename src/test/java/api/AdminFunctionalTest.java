@@ -1,11 +1,14 @@
 package api;
 
+import Helpers.CustomAssert;
+import Helpers.UserIDFromList;
 import POJO.request.user_controler.User;
 import POJO.request.user_controler.UserType;
 import POJO.response.user_controller.login.LogInResponseBody;
 import POJO.response.user_controller.single_user.CreateUserResponseBody;
 import POJO.response.user_controller.users_list.GetAllUsersResponseBody;
-import org.testng.Assert;
+import lombok.Getter;
+import lombok.Setter;
 import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
 import setup.common.helpers.TokenGenerator;
@@ -15,7 +18,10 @@ import specification.api.request.GetUsersList;
 import specification.api.request.LogInRequest;
 import specification.api.request.CreateUserRequest;
 
+@Getter
+@Setter
 public class AdminFunctionalTest extends BaseAPITest {
+
 
   TokenGenerator token = new TokenGenerator(Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
   LogInRequest logIn = new LogInRequest();
@@ -23,46 +29,49 @@ public class AdminFunctionalTest extends BaseAPITest {
   GetUsersList getAllUsers = new GetUsersList();
   DeleteRequest deleteRequest = new DeleteRequest();
 
+  CustomAssert customAssert = new CustomAssert();
+  UserIDFromList UsersId = new UserIDFromList();
+
 
   @Test
   public void adminLogIn() {
     response = logIn.request(Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
     LogInResponseBody responseBody = response.getBody().as(LogInResponseBody.class);
 
-    softAssert.assertEquals(response.statusCode(), 200);
-    softAssert.assertTrue(response.time() < 3000);
+    customAssert.assertCommonStatusCodeAndResponseTime(response);
     softAssert.assertEquals(responseBody.getUser().getUserGroup().getKey(), "ADMIN");
     softAssert.assertAll("There are the issues: ");
   }
 
   @Test
-  public void creatingNewUser() {
+  public void creatingNewUser() throws Exception {
     User predefinedUser = new User(UserType.STANDARD);
     response = newUser.create(predefinedUser, token.getToken());
-    CreateUserResponseBody responseBody = response.as(CreateUserResponseBody.class);
-
+    CreateUserResponseBody createUserResponseBody = response.as(CreateUserResponseBody.class);
+    // Assert
     softAssert.assertEquals(response.statusCode(), 201);
     softAssert.assertTrue(response.time() < 3000);
-    softAssert.assertEquals(responseBody.getEmail(), "testuser@gmail.com");
+    softAssert.assertEquals(createUserResponseBody.getEmail(), "testuser@gmail.com");
+    // Check if user is on the users list
+    customAssert.assertThatUserIsOnList(predefinedUser.getEmail(), token.getToken());
   }
 
   @Test
-  public void getUsersValues() {
+  public void getUsersList() {
     response = getAllUsers.list(token.getToken());
 
     GetAllUsersResponseBody responseBody = response.as(GetAllUsersResponseBody.class);
 
-    Assert.assertEquals(response.statusCode(), 200);
+    customAssert.assertCommonStatusCodeAndResponseTime(response);
+    softAssert.assertNotNull(responseBody.getContent());
   }
 
   @Test
-  public void deleteUser() {
-    response = getAllUsers.list(token.getToken());
-    GetAllUsersResponseBody responseBody = response.as(GetAllUsersResponseBody.class);
+  public void deleteUser() throws Exception {
+    int userID = UsersId.findUserId("userdelete@gmail.com", token.getToken());
 
-    int firstId = responseBody.getContent().get(0).getId();
-    response = deleteRequest.delete(firstId, token.getToken());
+    response = deleteRequest.delete(userID, token.getToken());
 
-    Assert.assertEquals(response.statusCode(), 200);
+    customAssert.assertCommonStatusCodeAndResponseTime(response);
   }
 }
