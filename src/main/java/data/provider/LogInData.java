@@ -41,7 +41,7 @@ public class LogInData {
 
             },
             {
-                    new LogInRequestBody(Constants.REGULAR_USER_EMAIL, Constants.REGULAR_USER_PASS),
+                    new LogInRequestBody(Constants.REGULAR_USER_EMAIL, "invalidPass"),
                     new NotAuthorizedResponseBody("Unauthorized")
             }
     };
