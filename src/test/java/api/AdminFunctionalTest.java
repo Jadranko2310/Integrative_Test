@@ -7,6 +7,7 @@ import POJO.request.user_controler.User;
 import POJO.request.user_controler.UserType;
 import POJO.response.user_controller.login.LogInResponseBody;
 import POJO.response.user_controller.single_user.CreateUserResponseBody;
+import POJO.response.user_controller.single_user.UpdateUserResponseBody;
 import POJO.response.user_controller.users_list.GetAllUsersResponseBody;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,14 +44,14 @@ public class AdminFunctionalTest extends BaseAPITest {
   }
 
   @Test
-  public void creatingNewUser() throws Exception {
+  public void createNewUser() throws Exception {
     User predefinedUser = new User(UserType.STANDARD);
     response = newUser.create(predefinedUser, token.getToken());
     CreateUserResponseBody createUserResponseBody = response.as(CreateUserResponseBody.class);
     // Assert
     softAssert.assertEquals(response.statusCode(), 201);
     softAssert.assertTrue(response.time() < 3000);
-    softAssert.assertEquals(createUserResponseBody.getEmail(), "testuser@gmail.com");
+    softAssert.assertEquals(createUserResponseBody.getEmail(), predefinedUser.getEmail());
     // Check if user is on the users list
     customAssert.assertThatUserIsOnList(predefinedUser.getEmail(), token.getToken());
   }
@@ -74,6 +75,11 @@ public class AdminFunctionalTest extends BaseAPITest {
     requestBody.setPhone("+38765111000");
 
     response = updateUserRequest.update(userID, token.getToken(), requestBody);
+    UpdateUserResponseBody responseBody = new UpdateUserResponseBody();
+
+    customAssert.assertCommonStatusCodeAndResponseTime(response);
+    softAssert.assertEquals(responseBody.getEmail(), requestBody.email);
+    softAssert.assertEquals(responseBody.getName(), requestBody.name);
   }
 
   @Test
