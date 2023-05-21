@@ -1,16 +1,15 @@
 package Helpers;
-import POJO.response.user_controller.users_list.GetAllUsersResponseBody;
 import io.restassured.response.Response;
 import lombok.Getter;
 import lombok.Setter;
 import setup.api.BaseAPITest;
-import specification.api.request.GetUsersList;
+import specification.api.request.GetUsersListRequest;
 
 @Getter
 @Setter
 public class CustomAssert extends BaseAPITest {
 
-  GetUsersList getAllUsers = new GetUsersList();
+  GetUsersListRequest getAllUsers = new GetUsersListRequest();
   UserIDFromList userIDFromList = new UserIDFromList();
 
 

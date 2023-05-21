@@ -5,14 +5,14 @@ import POJO.response.user_controller.users_list.GetAllUsersResponseBody;
 import lombok.Getter;
 import lombok.Setter;
 import setup.api.BaseAPITest;
-import specification.api.request.GetUsersList;
+import specification.api.request.GetUsersListRequest;
 import java.util.List;
 
 @Getter
 @Setter
 public class UserIDFromList extends BaseAPITest {
 
-  GetUsersList getUsersList = new GetUsersList();
+  GetUsersListRequest getUsersList = new GetUsersListRequest();
 
   private int id;
 
@@ -23,9 +23,6 @@ public class UserIDFromList extends BaseAPITest {
       for (Content content : contentList) {
         if (content.getEmail().equals(email)) {
            setId(content.getId());
-        }
-        else {
-         throw new Exception("The user is not on the list");
         }
       }
       return id;
