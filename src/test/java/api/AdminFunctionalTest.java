@@ -3,6 +3,7 @@ package api;
 import POJO.request.user_controler.User;
 import POJO.request.user_controler.UserType;
 import POJO.response.user_controller.login.LogInResponseBody;
+import POJO.response.user_controller.single_user.CreateUserResponseBody;
 import POJO.response.user_controller.users_list.GetAllUsersResponseBody;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -18,10 +19,8 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   TokenGenerator token = new TokenGenerator(Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
   LogInRequest logIn = new LogInRequest();
-
   CreateUserRequest newUser = new CreateUserRequest();
   GetUsersList getAllUsers = new GetUsersList();
-
   DeleteRequest deleteRequest = new DeleteRequest();
 
 
@@ -31,15 +30,20 @@ public class AdminFunctionalTest extends BaseAPITest {
     LogInResponseBody responseBody = response.getBody().as(LogInResponseBody.class);
 
     softAssert.assertEquals(response.statusCode(), 200);
-    softAssert.assertEquals(responseBody.getUser().getUserGroup().getId(), 1);
+    softAssert.assertTrue(response.time() < 3000);
+    softAssert.assertEquals(responseBody.getUser().getUserGroup().getKey(), "ADMIN");
+    softAssert.assertAll("There are the issues: ");
   }
 
   @Test
   public void creatingNewUser() {
     User predefinedUser = new User(UserType.STANDARD);
     response = newUser.create(predefinedUser, token.getToken());
+    CreateUserResponseBody responseBody = response.as(CreateUserResponseBody.class);
 
-    Assert.assertEquals(response.statusCode(), 201);
+    softAssert.assertEquals(response.statusCode(), 201);
+    softAssert.assertTrue(response.time() < 3000);
+    softAssert.assertEquals(responseBody.getEmail(), "testuser@gmail.com");
   }
 
   @Test
