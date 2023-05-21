@@ -16,7 +16,7 @@ public class UserIDFromList extends BaseAPITest {
 
   private int id;
 
-    public int findUserId(String email, String token) throws Exception {
+    public int find (String email, String token) throws Exception {
       response = getUsersList.list(token);
       GetAllUsersResponseBody responseBody = response.as(GetAllUsersResponseBody.class);
       List<Content> contentList = responseBody.getContent();

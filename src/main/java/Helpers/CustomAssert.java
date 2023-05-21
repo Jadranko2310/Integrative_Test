@@ -23,7 +23,7 @@ public class CustomAssert extends BaseAPITest {
   }
 
   public void assertThatUserIsOnList(String email, String token) throws Exception {
-    userIDFromList.findUserId(email, token);
+    userIDFromList.find(email, token);
     softAssert.assertNotNull(userIDFromList.getId(),
             "User is not on the list");
     softAssert.assertAll();
