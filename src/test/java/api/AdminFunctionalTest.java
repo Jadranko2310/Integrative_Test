@@ -30,7 +30,7 @@ public class AdminFunctionalTest extends BaseAPITest {
   DeleteUserRequest deleteRequest = new DeleteUserRequest();
 
   CustomAssert customAssert = new CustomAssert();
-  UserIDFromList UsersId = new UserIDFromList();
+  UserIDFromList userIDFromListsersId = new UserIDFromList();
 
 
   @Test
@@ -68,7 +68,7 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test
   public void updateUser() throws Exception {
-    int userID = UsersId.find(Constants.USER_UPDATE_EMAIL, token.getToken());
+    int userID = userIDFromListsersId.find(Constants.USER_UPDATE_EMAIL, token.getToken());
     UpdateUserRequestBody requestBody = new UpdateUserRequestBody();
     requestBody.setEmail("updateduser@gmail.com");
     requestBody.setName("User Updated");
@@ -84,7 +84,7 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test
   public void deleteUser() throws Exception {
-    int userID = UsersId.find(Constants.USER_DELETE_EMAIL, token.getToken());
+    int userID = userIDFromListsersId.find(Constants.USER_DELETE_EMAIL, token.getToken());
 
     response = deleteRequest.delete(userID, token.getToken());
 
