@@ -5,8 +5,8 @@ import POJO.response.user_controller.users_list.GetAllUsersResponseBody;
 import io.restassured.response.Response;
 import setup.common.helpers.TokenGenerator;
 import setup.common.specification.Constants;
-import specification.api.request.DeleteRequest;
-import specification.api.request.GetUsersList;
+import specification.api.request.DeleteUserRequest;
+import specification.api.request.GetUsersListRequest;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ public class UserDataCleanUp {
   TokenGenerator tokenGenerator = new TokenGenerator
           (Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
 
-  GetUsersList getUsersList = new GetUsersList();
+  GetUsersListRequest getUsersList = new GetUsersListRequest();
 
-  DeleteRequest deleteRequest = new DeleteRequest();
+  DeleteUserRequest deleteRequest = new DeleteUserRequest();
 
   public GetAllUsersResponseBody getUsersList() {
     Response response = getUsersList.list(token);

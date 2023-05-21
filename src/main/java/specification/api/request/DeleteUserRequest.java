@@ -6,10 +6,9 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import setup.api.BaseAPITest;
 import setup.common.specification.Constants;
 
-public class DeleteRequest {
+public class DeleteUserRequest {
 
   public Response delete(int userID, String token) {
     RequestSpecification request = RestAssured

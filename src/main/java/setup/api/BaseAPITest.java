@@ -25,6 +25,7 @@ public abstract class BaseAPITest {
   protected Response response;
   protected SoftAssert softAssert;
 
+
   /**
    * Defining request and response specification.
    */

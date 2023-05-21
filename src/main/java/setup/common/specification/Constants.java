@@ -28,6 +28,7 @@ public class Constants {
   public static final String ALL_USERS = dotenv.get("ALL_USERS");
   public static final String CREATE_USER = dotenv.get("CREATE_USER");
   public static final String DELETE_USER = dotenv.get("DELETE_USER");
+  public static final String UPDATE_USER = dotenv.get("UPDATE_USER");
 
 
   // USER CREDENTIALS
