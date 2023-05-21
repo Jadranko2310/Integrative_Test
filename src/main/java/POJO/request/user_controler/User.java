@@ -2,10 +2,7 @@ package POJO.request.user_controler;
 
 import lombok.Getter;
 import lombok.Setter;
-import setup.common.specification.Constants;
-
-import javax.swing.*;
-import java.lang.annotation.Target;
+import setup.common.constants.UserConstants;
 
 @Getter
 @Setter
@@ -27,28 +24,28 @@ public class User {
   public User(UserType userType) {
     switch (userType) {
       case STANDARD -> {
-        this.email = Constants.REGULAR_USER_EMAIL;
-        this.password = Constants.REGULAR_USER_PASS;
-        this.name = Constants.REGULAR_USER_NAME;
-        this.phone = Constants.REGULAR_USER_PHONE;
+        this.email = UserConstants.REGULAR_USER_EMAIL;
+        this.password = UserConstants.REGULAR_USER_PASS;
+        this.name = UserConstants.REGULAR_USER_NAME;
+        this.phone = UserConstants.REGULAR_USER_PHONE;
       }
       case NON_VALID -> {
-        this.email = Constants.INVALID_EMAIL;
-        this.password = Constants.INVALID_PASS;
-        this.name = Constants.INVALID_NAME;
-        this.password = Constants.INVALID_NAME;
+        this.email = UserConstants.INVALID_EMAIL;
+        this.password = UserConstants.INVALID_PASS;
+        this.name = UserConstants.INVALID_NAME;
+        this.password = UserConstants.INVALID_NAME;
       }
       case PRE_FOR_UPDATE -> {
-        this.email = Constants.USER_UPDATE_EMAIL;
-        this.password = Constants.USER_UPDATE_PASS;
-        this.name = Constants.USER_UPDATE_NAME;
-        this.phone = Constants.USER_UPDATE_PHONE;
+        this.email = UserConstants.USER_UPDATE_EMAIL;
+        this.password = UserConstants.USER_UPDATE_PASS;
+        this.name = UserConstants.USER_UPDATE_NAME;
+        this.phone = UserConstants.USER_UPDATE_PHONE;
       }
       case PREP_FOR_DELETE -> {
-        this.email = Constants.USER_DELETE_EMAIL;
-        this.password = Constants.USER_DELETE_PASS;
-        this.name = Constants.USER_DELETE_NAME;
-        this.phone = Constants.USER_DELETE_EMAIL;
+        this.email = UserConstants.USER_DELETE_EMAIL;
+        this.password = UserConstants.USER_DELETE_PASS;
+        this.name = UserConstants.USER_DELETE_NAME;
+        this.phone = UserConstants.USER_DELETE_EMAIL;
       }
     }
   }

@@ -1,6 +1,5 @@
 package setup.ui.pom;
 
-import setup.ui.base.SetupConstants;
 import lombok.Getter;
 import lombok.Setter;
 import org.openqa.selenium.Keys;
@@ -11,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import setup.common.constants.FEConstants;
 
 import java.time.Duration;
 
@@ -78,7 +78,7 @@ public class BasePage {
    */
   public void waitForElementVisibility(WebElement element, WebDriver driver) {
     WebDriverWait wait = new WebDriverWait(
-            driver, Duration.ofSeconds(SetupConstants.ELEMENT_DETECTION_TIMEOUT));
+            driver, Duration.ofSeconds(FEConstants.ELEMENT_DETECTION_TIMEOUT));
     wait.until(ExpectedConditions.visibilityOf(element));
   }
 
@@ -88,7 +88,7 @@ public class BasePage {
    */
   public void waitForElementToBeClickable(WebElement element, WebDriver driver) {
     WebDriverWait wait = new WebDriverWait(
-            driver, Duration.ofSeconds(SetupConstants.ELEMENT_DETECTION_TIMEOUT));
+            driver, Duration.ofSeconds(FEConstants.ELEMENT_DETECTION_TIMEOUT));
     wait.until(ExpectedConditions.elementToBeClickable(element));
   }
 

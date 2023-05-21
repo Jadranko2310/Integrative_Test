@@ -3,7 +3,7 @@ package data.handling;
 import POJO.request.user_controler.User;
 import POJO.request.user_controler.UserType;
 import setup.common.helpers.TokenGenerator;
-import setup.common.specification.Constants;
+import setup.common.constants.UserConstants;
 import specification.api.request.CreateUserRequest;
 
 public class UserDataPrep {
@@ -12,7 +12,7 @@ public class UserDataPrep {
   public UserDataPrep() {this.token = tokenGenerator.getToken();}
 
   TokenGenerator tokenGenerator = new TokenGenerator
-          (Constants.ADMIN_EMAIL, Constants.ADMIN_PASS);
+          (UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
 
   public void createUsersForTesting() {
     CreateUserRequest createUser = new CreateUserRequest();

@@ -4,7 +4,7 @@ import POJO.request.auth_controler.LogInRequestBody;
 import POJO.response.user_controller.login.MissingCredentialsResponseBody;
 import POJO.response.user_controller.login.NotAuthorizedResponseBody;
 import org.testng.annotations.DataProvider;
-import setup.common.specification.Constants;
+import setup.common.constants.UserConstants;
 
 public class LogInData {
 
@@ -13,7 +13,7 @@ public class LogInData {
   public Object[][] logInData() {
     return new Object[][]{
             {
-                    new LogInRequestBody(Constants.ADMIN_EMAIL, ""),
+                    new LogInRequestBody(UserConstants.ADMIN_EMAIL, ""),
                     new MissingCredentialsResponseBody().Password("Field is mandatory")
             },
             {
@@ -31,7 +31,7 @@ public class LogInData {
   public Object[][] logInUnauthorisedData() {
     return new Object[][]{
             {
-                    new LogInRequestBody(Constants.ADMIN_EMAIL, "invalidPass"),
+                    new LogInRequestBody(UserConstants.ADMIN_EMAIL, "invalidPass"),
                     new NotAuthorizedResponseBody("Invalid credentials.")
 
             },
@@ -41,7 +41,7 @@ public class LogInData {
 
             },
             {
-                    new LogInRequestBody(Constants.REGULAR_USER_EMAIL, "invalidPass"),
+                    new LogInRequestBody(UserConstants.REGULAR_USER_EMAIL, "invalidPass"),
                     new NotAuthorizedResponseBody("Unauthorized")
             }
     };

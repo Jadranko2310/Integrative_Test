@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import setup.common.constants.FEConstants;
+import setup.common.constants.UserConstants;
 
 import java.time.Duration;
 
@@ -47,9 +49,9 @@ public class DriverSetup {
    */
   public static void navigateToUrl(WebDriver driver, String url) {
     driver.manage().timeouts()
-            .pageLoadTimeout(Duration.ofSeconds(SetupConstants.PAGE_LOAD_TIME));
+            .pageLoadTimeout(Duration.ofSeconds(FEConstants.PAGE_LOAD_TIME));
     driver.manage().timeouts()
-            .implicitlyWait(Duration.ofSeconds(SetupConstants.ELEMENT_DETECTION_TIMEOUT));
+            .implicitlyWait(Duration.ofSeconds(FEConstants.ELEMENT_DETECTION_TIMEOUT));
     driver.get(url);
   }
 

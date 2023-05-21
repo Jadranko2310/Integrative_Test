@@ -7,20 +7,20 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import setup.common.specification.Constants;
+import setup.common.constants.APIConstants;
 
 public class CreateUserRequest {
 
   public Response create (User user, String token) {
     RequestSpecification request = RestAssured
             .given()
-            .baseUri(Constants.BASE_URI)
+            .baseUri(APIConstants.BASE_URI)
             .contentType(ContentType.JSON)
             .filter(new RequestLoggingFilter())
             .filter(new ResponseLoggingFilter())
             .relaxedHTTPSValidation();
     return request.header("Authorization", token)
             .body(user)
-            .post(Constants.CREATE_USER);
+            .post(APIConstants.CREATE_USER);
   }
 }
