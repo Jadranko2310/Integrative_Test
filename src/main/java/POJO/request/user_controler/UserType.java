@@ -6,5 +6,7 @@ public enum UserType {
 
   PRE_FOR_UPDATE,
 
-  PREP_FOR_DELETE
+  PREP_FOR_DELETE,
+
+  PREP_FOR_RECORDS
 }
