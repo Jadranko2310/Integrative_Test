@@ -21,14 +21,13 @@ public class RecordsDataPrep {
   TokenGenerator tokenGeneratorAdmin = new TokenGenerator
           (UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
 
-  @Test(priority = 0)
+
   public void createUserForRecordsManagement() {
     CreateUserRequest createUser = new CreateUserRequest();
     User recordsManager = new User(UserType.PREP_FOR_RECORDS);
     createUser.create(recordsManager, tokenGeneratorAdmin.getToken());
   }
 
-  @Test(priority = 1)
   public void createRecordsForTesting() throws Exception {
     CreateRecordRequest createRecordRequest = new CreateRecordRequest();
     TokenGenerator tokenGeneratorUser= new TokenGenerator

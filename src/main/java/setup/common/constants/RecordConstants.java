@@ -37,4 +37,14 @@ public class RecordConstants {
           dotenv.get("INVALID_RECORD_TOTAL_PRICE");
   public static final String INVALID_RECORD_CREDIT =
           dotenv.get("INVALID_RECORD_CREDIT");
+
+  // New Purchase for FE tests
+  public static final String NEW_RECORD_JOB_NMB = dotenv.get("NEW_RECORD_JOB_NMB");
+  public static final String NEW_RECORD_JOB_NAME = dotenv.get("NEW_RECORD_JOB_NAME");
+  public static final String NEW_RECORD_PURCHASE_FROM =
+          dotenv.get("NEW_RECORD_JOB_NAME");
+  public static final String NEW_RECORD_PURCHASE_DETAIL=
+          dotenv.get("NEW_RECORD_PURCHASE_DETAIL");
+  public static final String NEW_RECORD_INVOICE_TOTAL =
+          dotenv.get("NEW_RECORD_INVOICE_TOTAL");
 }

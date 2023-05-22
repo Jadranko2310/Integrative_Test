@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
 import setup.common.constants.FEConstants;
 
 import java.time.Duration;
@@ -26,6 +27,8 @@ public class BasePage {
     this.driver = driver;
     PageFactory.initElements(driver, this);
   }
+
+  SoftAssert softAssert = new SoftAssert();
 
   public void clickElement(WebElement element) {
     element.click();
