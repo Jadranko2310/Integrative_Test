@@ -12,7 +12,7 @@ public class Content {
   private String jobName;
   private String jobNumber;
   private int paymentType;
-  private int totalPrice;
+  private String totalPrice;
   private String credit;
   private String supplierName;
   private String userName;

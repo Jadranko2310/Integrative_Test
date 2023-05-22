@@ -1,6 +1,6 @@
 package data.handling;
 
-public class DataHandler implements IDataHandler {
+public class UserDataHandler implements IDataHandler {
 
   @Override
   public void prepareData() {
