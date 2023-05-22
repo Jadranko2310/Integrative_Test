@@ -35,13 +35,17 @@ public class Record {
     this.credit = credit;
   }
 
-  TokenGenerator token = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
-  UserIDFromList userIDFromListsersId = new UserIDFromList();
 
-  public Record(RecordsType recordsType) throws Exception {
+
+  public int getUserId (String token) throws Exception {
+    UserIDFromList userIDFromListsersId = new UserIDFromList();
+    return userIDFromListsersId.find(UserConstants.RECORDS_USER_EMAIL, token);
+  }
+
+  public Record(RecordsType recordsType, String token) throws Exception {
     switch (recordsType) {
       case REGULAR -> {
-        this.userId = userIDFromListsersId.find(UserConstants.RECORDS_USER_EMAIL, token.getToken());
+        this.userId = getUserId(token);
         this.jobNumber = RecordConstants.REGULAR_RECORD_JOB_NMB;
         this.jobName = RecordConstants.REGULAR_RECORD_JOB_NAME;
         this.paymentType = RecordConstants.REGULAR_RECORD_PAYMENT_TYPE;
