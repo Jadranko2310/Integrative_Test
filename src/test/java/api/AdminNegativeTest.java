@@ -2,9 +2,9 @@ package api;
 
 import Helpers.CustomAssert;
 import Helpers.UserIDFromList;
-import POJO.request.auth_controler.LogInRequestBody;
-import POJO.request.user_controler.UpdateUserRequestBody;
-import POJO.request.user_controler.User;
+import POJO.request.auth_controller.LogInRequestBody;
+import POJO.request.user_controller.UpdateUserRequestBody;
+import POJO.request.user_controller.User;
 import POJO.response.user_controller.login.NotAuthorizedResponseBody;
 import POJO.response.user_controller.single_user.CreateUserResponseBody;
 import POJO.response.user_controller.single_user.InvalidRequestUpdateResponseBody;

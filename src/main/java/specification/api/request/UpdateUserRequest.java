@@ -1,6 +1,6 @@
 package specification.api.request;
 
-import POJO.request.user_controler.UpdateUserRequestBody;
+import POJO.request.user_controller.UpdateUserRequestBody;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;

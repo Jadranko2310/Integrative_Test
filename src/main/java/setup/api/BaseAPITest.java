@@ -1,6 +1,6 @@
 package setup.api;
 
-import data.handling.DataHandler;
+import data.handling.UserDataHandler;
 import io.restassured.RestAssured;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -51,7 +51,7 @@ public abstract class BaseAPITest {
    * TestNG's specification. Defining before and after suite.
    */
 
-  DataHandler dataHandler = new DataHandler();
+  UserDataHandler dataHandler = new UserDataHandler();
 
   @BeforeSuite
   public void prepareData() {

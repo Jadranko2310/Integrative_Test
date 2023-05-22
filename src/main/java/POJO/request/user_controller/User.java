@@ -1,4 +1,4 @@
-package POJO.request.user_controler;
+package POJO.request.user_controller;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -46,6 +46,12 @@ public class User {
         this.password = UserConstants.USER_DELETE_PASS;
         this.name = UserConstants.USER_DELETE_NAME;
         this.phone = UserConstants.USER_DELETE_EMAIL;
+      }
+      case PREP_FOR_RECORDS -> {
+        this.email = UserConstants.RECORDS_USER_EMAIL;
+        this.password = UserConstants.RECORDS_USER_PASS;
+        this.name = UserConstants.RECORDS_USER_NAME;
+        this.phone = UserConstants.RECORDS_USER_PHONE;
       }
     }
   }
