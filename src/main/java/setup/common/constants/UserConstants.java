@@ -10,7 +10,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class UserConstants {
   static Dotenv dotenv = Dotenv.configure().load();
 
-  // USER CREDENTIALS
+  // Regular entry
   public static final String REGULAR_USER_EMAIL = dotenv.get("REGULAR_USER_EMAIL");
   public static final String REGULAR_USER_PASS = dotenv.get("REGULAR_USER_PASS");
   public static final String REGULAR_USER_NAME = dotenv.get("REGULAR_USER_NAME");

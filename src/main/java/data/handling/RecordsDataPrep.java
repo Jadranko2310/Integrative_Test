@@ -17,7 +17,7 @@ public class RecordsDataPrep {
   }
   public void createDataForRecordsTesting() {
     CreateUserRequest createUser = new CreateUserRequest();
-    User userForUpdate = new User(UserType.PREP_FOR_RECORDS);
-    createUser.create(userForUpdate, token);
+    User recordsManager = new User(UserType.PREP_FOR_RECORDS);
+    createUser.create(recordsManager, token);
   }
 }
