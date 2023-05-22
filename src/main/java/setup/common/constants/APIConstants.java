@@ -19,4 +19,5 @@ public class APIConstants {
   // RECORDS CONTROLLER
   public static final String CREATE_RECORD = dotenv.get("CREATE_RECORD");
   public static final String GET_ALL_RECORDS_ADMIN = dotenv.get("GET_ALL_RECORDS_ADMIN");
+  public static final String DELETE_RECORDS_ADMIN = dotenv.get("DELETE_RECORDS_ADMIN");
 }
