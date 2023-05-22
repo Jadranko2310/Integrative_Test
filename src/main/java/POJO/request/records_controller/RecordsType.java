@@ -1,4 +1,4 @@
-package POJO.request.records_controler;
+package POJO.request.records_controller;
 
 public enum RecordsType {
 

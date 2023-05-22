@@ -1,7 +1,7 @@
 package data.handling;
 
-import POJO.request.user_controler.User;
-import POJO.request.user_controler.UserType;
+import POJO.request.user_controller.User;
+import POJO.request.user_controller.UserType;
 import setup.common.helpers.TokenGenerator;
 import setup.common.constants.UserConstants;
 import specification.api.request.CreateUserRequest;

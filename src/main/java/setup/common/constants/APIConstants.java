@@ -15,4 +15,7 @@ public class APIConstants {
   public static final String CREATE_USER = dotenv.get("CREATE_USER");
   public static final String DELETE_USER = dotenv.get("DELETE_USER");
   public static final String UPDATE_USER = dotenv.get("UPDATE_USER");
+
+  // RECORDS CONTROLLER
+  public static final String CREATE_RECORD = dotenv.get("CREATE_RECORD");
 }

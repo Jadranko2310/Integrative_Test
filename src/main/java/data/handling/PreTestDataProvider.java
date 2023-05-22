@@ -1,6 +1,6 @@
 package data.handling;
 
-import POJO.request.user_controler.User;
+import POJO.request.user_controller.User;
 import org.testng.annotations.DataProvider;
 import setup.common.constants.UserConstants;
 

@@ -1,4 +1,4 @@
-package POJO.request.user_controler;
+package POJO.request.user_controller;
 
 public enum UserType {
   STANDARD,

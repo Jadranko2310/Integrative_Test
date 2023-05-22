@@ -1,6 +1,6 @@
 package data.provider;
 
-import POJO.request.auth_controler.LogInRequestBody;
+import POJO.request.auth_controller.LogInRequestBody;
 import POJO.response.user_controller.login.MissingCredentialsResponseBody;
 import POJO.response.user_controller.login.NotAuthorizedResponseBody;
 import org.testng.annotations.DataProvider;

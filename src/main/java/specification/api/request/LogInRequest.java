@@ -1,6 +1,6 @@
 package specification.api.request;
 
-import POJO.request.auth_controler.LogInRequestBody;
+import POJO.request.auth_controller.LogInRequestBody;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
