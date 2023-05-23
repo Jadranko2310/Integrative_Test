@@ -31,7 +31,7 @@ public class UserHomePage extends BasePage{
   @FindBy(css = "svg[data-icon='setting']")
   private WebElement settingsBtn;
 
-  @FindBy(xpath = "//div[3]/div/div/ul/li[2]/span[1]")
+  @FindBy(css = "span.anticon.anticon-logout")
   private WebElement logOutBtn;
 
   @FindBy(css = "a[href='/users-records']")
@@ -70,10 +70,10 @@ public class UserHomePage extends BasePage{
   @FindBy(css = "button.ant-btn-default")
   private WebElement uploadImageBtn;
 
-  @FindBy(xpath = "//div[3]/div/button")
+  @FindBy(xpath = "//div[2]/div[3]/div/button")
   private WebElement confirmUploadImageBtn;
 
-  @FindBy(css = "div.ant-image-mask-info")
+  @FindBy(css = "span.anticon.anticon-eye")
   private WebElement imageInRecordDetails;
 
   // METHODS
@@ -105,6 +105,7 @@ public class UserHomePage extends BasePage{
             "Job name not matching");
     softAssert.assertAll("There are the issues: ");
   }
+
 
   public void updateRecordWithImage(String filePathFromProjectDirectory,
                                     String recordName) throws FileNotFoundException, AWTException, InterruptedException {

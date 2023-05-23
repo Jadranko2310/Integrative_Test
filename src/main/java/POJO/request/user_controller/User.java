@@ -53,6 +53,12 @@ public class User {
         this.name = UserConstants.RECORDS_USER_NAME;
         this.phone = UserConstants.RECORDS_USER_PHONE;
       }
+      case FE_CREATE_USER -> {
+        this.email = UserConstants.FE_USER_EMAIL;
+        this.password = UserConstants.FE_USER_PASS;
+        this.name = UserConstants.FE_USER_NAME;
+        this.phone = UserConstants.FE_USER_PHONE;
+      }
     }
   }
 }

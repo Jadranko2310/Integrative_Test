@@ -41,6 +41,13 @@ public class UserConstants {
   public static final String RECORDS_USER_NAME = dotenv.get("RECORDS_USER_NAME");
   public static final String RECORDS_USER_PHONE = dotenv.get("RECORDS_USER_PHONE");
 
+  // User that needs to be created on FE
+  public static final String FE_USER_EMAIL = dotenv.get("FE_USER_EMAIL");
+  public static final String FE_USER_PASS = dotenv.get("FE_USER_PASS");
+  public static final String FE_USER_NAME = dotenv.get("FE_USER_NAME");
+  public static final String FE_USER_PHONE = dotenv.get("FE_USER_PHONE");
+
+
   // ADMIN
   public static final String ADMIN_EMAIL = dotenv.get("ADMIN_EMAIL");
   public static final String ADMIN_PASS = dotenv.get("ADMIN_PASS");

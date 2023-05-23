@@ -8,5 +8,7 @@ public enum UserType {
 
   PREP_FOR_DELETE,
 
-  PREP_FOR_RECORDS
+  PREP_FOR_RECORDS,
+
+  FE_CREATE_USER
 }

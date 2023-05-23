@@ -26,4 +26,7 @@ public class FEConstants {
 
   public static final String USERS_RECORDS_PAGE =
           fileControlURL.getValue("USERS_RECORDS_PAGE");
+
+  public static final String ADMIN_HOME_PAGE =
+          fileControlURL.getValue("ADMIN_HOME_PAGE");
 }
