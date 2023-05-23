@@ -17,14 +17,12 @@ public class RecordsFunctionalTest extends BaseFrontendTest {
     logInPage.logInDefinedUser(UserType.REGULAR);
     userHomePage.checkIfHomePageIsNavigated();
   }
-
   @Test
   public void createNewRecord() throws Exception {
     logInPage.logInDefinedUser(UserType.REGULAR);
     userHomePage.createJobRecord(RecordType.NEW_RECORD);
     userHomePage.checkIfNewRecordInDB(RecordType.NEW_RECORD);
   }
-
   @Test
   public void editExistingRecord() throws FileNotFoundException, AWTException, InterruptedException {
     logInPage.logInDefinedUser(UserType.REGULAR);

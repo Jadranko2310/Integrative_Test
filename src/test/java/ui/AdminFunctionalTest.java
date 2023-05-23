@@ -8,13 +8,11 @@ import setup.common.constants.RecordConstants;
 import setup.common.constants.UserConstants;
 import setup.common.helpers.TokenGenerator;
 import setup.ui.base.BaseFrontendTest;
-import specification.api.request.GetUsersListRequest;
 
 public class AdminFunctionalTest extends BaseFrontendTest {
 
   TokenGenerator token = new TokenGenerator(UserConstants.ADMIN_EMAIL,
           UserConstants.ADMIN_PASS);
-
   UserIDFromList userIDFromListsersId = new UserIDFromList();
 
   @Test

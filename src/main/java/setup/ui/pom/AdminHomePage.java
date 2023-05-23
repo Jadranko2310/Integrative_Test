@@ -41,6 +41,9 @@ public class AdminHomePage extends BasePage{
   @FindBy(xpath = "//div/div[4]/div[1]/input")
   private WebElement phoneEntryFiled;
 
+  @FindBy(css = "div.sc-evZas.bdrJDj")
+  private WebElement validationMsg;
+
   @FindBy(css = "button.ant-btn.ant-btn-default.sc-jqUVSM.sc-bjUoiL.kSLokU.kHYOWb")
   private WebElement confirmBtn;
 
@@ -73,13 +76,31 @@ public class AdminHomePage extends BasePage{
     waitForElementToBeClickable(emailEntryField, driver);
     emailEntryField.sendKeys(user.getEmail());
     passEntryField.sendKeys(user.getPassword());
-    nameEntryField.sendKeys(user.getPassword());
+    nameEntryField.sendKeys(user.getName());
     phoneEntryFiled.sendKeys(user.getPhone());
     waitForElementToBeClickable(confirmBtn, driver);
     confirmBtn.click();
   }
 
-  public void checkIfUserIsInDB() {
+  public void createNewUserWithParams(String email,
+                                      String pass,
+                                      String name,
+                                      String phone) {
+    waitForElementToBeClickable(users, driver);
+    users.click();
+    waitForElementToBeClickable(addButton, driver);
+    addButton.click();
+    waitForElementToBeClickable(emailEntryField, driver);
+    waitForElementToBeClickable(emailEntryField, driver);
+    emailEntryField.sendKeys(email);
+    passEntryField.sendKeys(pass);
+    nameEntryField.sendKeys(name);
+    phoneEntryFiled.sendKeys(phone);
+    waitForElementToBeClickable(confirmBtn, driver);
+    confirmBtn.click();
+  }
 
+  public void checkIfValidationMessageIsShowing(String validationMessage) {
+    softAssert.assertEquals(validationMessage, validationMsg.getText());
   }
 }
