@@ -15,6 +15,7 @@ public class AdminHomePage extends BasePage{
     DriverSetup.navigateToUrl(driver, url);
   }
 
+
   // ELEMENTS SECTION
   @FindBy(css = "span.ant-menu-title-content > a[href='/records']")
   private WebElement records;

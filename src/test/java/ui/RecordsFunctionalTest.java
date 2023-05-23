@@ -25,7 +25,6 @@ public class RecordsFunctionalTest extends BaseFrontendTest {
     userHomePage.checkIfNewRecordInDB(RecordType.NEW_RECORD);
   }
 
-
   @Test
   public void editExistingRecord() throws FileNotFoundException, AWTException, InterruptedException {
     logInPage.logInDefinedUser(UserType.REGULAR);

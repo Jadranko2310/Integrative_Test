@@ -3,6 +3,7 @@ package setup.ui.base;
 import data.handling.RecordsDataHandler;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 import setup.common.constants.FEConstants;
 import setup.ui.pom.AdminHomePage;
 import setup.ui.pom.LogInPage;
@@ -16,6 +17,8 @@ import java.awt.*;
 public class BaseFrontendTest {
   protected DriverSetup driverSetup;
   protected WebDriver driver;
+
+  SoftAssert softAssert = new SoftAssert();
 
   protected LogInPage logInPage;
 
