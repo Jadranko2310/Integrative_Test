@@ -45,6 +45,6 @@ public class RecordConstants {
           dotenv.get("NEW_RECORD_JOB_NAME");
   public static final String NEW_RECORD_PURCHASE_DETAIL=
           dotenv.get("NEW_RECORD_PURCHASE_DETAIL");
-  public static final String NEW_RECORD_INVOICE_TOTAL =
-          dotenv.get("NEW_RECORD_INVOICE_TOTAL");
+  public static final int NEW_RECORD_INVOICE_TOTAL =
+          Integer.parseInt(dotenv.get("NEW_RECORD_INVOICE_TOTAL"));
 }

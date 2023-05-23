@@ -1,5 +1,6 @@
 package setup.ui.pom;
 
+import Helpers.AbsolutePath;
 import Helpers.RecordOnList;
 import POJO.frontend.CreateNewRecord;
 import POJO.frontend.RecordType;
@@ -10,8 +11,12 @@ import setup.common.constants.UserConstants;
 import setup.common.helpers.TokenGenerator;
 import setup.ui.base.DriverSetup;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.io.FileNotFoundException;
+
 public class UserHomePage extends BasePage{
-  public UserHomePage(WebDriver driver, String url) {
+  public UserHomePage(WebDriver driver, String url) throws AWTException {
     super(driver);
     DriverSetup.navigateToUrl(driver, url);
   }
@@ -24,6 +29,12 @@ public class UserHomePage extends BasePage{
   // ELEMENTS
   @FindBy(css = "a[href='/users-records']")
   private WebElement records;
+
+  @FindBy(css = "input.ant-input[placeholder='Search']")
+  private WebElement searchBar;
+
+  @FindBy(css = "input.ant-input.sc-fmRtwQ.fhIhqn.input")
+  private WebElement firstRecordOnList;
 
   @FindBy(xpath = "//div[1]/div[1]/div[1]/input")
   private WebElement jobNmbEntry;
@@ -49,6 +60,9 @@ public class UserHomePage extends BasePage{
   @FindBy(css = "button.ant-btn.ant-btn-default.sc-jqUVSM.sc-TRNrF.kSLokU.exjpeQ")
   private WebElement createRecordBtn;
 
+  @FindBy(css = "button.ant-btn-default")
+  private WebElement uploadImageBtn;
+
   // METHODS
   public void checkIfHomePageIsNavigated(){
     waitForElementToBeClickable(records, driver);
@@ -57,7 +71,7 @@ public class UserHomePage extends BasePage{
     softAssert.assertAll("These are the issues: ");
   }
 
-  public void createJobRecord(RecordType recordType) {
+  public void createJobRecord(RecordType recordType) throws InterruptedException {
     CreateNewRecord createNewRecord = new CreateNewRecord(recordType);
     jobNmbEntry.sendKeys(createNewRecord.getJobNmb());
     jobNameEntry.sendKeys(createNewRecord.getJobName());
@@ -66,16 +80,31 @@ public class UserHomePage extends BasePage{
     companyOptionOnDropDown.click();
     purchaseFromEntry.sendKeys(createNewRecord.getPurchaseFrom());
     purchaseDetailEntry.sendKeys(createNewRecord.getPurchaseDetail());
-    invoiceTotalEntry.sendKeys(createNewRecord.getInvoiceTotal());
+    invoiceTotalEntry.sendKeys(String.valueOf(createNewRecord.getInvoiceTotal()));
     createRecordBtn.click();
   }
 
   public void checkIfNewRecordInDB(RecordType recordType) throws Exception {
     CreateNewRecord createNewRecord = new CreateNewRecord(recordType);
     String jobName = findOnList.jobName
-            (createNewRecord.getJobName(), token.getToken());
+            (createNewRecord.getJobNmb(), token.getToken());
     softAssert.assertEquals(jobName, createNewRecord.getJobName(),
             "Job name not matching");
     softAssert.assertAll("There are the issues: ");
+  }
+
+  public void updateRecordWithImage(String filePathFromProjectDirectory,
+                                    String recordName) throws FileNotFoundException, AWTException {
+    AbsolutePath generatePath = new AbsolutePath();
+    String pathToFile = generatePath
+            .generateFromRelativePath(filePathFromProjectDirectory);
+    records.click();
+    searchBar.sendKeys(recordName);
+    firstRecordOnList.click();
+    uploadImageBtn.click();
+    StringSelection stringSelection = new StringSelection(pathToFile);
+    Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+    paste();
+    hitEnter();
   }
 }

@@ -10,6 +10,8 @@ import setup.common.constants.FEConstants;
 import setup.ui.pom.LogInPage;
 import setup.ui.pom.UserHomePage;
 
+import java.awt.*;
+
 /**
  * TestNG setup and actions.
  */
@@ -33,7 +35,7 @@ public class BaseFrontendTest {
   }
 
   @BeforeMethod
-  public void setupBeforeMethod() {
+  public void setupBeforeMethod() throws AWTException {
     driverSetup = new DriverSetup(DriverType.CHROME);
     driver = driverSetup.getDriver();
     logInPage = new LogInPage(driver, FEConstants.LOG_IN_PAGE);

@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.CompositeAction;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -13,6 +14,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 import setup.common.constants.FEConstants;
 
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 
 /**
@@ -23,12 +27,14 @@ import java.time.Duration;
 public class BasePage {
   protected WebDriver driver;
 
-  public BasePage(WebDriver driver) {
+  public BasePage(WebDriver driver) throws AWTException {
     this.driver = driver;
     PageFactory.initElements(driver, this);
   }
 
   SoftAssert softAssert = new SoftAssert();
+
+  Robot robot = new Robot();
 
   public void clickElement(WebElement element) {
     element.click();
@@ -97,5 +103,12 @@ public class BasePage {
 
   public void hitEnter() {
     Keys enter = Keys.ENTER;
+  }
+
+  public void paste() throws AWTException {
+    robot.keyPress(KeyEvent.VK_CONTROL);
+    robot.keyPress(KeyEvent.VK_V);
+    robot.keyRelease(KeyEvent.VK_V);
+    robot.keyRelease(KeyEvent.VK_CONTROL);
   }
 }

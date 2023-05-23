@@ -11,12 +11,12 @@ public class CreateNewRecord {
   private String jobName;
   private String purchaseFrom;
   private String purchaseDetail;
-  private String invoiceTotal;
+  private int invoiceTotal;
 
   public CreateNewRecord(){}
 
   public CreateNewRecord(String jobNmb, String jobName, String purchaseFrom,
-                         String purchaseDetail, String invoiceTotal) {
+                         String purchaseDetail, int invoiceTotal) {
     this.jobNmb = jobNmb;
     this.jobName = jobName;
     this.purchaseFrom = purchaseFrom;
@@ -38,7 +38,7 @@ public class CreateNewRecord {
         this.jobName = RecordConstants.REGULAR_RECORD_JOB_NAME;
         this.purchaseFrom = RecordConstants.NEW_RECORD_PURCHASE_FROM;
         this.purchaseDetail = RecordConstants.NEW_RECORD_PURCHASE_DETAIL;
-        this.invoiceTotal = RecordConstants.REGULAR_RECORD_TOTAL_PRICE;
+        this.invoiceTotal = Integer.parseInt(RecordConstants.REGULAR_RECORD_TOTAL_PRICE);
       }
     }
   }
