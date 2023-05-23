@@ -1,0 +1,153 @@
+package setup.ui.pom;
+
+import POJO.request.user_controller.User;
+import POJO.request.user_controller.UserType;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import setup.ui.base.DriverSetup;
+
+import java.awt.*;
+
+public class AdminHomePage extends BasePage{
+  public AdminHomePage(WebDriver driver, String url) throws AWTException {
+    super(driver);
+    DriverSetup.navigateToUrl(driver, url);
+  }
+
+
+  // ELEMENTS SECTION
+  @FindBy(css = "span.ant-menu-title-content > a[href='/records']")
+  private WebElement records;
+
+  @FindBy(xpath = "//div/div[1]/div[1]/div[2]/div/span[2]")
+  private WebElement selectUserBtn;
+
+  @FindBy(css = "div.ant-select-item-option-content")
+  private WebElement selectFirstUser;
+
+  @FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/input")
+  private WebElement jobNumberEntryField;
+
+  @FindBy(xpath = "//div[1]/div/div[3]/div[1]/input")
+  private WebElement jobNameEntryField;
+
+  @FindBy(css = "input.ant-input.sc-hHLeRK.vfKRI")
+  private WebElement purchasedFromEntryField;
+
+  @FindBy(xpath = "//div[1]/div/div[6]/div[1]/input")
+  private WebElement purchaseDetailEntryField;
+
+  @FindBy(xpath = "//div/div[7]/div[1]/input")
+  private WebElement invoiceTotalEntryField;
+
+  @FindBy(css = "button.ant-btn.ant-btn-default.sc-jqUVSM.sc-bjUoiL.kSLokU.kHYOWb")
+  private WebElement confirm;
+
+  @FindBy(xpath = "//section/aside/div[1]/ul/li[3]/span[2]")
+  private WebElement users;
+
+  @FindBy(css = "input.ant-input.sc-kngDgl.frWszN.input[type=text]")
+  private WebElement searchBar;
+
+  @FindBy(css = "button.ant-btn.ant-btn-default.ant-btn-icon-only.sc-jqUVSM.sc-bZkfAO.kSLokU.kmmRVV")
+  private WebElement addUserButton;
+
+  @FindBy(css = "button.ant-btn.ant-btn-default.ant-btn-icon-only")
+  private WebElement addRecordBtn;
+
+  @FindBy(xpath = "//form/div[1]/div/div[1]/div[1]/input")
+  private WebElement emailEntryField;
+
+  @FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/input")
+  private WebElement passEntryField;
+
+  @FindBy(xpath = "//form/div[1]/div/div[3]/div[1]/input")
+  private WebElement nameEntryField;
+
+  @FindBy(xpath = "//div/div[4]/div[1]/input")
+  private WebElement phoneEntryFiled;
+
+  @FindBy(css = "div.sc-evZas.bdrJDj")
+  private WebElement validationMsg;
+
+  @FindBy(css = "button.ant-btn.ant-btn-default.sc-jqUVSM.sc-bjUoiL.kSLokU.kHYOWb")
+  private WebElement confirmBtn;
+
+  @FindBy(xpath = "//div/div[2]/table/tbody/tr[2]")
+  private WebElement firstRecordOnList;
+
+  @FindBy(xpath = "//div[2]/div[2]/div/div/div[1]/div[4]")
+  private WebElement jobName;
+
+  // METHOD SECTION
+
+  public void checkIfRecordIsPresent(String recordName, String jobNameToCompare) {
+    waitForElementToBeClickable(records, driver);
+    records.click();
+    waitForElementToBeClickable(searchBar, driver);
+    searchBar.sendKeys(recordName);
+    firstRecordOnList.click();
+    waitForElementVisibility(jobName, driver);
+    softAssert.assertEquals(jobName.getText(), jobNameToCompare,
+            "Job name is not matching");
+    softAssert.assertAll("These are the issues: ");
+  }
+
+  public void createNewUser(UserType userType) {
+    User user = new User(userType);
+    waitForElementToBeClickable(users, driver);
+    users.click();
+    waitForElementToBeClickable(addUserButton, driver);
+    addUserButton.click();
+    waitForElementToBeClickable(emailEntryField, driver);
+    emailEntryField.sendKeys(user.getEmail());
+    passEntryField.sendKeys(user.getPassword());
+    nameEntryField.sendKeys(user.getName());
+    phoneEntryFiled.sendKeys(user.getPhone());
+    waitForElementToBeClickable(confirmBtn, driver);
+    confirmBtn.click();
+  }
+
+  public void createNewUserWithParams(String email,
+                                      String pass,
+                                      String name,
+                                      String phone) {
+    waitForElementToBeClickable(users, driver);
+    users.click();
+    waitForElementToBeClickable(addUserButton, driver);
+    addUserButton.click();
+    waitForElementToBeClickable(emailEntryField, driver);
+    waitForElementToBeClickable(emailEntryField, driver);
+    emailEntryField.sendKeys(email);
+    passEntryField.sendKeys(pass);
+    nameEntryField.sendKeys(name);
+    phoneEntryFiled.sendKeys(phone);
+    waitForElementToBeClickable(confirmBtn, driver);
+    confirmBtn.click();
+  }
+
+  public void checkIfValidationMessageIsShowing(String validationMessage) {
+    softAssert.assertEquals(validationMessage, validationMsg.getText());
+    softAssert.assertAll("These are the issues: ");
+  }
+
+  public void createPurchaseForRegularUser(String jobNmb, String jobName,
+                                           String purchaseFrom, String purchaseDetail,
+                                           String invoiceTotal) {
+    waitForElementToBeClickable(records, driver);
+    records.click();
+    waitForElementToBeClickable(addRecordBtn, driver);
+    addRecordBtn.click();
+    waitForElementToBeClickable(selectUserBtn, driver);
+    selectUserBtn.click();
+    waitForElementToBeClickable(selectFirstUser, driver);
+    selectFirstUser.click();
+    jobNumberEntryField.sendKeys(jobNmb);
+    jobNameEntryField.sendKeys(jobName);
+    purchasedFromEntryField.sendKeys(purchaseFrom);
+    purchaseDetailEntryField.sendKeys(purchaseDetail);
+    invoiceTotalEntryField.sendKeys(invoiceTotal);
+    confirmBtn.click();
+  }
+}

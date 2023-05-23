@@ -9,11 +9,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import setup.ui.base.DriverSetup;
 
+import java.awt.*;
+
 @Getter
 @Setter
 public class LogInPage extends BasePage{
 
-  public LogInPage(WebDriver driver, String url) {
+  public LogInPage(WebDriver driver, String url) throws AWTException {
     super(driver);
     DriverSetup.navigateToUrl(driver, url);
   }
@@ -30,6 +32,12 @@ public class LogInPage extends BasePage{
   @FindBy(css = "button.sc-fctJkW.iacbkw")
   WebElement logInButton;
 
+  @FindBy(xpath = "//*[text()='Email required.']")
+  WebElement emailValidationMsg;
+
+  @FindBy(xpath = "//*[text()='Password required.']")
+  WebElement passValidationMsg;
+
   // METHODS
 
   public void logIn(String username, String pasasword) {
@@ -45,5 +53,11 @@ public class LogInPage extends BasePage{
     usernameEntryField.sendKeys(logIn.getEmail());
     passwordEntryField.sendKeys(logIn.getPassword());
     logInButton.click();
+  }
+
+  public void checkValidation(String emailValidation, String passValidation) {
+    softAssert.assertEquals(emailValidation, emailValidationMsg.getText());
+    softAssert.assertEquals(passValidation, passValidationMsg.getText());
+    softAssert.assertAll("The validation message not as expected");
   }
 }

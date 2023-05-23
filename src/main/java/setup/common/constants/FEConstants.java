@@ -13,7 +13,7 @@ public class FEConstants {
   }
 
   // SELENIUM BASE CONFIGURATION
-  public static final int ELEMENT_DETECTION_TIMEOUT = 10;
+  public static final int ELEMENT_DETECTION_TIMEOUT = 15;
   public static final int PAGE_LOAD_TIME = 15;
 
   // FE URLs
@@ -26,4 +26,7 @@ public class FEConstants {
 
   public static final String USERS_RECORDS_PAGE =
           fileControlURL.getValue("USERS_RECORDS_PAGE");
+
+  public static final String ADMIN_HOME_PAGE =
+          fileControlURL.getValue("ADMIN_HOME_PAGE");
 }

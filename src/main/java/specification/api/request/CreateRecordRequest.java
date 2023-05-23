@@ -21,6 +21,6 @@ public class CreateRecordRequest {
             .relaxedHTTPSValidation();
     return request.header("Authorization", token)
             .body(record)
-            .post(APIConstants.CREATE_USER);
+            .post(APIConstants.CREATE_RECORD);
   }
 }
