@@ -13,7 +13,7 @@ public class FEConstants {
   }
 
   // SELENIUM BASE CONFIGURATION
-  public static final int ELEMENT_DETECTION_TIMEOUT = 10;
+  public static final int ELEMENT_DETECTION_TIMEOUT = 15;
   public static final int PAGE_LOAD_TIME = 15;
 
   // FE URLs

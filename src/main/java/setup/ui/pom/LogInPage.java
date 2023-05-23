@@ -9,11 +9,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import setup.ui.base.DriverSetup;
 
+import java.awt.*;
+
 @Getter
 @Setter
 public class LogInPage extends BasePage{
 
-  public LogInPage(WebDriver driver, String url) {
+  public LogInPage(WebDriver driver, String url) throws AWTException {
     super(driver);
     DriverSetup.navigateToUrl(driver, url);
   }

@@ -2,10 +2,7 @@ package setup.ui.base;
 
 import data.handling.RecordsDataHandler;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 import setup.common.constants.FEConstants;
 import setup.ui.pom.LogInPage;
 import setup.ui.pom.UserHomePage;
@@ -31,6 +28,7 @@ public class BaseFrontendTest {
 
   @BeforeSuite
   public void prepareDataForTesting() throws Exception {
+    recordsDataHandler.cleanData();
     recordsDataHandler.prepareData();
   }
 
@@ -48,7 +46,7 @@ public class BaseFrontendTest {
   }
 
   @AfterSuite
-  public void closeBrowser() {
+  public void closeBrowserAndClearData() {
     driverSetup.quitBrowser();
     recordsDataHandler.cleanData();
   }

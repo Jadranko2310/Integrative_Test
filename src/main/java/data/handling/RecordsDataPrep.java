@@ -30,10 +30,10 @@ public class RecordsDataPrep {
 
   public void createRecordsForTesting() throws Exception {
     CreateRecordRequest createRecordRequest = new CreateRecordRequest();
+    Record record = new Record(RecordsType.REGULAR, tokenAdmin);
     TokenGenerator tokenGeneratorUser= new TokenGenerator
             (UserConstants.RECORDS_USER_EMAIL, UserConstants.RECORDS_USER_PASS);
     String tokenUser = tokenGeneratorUser.getToken();
-    Record record = new Record(RecordsType.REGULAR, tokenAdmin);
     createRecordRequest.create(record, tokenUser);
   }
 }

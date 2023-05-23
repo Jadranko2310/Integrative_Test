@@ -3,6 +3,7 @@ package data.handling;
 import POJO.response.records_controler.all_records.Content;
 import POJO.response.records_controler.all_records.GetAllRecordsResponseBody;
 import io.restassured.response.Response;
+import org.testng.annotations.Test;
 import setup.common.constants.UserConstants;
 import setup.common.helpers.TokenGenerator;
 import specification.api.request.DeleteRecordRequest;
@@ -30,7 +31,7 @@ public class RecordsDataCleanup {
     return response.as(GetAllRecordsResponseBody.class);
   }
 
-  public void cleanUpTestData() {
+  public void cleanUpRecordsTestData() {
     List<Content> contentList = getRecordsList().getContent();
     if (contentList.isEmpty()) {
       return;

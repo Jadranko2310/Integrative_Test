@@ -11,6 +11,6 @@ public class UserDataHandler implements IDataHandler {
   @Override
   public void cleanData() {
     UserDataCleanUp adminActivityCleanup = new UserDataCleanUp();
-    adminActivityCleanup.cleanUpTestData();
+    adminActivityCleanup.cleanUpUserTestData();
   }
 }

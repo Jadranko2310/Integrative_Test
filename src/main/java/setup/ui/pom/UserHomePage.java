@@ -27,13 +27,20 @@ public class UserHomePage extends BasePage{
           UserConstants.RECORDS_USER_PASS);
 
   // ELEMENTS
+
+  @FindBy(css = "svg[data-icon='setting']")
+  private WebElement settingsBtn;
+
+  @FindBy(xpath = "//div[3]/div/div/ul/li[2]/span[1]")
+  private WebElement logOutBtn;
+
   @FindBy(css = "a[href='/users-records']")
   private WebElement records;
 
   @FindBy(css = "input.ant-input[placeholder='Search']")
   private WebElement searchBar;
 
-  @FindBy(css = "input.ant-input.sc-fmRtwQ.fhIhqn.input")
+  @FindBy(xpath = "//div/div/div/div[2]/table/tbody/tr[2]")
   private WebElement firstRecordOnList;
 
   @FindBy(xpath = "//div[1]/div[1]/div[1]/input")
@@ -62,6 +69,12 @@ public class UserHomePage extends BasePage{
 
   @FindBy(css = "button.ant-btn-default")
   private WebElement uploadImageBtn;
+
+  @FindBy(xpath = "//div[3]/div/button")
+  private WebElement confirmUploadImageBtn;
+
+  @FindBy(css = "div.ant-image-mask-info")
+  private WebElement imageInRecordDetails;
 
   // METHODS
   public void checkIfHomePageIsNavigated(){
@@ -94,17 +107,37 @@ public class UserHomePage extends BasePage{
   }
 
   public void updateRecordWithImage(String filePathFromProjectDirectory,
-                                    String recordName) throws FileNotFoundException, AWTException {
+                                    String recordName) throws FileNotFoundException, AWTException, InterruptedException {
     AbsolutePath generatePath = new AbsolutePath();
     String pathToFile = generatePath
             .generateFromRelativePath(filePathFromProjectDirectory);
-    records.click();
-    searchBar.sendKeys(recordName);
-    firstRecordOnList.click();
-    uploadImageBtn.click();
     StringSelection stringSelection = new StringSelection(pathToFile);
     Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+    records.click();
+    searchBar.sendKeys(recordName);
+    waitForElementVisibility(firstRecordOnList, driver);
+    firstRecordOnList.click();
+    waitForElementToBeClickable(uploadImageBtn, driver);
+    uploadImageBtn.click();
+    Thread.sleep(1000);
     paste();
-    hitEnter();
+    hitDesktopEnter();
+    waitForElementToBeClickable(confirmUploadImageBtn, driver);
+    confirmUploadImageBtn.click();
+  }
+
+  public void checkIfImageOnRecordIsPresent(String recordName){
+    waitForElementToBeClickable(searchBar, driver);
+    searchBar.sendKeys(recordName);
+    waitForElementVisibility(firstRecordOnList, driver);
+    firstRecordOnList.click();
+    softAssert.assertTrue(imageInRecordDetails.isDisplayed());
+  }
+
+  public void logOut(){
+    waitForElementToBeClickable(settingsBtn, driver);
+    settingsBtn.click();
+    waitForElementToBeClickable(logOutBtn, driver);
+    logOutBtn.click();
   }
 }

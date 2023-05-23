@@ -30,7 +30,8 @@ public class UserDataCleanUp {
     return response.as(GetAllUsersResponseBody.class);
   }
 
-  public void cleanUpTestData() {
+
+  public void cleanUpUserTestData() {
     List<Content> contentList = getUsersList().getContent();
     if (contentList.isEmpty()) {
       return;

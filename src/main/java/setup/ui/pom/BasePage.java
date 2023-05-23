@@ -111,4 +111,9 @@ public class BasePage {
     robot.keyRelease(KeyEvent.VK_V);
     robot.keyRelease(KeyEvent.VK_CONTROL);
   }
+
+  public void hitDesktopEnter() throws AWTException {
+    robot.keyPress(KeyEvent.VK_ENTER);
+    robot.keyRelease(KeyEvent.VK_ENTER);
+  }
 }

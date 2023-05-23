@@ -11,7 +11,8 @@ public class RecordsDataHandler implements IDataHandler{
   @Override
   public void cleanData() {
     RecordsDataCleanup recordsDataCleanup = new RecordsDataCleanup();
-    recordsDataCleanup.cleanUpTestData();
-
+    recordsDataCleanup.cleanUpRecordsTestData();
+    UserDataCleanUp userDataCleanUp = new UserDataCleanUp();
+    userDataCleanUp.cleanUpUserTestData();
   }
 }
