@@ -30,4 +30,15 @@ public class AdminFunctionalTest extends BaseFrontendTest {
             token.getToken());
     Assert.assertNotNull(newUserId, "User not created");
   }
+
+  @Test
+  public void createNewRecord() {
+    logInPage.logInDefinedUser(UserType.ADMIN);
+    adminHomePage.createPurchaseForRegularUser(
+            "SomeName",
+            "SomeName",
+            "something",
+            "something",
+            "12");
+  }
 }

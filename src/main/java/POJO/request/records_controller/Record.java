@@ -35,8 +35,6 @@ public class Record {
     this.credit = credit;
   }
 
-
-
   public int getUserId (String token) throws Exception {
     UserIDFromList userIDFromListsersId = new UserIDFromList();
     return userIDFromListsersId.find(UserConstants.RECORDS_USER_EMAIL, token);

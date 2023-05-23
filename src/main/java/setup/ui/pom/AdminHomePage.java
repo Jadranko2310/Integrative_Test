@@ -20,6 +20,30 @@ public class AdminHomePage extends BasePage{
   @FindBy(css = "span.ant-menu-title-content > a[href='/records']")
   private WebElement records;
 
+  @FindBy(xpath = "//div/div[1]/div[1]/div[2]/div/span[2]")
+  private WebElement selectUserBtn;
+
+  @FindBy(css = "div.ant-select-item-option-content")
+  private WebElement selectFirstUser;
+
+  @FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/input")
+  private WebElement jobNumberEntryField;
+
+  @FindBy(xpath = "//div[1]/div/div[3]/div[1]/input")
+  private WebElement jobNameEntryField;
+
+  @FindBy(css = "input.ant-input.sc-hHLeRK.vfKRI")
+  private WebElement purchasedFromEntryField;
+
+  @FindBy(xpath = "//div[1]/div/div[6]/div[1]/input")
+  private WebElement purchaseDetailEntryField;
+
+  @FindBy(xpath = "//div/div[7]/div[1]/input")
+  private WebElement invoiceTotalEntryField;
+
+  @FindBy(css = "button.ant-btn.ant-btn-default.sc-jqUVSM.sc-bjUoiL.kSLokU.kHYOWb")
+  private WebElement confirm;
+
   @FindBy(xpath = "//section/aside/div[1]/ul/li[3]/span[2]")
   private WebElement users;
 
@@ -27,7 +51,10 @@ public class AdminHomePage extends BasePage{
   private WebElement searchBar;
 
   @FindBy(css = "button.ant-btn.ant-btn-default.ant-btn-icon-only.sc-jqUVSM.sc-bZkfAO.kSLokU.kmmRVV")
-  private WebElement addButton;
+  private WebElement addUserButton;
+
+  @FindBy(css = "button.ant-btn.ant-btn-default.ant-btn-icon-only")
+  private WebElement addRecordBtn;
 
   @FindBy(xpath = "//form/div[1]/div/div[1]/div[1]/input")
   private WebElement emailEntryField;
@@ -71,8 +98,8 @@ public class AdminHomePage extends BasePage{
     User user = new User(userType);
     waitForElementToBeClickable(users, driver);
     users.click();
-    waitForElementToBeClickable(addButton, driver);
-    addButton.click();
+    waitForElementToBeClickable(addUserButton, driver);
+    addUserButton.click();
     waitForElementToBeClickable(emailEntryField, driver);
     emailEntryField.sendKeys(user.getEmail());
     passEntryField.sendKeys(user.getPassword());
@@ -88,8 +115,8 @@ public class AdminHomePage extends BasePage{
                                       String phone) {
     waitForElementToBeClickable(users, driver);
     users.click();
-    waitForElementToBeClickable(addButton, driver);
-    addButton.click();
+    waitForElementToBeClickable(addUserButton, driver);
+    addUserButton.click();
     waitForElementToBeClickable(emailEntryField, driver);
     waitForElementToBeClickable(emailEntryField, driver);
     emailEntryField.sendKeys(email);
@@ -102,5 +129,25 @@ public class AdminHomePage extends BasePage{
 
   public void checkIfValidationMessageIsShowing(String validationMessage) {
     softAssert.assertEquals(validationMessage, validationMsg.getText());
+    softAssert.assertAll("These are the issues: ");
+  }
+
+  public void createPurchaseForRegularUser(String jobNmb, String jobName,
+                                           String purchaseFrom, String purchaseDetail,
+                                           String invoiceTotal) {
+    waitForElementToBeClickable(records, driver);
+    records.click();
+    waitForElementToBeClickable(addRecordBtn, driver);
+    addRecordBtn.click();
+    waitForElementToBeClickable(selectUserBtn, driver);
+    selectUserBtn.click();
+    waitForElementToBeClickable(selectFirstUser, driver);
+    selectFirstUser.click();
+    jobNumberEntryField.sendKeys(jobNmb);
+    jobNameEntryField.sendKeys(jobName);
+    purchasedFromEntryField.sendKeys(purchaseFrom);
+    purchaseDetailEntryField.sendKeys(purchaseDetail);
+    invoiceTotalEntryField.sendKeys(invoiceTotal);
+    confirmBtn.click();
   }
 }
