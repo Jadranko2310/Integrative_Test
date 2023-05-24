@@ -17,6 +17,12 @@ public class AdminFunctionalTest extends BaseFrontendTest {
   UserIDFromList userIDFromListsersId = new UserIDFromList();
 
   @Test
+  public void checkSideButtons() {
+    logInPage.logInDefinedUser(UserType.ADMIN);
+    adminHomePage.checkIfSideButtonsAreWorking();
+  }
+
+  @Test
   public void checkIfRecordIsVisible() {
     logInPage.logInDefinedUser(UserType.ADMIN);
     adminHomePage.checkIfRecordIsPresent(RecordConstants.REGULAR_RECORD_JOB_NAME,

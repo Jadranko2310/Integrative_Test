@@ -19,8 +19,18 @@ public class AdminHomePage extends BasePage{
 
 
   // ELEMENTS SECTION
+  @FindBy(css = "span.ant-menu-title-content > a[href='/admins']")
+  private WebElement adminsSideBtn;
+  @FindBy(css = "span.ant-menu-title-content > a[href='/users']")
+  private WebElement usersSideBtn;
+
+  @FindBy(css = "span.ant-menu-title-content > a[href='/suppliers']")
+  private WebElement suppliersSideBtn;
+
+  @FindBy(css = "div.sc-cCsOjp.bQQQsz")
+  private WebElement pageHeadline;
   @FindBy(css = "span.ant-menu-title-content > a[href='/records']")
-  private WebElement records;
+  private WebElement recordsSideBtn;
 
   @FindBy(xpath = "//div/div[1]/div[1]/div[2]/div/span[2]")
   private WebElement selectUserBtn;
@@ -90,9 +100,25 @@ public class AdminHomePage extends BasePage{
 
   // METHOD SECTION
 
+  public void checkIfSideButtonsAreWorking(){
+    waitForElementToBeClickable(adminsSideBtn, driver);
+    adminsSideBtn.click();
+    softAssert.assertEquals(adminsSideBtn.getText(), "Admins");
+    waitForElementToBeClickable(usersSideBtn, driver);
+    usersSideBtn.click();
+    softAssert.assertEquals(usersSideBtn.getText(), "Users");
+    waitForElementToBeClickable(suppliersSideBtn, driver);
+    suppliersSideBtn.click();
+    softAssert.assertEquals(suppliersSideBtn.getText(), "Suppliers");
+    waitForElementToBeClickable(recordsSideBtn, driver);
+    recordsSideBtn.click();
+    softAssert.assertEquals(recordsSideBtn.getText(), "Records");
+    softAssert.assertAll();
+  }
+
   public void checkIfRecordIsPresent(String recordName, String jobNameToCompare) {
-    waitForElementToBeClickable(records, driver);
-    records.click();
+    waitForElementToBeClickable(recordsSideBtn, driver);
+    recordsSideBtn.click();
     waitForElementToBeClickable(searchBar, driver);
     searchBar.sendKeys(recordName);
     firstRecordOnList.click();
@@ -143,8 +169,8 @@ public class AdminHomePage extends BasePage{
   public void createRecordForRegularUser(String jobNmb, String jobName,
                                          String purchaseFrom, String purchaseDetail,
                                          String invoiceTotal) {
-    waitForElementToBeClickable(records, driver);
-    records.click();
+    waitForElementToBeClickable(recordsSideBtn, driver);
+    recordsSideBtn.click();
     waitForElementToBeClickable(addRecordBtn, driver);
     addRecordBtn.click();
     waitForElementToBeClickable(selectUserBtn, driver);
@@ -161,8 +187,8 @@ public class AdminHomePage extends BasePage{
 
   public void createNewPredefinedRecord(RecordType recordType) throws InterruptedException {
     NewRecord record = new NewRecord(recordType);
-    waitForElementToBeClickable(records, driver);
-    records.click();
+    waitForElementToBeClickable(recordsSideBtn, driver);
+    recordsSideBtn.click();
     waitForElementToBeClickable(addRecordBtn, driver);
     addRecordBtn.click();
     waitForElementToBeClickable(selectUserBtn, driver);
