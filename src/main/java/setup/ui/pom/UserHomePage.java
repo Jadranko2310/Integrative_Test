@@ -40,7 +40,7 @@ public class UserHomePage extends BasePage{
   @FindBy(css = "input.ant-input[placeholder='Search']")
   private WebElement searchBar;
 
-  @FindBy(xpath = "//div/div/div/div[2]/table/tbody/tr[2]")
+  @FindBy(css = "td.ant-table-cell")
   private WebElement firstRecordOnList;
 
   @FindBy(xpath = "//div[1]/div[1]/div[1]/input")
@@ -70,14 +70,13 @@ public class UserHomePage extends BasePage{
   @FindBy(css = "button.ant-btn-default")
   private WebElement uploadImageBtn;
 
-  @FindBy(xpath = "//div[2]/div[3]/div/button")
+/*  @FindBy(xpath = "//div[2]/div[3]/div/button")*/
+  @FindBy(xpath = "//*[text()='Confirm']")
   private WebElement confirmUploadImageBtn;
 
   @FindBy(css = "span.anticon.anticon-eye")
   private WebElement imageInRecordDetails;
 
-  @FindBy(css = "div.ant-image-mask")
-  private WebElement uploadedImagePreview;
 
   // METHODS
   public void checkIfHomePageIsNavigated(){

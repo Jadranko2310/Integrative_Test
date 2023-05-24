@@ -28,9 +28,18 @@ public class AdminHomePage extends BasePage{
   private WebElement suppliersSideBtn;
 
   @FindBy(css = "div.sc-cCsOjp.bQQQsz")
-  private WebElement pageHeadline;
-  @FindBy(css = "span.ant-menu-title-content > a[href='/records']")
-  private WebElement recordsSideBtn;
+  private WebElement adminsPageHeadline;
+
+  @FindBy(css = "div.sc-fytwQQ.iKqmUd")
+  private WebElement usersPageHeadLine;
+
+  @FindBy(css = "div.sc-hKpBwk.kvUaca")
+  private WebElement supplierPageHeadline;
+
+ @FindBy(css = "div.sc-dSuTWQ.hIKYzE")
+ private WebElement recordsPageHeadline;
+ @FindBy(css = "span.ant-menu-title-content > a[href='/records']")
+ private WebElement recordsSideBtn;
 
   @FindBy(xpath = "//div/div[1]/div[1]/div[2]/div/span[2]")
   private WebElement selectUserBtn;
@@ -62,8 +71,6 @@ public class AdminHomePage extends BasePage{
   @FindBy(css = "button.ant-btn.ant-btn-default.sc-jqUVSM.sc-bjUoiL.kSLokU.kHYOWb")
   private WebElement confirm;
 
-  @FindBy(xpath = "//section/aside/div[1]/ul/li[3]/span[2]")
-  private WebElement users;
 
   @FindBy(css = "input.ant-input.sc-kngDgl.frWszN.input[type=text]")
   private WebElement searchBar;
@@ -92,27 +99,27 @@ public class AdminHomePage extends BasePage{
   @FindBy(css = "button.ant-btn.ant-btn-default.sc-jqUVSM.sc-bjUoiL.kSLokU.kHYOWb")
   private WebElement confirmBtn;
 
-  @FindBy(xpath = "//div/div[2]/table/tbody/tr[2]")
+  @FindBy(css = "td.ant-table-cell")
   private WebElement firstRecordOnList;
 
   @FindBy(xpath = "//div[2]/div[2]/div/div/div[1]/div[4]")
-  private WebElement jobName;
+  private WebElement jobNameOnRecordDetailsWindow;
 
   // METHOD SECTION
 
   public void checkIfSideButtonsAreWorking(){
     waitForElementToBeClickable(adminsSideBtn, driver);
     adminsSideBtn.click();
-    softAssert.assertEquals(adminsSideBtn.getText(), "Admins");
+    softAssert.assertEquals(adminsPageHeadline.getText(), "Admins");
     waitForElementToBeClickable(usersSideBtn, driver);
     usersSideBtn.click();
-    softAssert.assertEquals(usersSideBtn.getText(), "Users");
+    softAssert.assertEquals(usersPageHeadLine.getText(), "Users");
     waitForElementToBeClickable(suppliersSideBtn, driver);
     suppliersSideBtn.click();
-    softAssert.assertEquals(suppliersSideBtn.getText(), "Suppliers");
+    softAssert.assertEquals(supplierPageHeadline.getText(), "Suppliers");
     waitForElementToBeClickable(recordsSideBtn, driver);
     recordsSideBtn.click();
-    softAssert.assertEquals(recordsSideBtn.getText(), "Records");
+    softAssert.assertEquals(recordsPageHeadline.getText(), "Records");
     softAssert.assertAll();
   }
 
@@ -122,16 +129,16 @@ public class AdminHomePage extends BasePage{
     waitForElementToBeClickable(searchBar, driver);
     searchBar.sendKeys(recordName);
     firstRecordOnList.click();
-    waitForElementVisibility(jobName, driver);
-    softAssert.assertEquals(jobName.getText(), jobNameToCompare,
+    waitForElementVisibility(jobNameOnRecordDetailsWindow, driver);
+    softAssert.assertEquals(jobNameOnRecordDetailsWindow.getText(), jobNameToCompare,
             "Job name is not matching");
     softAssert.assertAll("These are the issues: ");
   }
 
   public void createNewUser(UserType userType) {
     User user = new User(userType);
-    waitForElementToBeClickable(users, driver);
-    users.click();
+    waitForElementToBeClickable(usersSideBtn, driver);
+    usersSideBtn.click();
     waitForElementToBeClickable(addUserButton, driver);
     addUserButton.click();
     waitForElementToBeClickable(emailEntryField, driver);
@@ -147,8 +154,8 @@ public class AdminHomePage extends BasePage{
                                       String pass,
                                       String name,
                                       String phone) {
-    waitForElementToBeClickable(users, driver);
-    users.click();
+    waitForElementToBeClickable(usersSideBtn, driver);
+    usersSideBtn.click();
     waitForElementToBeClickable(addUserButton, driver);
     addUserButton.click();
     waitForElementToBeClickable(emailEntryField, driver);
