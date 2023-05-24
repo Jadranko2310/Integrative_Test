@@ -17,7 +17,7 @@ import setup.api.BaseAPITest;
 import setup.common.helpers.TokenGenerator;
 import setup.common.constants.UserConstants;
 import specification.api.request.*;
-@Epic("Negative Admin CRUD operations")
+@Epic("API Tests - Negative Admin CRUD operations")
 @Feature("Basic CRUD operations, Role: Admin, Entity: User")
 public class AdminNegativeTest extends BaseAPITest {
   TokenGenerator tokenNegative = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);

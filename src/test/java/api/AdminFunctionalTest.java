@@ -17,7 +17,7 @@ import setup.common.helpers.TokenGenerator;
 import setup.common.constants.UserConstants;
 import specification.api.request.*;
 
-@Epic("Admin CRUD operations")
+@Epic("API tests - Admin CRUD operations")
 @Feature("Base CRUD OPERATION, Role: Admin, Entity: User")
 public class AdminFunctionalTest extends BaseAPITest {
 
