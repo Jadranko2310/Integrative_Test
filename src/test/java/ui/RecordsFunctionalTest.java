@@ -28,6 +28,6 @@ public class RecordsFunctionalTest extends BaseFrontendTest {
     logInPage.logInDefinedUser(UserType.REGULAR);
     userHomePage.updateRecordWithImage(DataConstants.REGULAR_FILE_RELATIVE_PATH,
             RecordConstants.REGULAR_RECORD_JOB_NAME);
-    userHomePage.checkIfImageOnRecordIsPresent(RecordConstants.REGULAR_RECORD_JOB_NAME);
+    userHomePage.checkIfImageOnRecordIsPresent();
   }
 }

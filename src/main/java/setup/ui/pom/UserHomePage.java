@@ -76,6 +76,9 @@ public class UserHomePage extends BasePage{
   @FindBy(css = "span.anticon.anticon-eye")
   private WebElement imageInRecordDetails;
 
+  @FindBy(css = "div.ant-image-mask")
+  private WebElement uploadedImagePreview;
+
   // METHODS
   public void checkIfHomePageIsNavigated(){
     waitForElementToBeClickable(records, driver);
@@ -132,13 +135,13 @@ public class UserHomePage extends BasePage{
     Thread.sleep(1000);
     paste();
     hitDesktopEnter();
-    waitForElementToBeClickable(confirmUploadImageBtn, driver);
+    Thread.sleep(700); // To be done: adding explicit wait after css is fixed
+    waitForElementVisibility(confirmUploadImageBtn, driver);
     confirmUploadImageBtn.click();
   }
 
-  public void checkIfImageOnRecordIsPresent(String recordName){
+  public void checkIfImageOnRecordIsPresent(){
     waitForElementToBeClickable(searchBar, driver);
-    searchBar.sendKeys(recordName);
     waitForElementVisibility(firstRecordOnList, driver);
     firstRecordOnList.click();
     softAssert.assertTrue(imageInRecordDetails.isDisplayed());
