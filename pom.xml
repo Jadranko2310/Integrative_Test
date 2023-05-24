@@ -92,6 +92,7 @@
             <version>7.7.1</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -99,8 +100,6 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-
-
 
     <!-- build for Allure -->
     <build>
