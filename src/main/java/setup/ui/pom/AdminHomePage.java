@@ -4,6 +4,7 @@ import POJO.frontend.NewRecord;
 import POJO.frontend.RecordType;
 import POJO.request.user_controller.User;
 import POJO.request.user_controller.UserType;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -102,8 +103,15 @@ public class AdminHomePage extends BasePage{
   @FindBy(css = "td.ant-table-cell")
   private WebElement firstRecordOnList;
 
-  @FindBy(xpath = "//div[2]/div[2]/div/div/div[1]/div[4]")
-  private WebElement jobNameOnRecordDetailsWindow;
+ /* @FindBy(xpath = "//div[2]/div[2]/div/div/div[1]/div[4]")
+  private WebElement jobNameOnRecordDetailsWindow;*/
+
+  public WebElement jobNameOnRecordDetailsWindow(String value) {
+    return driver.findElement(By.xpath(
+            "//div[contains(@class, 'sc-dWINGa') and contains" +
+                    "(@class, 'dkoBEN') and contains(text(), '" + value + "')]"));
+  }
+
 
   // METHOD SECTION
 
@@ -129,8 +137,10 @@ public class AdminHomePage extends BasePage{
     waitForElementToBeClickable(searchBar, driver);
     searchBar.sendKeys(recordName);
     firstRecordOnList.click();
-    waitForElementVisibility(jobNameOnRecordDetailsWindow, driver);
-    softAssert.assertEquals(jobNameOnRecordDetailsWindow.getText(), jobNameToCompare,
+    waitForElementVisibility
+            (jobNameOnRecordDetailsWindow(jobNameToCompare), driver);
+    softAssert.assertEquals
+            (jobNameOnRecordDetailsWindow(jobNameToCompare).getText(), jobNameToCompare,
             "Job name is not matching");
     softAssert.assertAll("These are the issues: ");
   }
