@@ -1,4 +1,4 @@
-package setup.common.constants;
+package setup.constants;
 
 import java.util.Properties;
 

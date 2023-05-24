@@ -2,13 +2,13 @@ package setup.ui.pom;
 
 import Helpers.AbsolutePath;
 import Helpers.RecordOnList;
-import POJO.frontend.CreateNewRecord;
+import POJO.frontend.NewRecord;
 import POJO.frontend.RecordType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import setup.common.constants.UserConstants;
-import setup.common.helpers.TokenGenerator;
+import setup.constants.UserConstants;
+import Helpers.TokenGenerator;
 import setup.ui.base.DriverSetup;
 
 import java.awt.*;
@@ -40,7 +40,7 @@ public class UserHomePage extends BasePage{
   @FindBy(css = "input.ant-input[placeholder='Search']")
   private WebElement searchBar;
 
-  @FindBy(xpath = "//div/div/div/div[2]/table/tbody/tr[2]")
+  @FindBy(css = "td.ant-table-cell")
   private WebElement firstRecordOnList;
 
   @FindBy(xpath = "//div[1]/div[1]/div[1]/input")
@@ -70,11 +70,12 @@ public class UserHomePage extends BasePage{
   @FindBy(css = "button.ant-btn-default")
   private WebElement uploadImageBtn;
 
-  @FindBy(xpath = "//div[2]/div[3]/div/button")
+  @FindBy(xpath = "//*[text()='Confirm']")
   private WebElement confirmUploadImageBtn;
 
   @FindBy(css = "span.anticon.anticon-eye")
   private WebElement imageInRecordDetails;
+
 
   // METHODS
   public void checkIfHomePageIsNavigated(){
@@ -85,7 +86,7 @@ public class UserHomePage extends BasePage{
   }
 
   public void createJobRecord(RecordType recordType) throws InterruptedException {
-    CreateNewRecord createNewRecord = new CreateNewRecord(recordType);
+    NewRecord createNewRecord = new NewRecord(recordType);
     jobNmbEntry.sendKeys(createNewRecord.getJobNmb());
     jobNameEntry.sendKeys(createNewRecord.getJobName());
     paymentTypeBtn.click();
@@ -98,7 +99,7 @@ public class UserHomePage extends BasePage{
   }
 
   public void checkIfNewRecordInDB(RecordType recordType) throws Exception {
-    CreateNewRecord createNewRecord = new CreateNewRecord(recordType);
+    NewRecord createNewRecord = new NewRecord(recordType);
     String jobName = findOnList.jobName
             (createNewRecord.getJobNmb(), token.getToken());
     softAssert.assertEquals(jobName, createNewRecord.getJobName(),
@@ -106,6 +107,14 @@ public class UserHomePage extends BasePage{
     softAssert.assertAll("There are the issues: ");
   }
 
+  public void checkThatNewRecordIsNotInDB(RecordType recordType) throws Exception {
+    NewRecord createNewRecord = new NewRecord(recordType);
+    String jobName = findOnList.jobName
+            (createNewRecord.getJobNmb(), token.getToken());
+    softAssert.assertEquals(jobName, null,
+            "There are some issues in validation, new record in DB");
+    softAssert.assertAll("There are the issues: ");
+  }
 
   public void updateRecordWithImage(String filePathFromProjectDirectory,
                                     String recordName) throws FileNotFoundException, AWTException, InterruptedException {
@@ -123,13 +132,13 @@ public class UserHomePage extends BasePage{
     Thread.sleep(1000);
     paste();
     hitDesktopEnter();
-    waitForElementToBeClickable(confirmUploadImageBtn, driver);
+    Thread.sleep(700); // To be done: adding explicit wait after css is fixed
+    waitForElementVisibility(confirmUploadImageBtn, driver);
     confirmUploadImageBtn.click();
   }
 
-  public void checkIfImageOnRecordIsPresent(String recordName){
+  public void checkIfImageOnRecordIsPresent(){
     waitForElementToBeClickable(searchBar, driver);
-    searchBar.sendKeys(recordName);
     waitForElementVisibility(firstRecordOnList, driver);
     firstRecordOnList.click();
     softAssert.assertTrue(imageInRecordDetails.isDisplayed());

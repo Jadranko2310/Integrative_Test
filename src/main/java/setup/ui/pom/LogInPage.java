@@ -20,7 +20,6 @@ public class LogInPage extends BasePage{
     DriverSetup.navigateToUrl(driver, url);
   }
 
-
   // ELEMENTS SECTION
 
   @FindBy(css = "input.ant-input[placeholder='Username']")

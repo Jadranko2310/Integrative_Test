@@ -3,9 +3,8 @@ package POJO.request.records_controller;
 import Helpers.UserIDFromList;
 import lombok.Getter;
 import lombok.Setter;
-import setup.common.constants.RecordConstants;
-import setup.common.constants.UserConstants;
-import setup.common.helpers.TokenGenerator;
+import setup.constants.RecordConstants;
+import setup.constants.UserConstants;
 
 @Getter
 @Setter

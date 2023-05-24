@@ -1,4 +1,4 @@
-package setup.common.helpers;
+package Helpers;
 
 import POJO.response.user_controller.login.LogInResponseBody;
 import lombok.Getter;

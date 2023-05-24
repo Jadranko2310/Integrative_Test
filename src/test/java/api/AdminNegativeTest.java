@@ -10,12 +10,15 @@ import POJO.response.user_controller.single_user.CreateUserResponseBody;
 import POJO.response.user_controller.single_user.InvalidRequestUpdateResponseBody;
 import POJO.response.user_controller.single_user.NotAuthorizedGetAllUsersResponseBody;
 import data.provider.LogInData;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
-import setup.common.helpers.TokenGenerator;
-import setup.common.constants.UserConstants;
+import Helpers.TokenGenerator;
+import setup.constants.UserConstants;
 import specification.api.request.*;
-
+@Epic("API Tests - Negative Admin CRUD operations")
+@Feature("Basic CRUD operations, Role: Admin, Entity: User")
 public class AdminNegativeTest extends BaseAPITest {
   TokenGenerator tokenNegative = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
   UserIDFromList usersId = new UserIDFromList();
@@ -26,7 +29,9 @@ public class AdminNegativeTest extends BaseAPITest {
   UpdateUserRequest updateUserRequest = new UpdateUserRequest();
   DeleteUserRequest deleteUserRequest = new DeleteUserRequest();
 
-  @Test(dataProvider = "LogInUnauthorizedData", dataProviderClass = LogInData.class)
+  @Test(dataProvider = "LogInUnauthorizedData", dataProviderClass = LogInData.class,
+  description = "Admin sending log in request with invalid credentials, " +
+          "expecting to get reject response message")
   public void unauthorizedLogIn(LogInRequestBody requestBody,
                                 NotAuthorizedResponseBody expectedResponseBody) {
     response = logIn.request(requestBody.getEmail(), requestBody.getPassword());
@@ -37,7 +42,8 @@ public class AdminNegativeTest extends BaseAPITest {
             "Response message not as expected");
   }
 
-  @Test
+  @Test(description = "Admin sending request to create new user with invalid email" +
+          "in the request, expecting to get reject response")
   public void createUserRequestWithInvalidBody() {
     User user = new User();
     user.setEmail("");
@@ -52,7 +58,8 @@ public class AdminNegativeTest extends BaseAPITest {
             "Field is mandatory", "error message not as expected");
   }
 
-  @Test
+  @Test(description = "Admin sending request to get list of users with invalid" +
+          "token, expecting to get reject response")
   public void getAllUsersWithInvalidToken() {
     response = getAllUsers.list("no token");
     NotAuthorizedGetAllUsersResponseBody responseBody =
@@ -63,7 +70,8 @@ public class AdminNegativeTest extends BaseAPITest {
     softAssert.assertAll("These are the issues: ");
   }
 
-  @Test
+  @Test(description = "Admin sending request to update user with invalid " +
+          "email attribute, expecting to get reject response")
   public void updateUserWithInvalidEmailFormat() throws Exception {
     int userID = usersId.find(UserConstants.USER_UPDATE_EMAIL, tokenNegative.getToken());
     UpdateUserRequestBody requestBody = new UpdateUserRequestBody();
@@ -82,7 +90,8 @@ public class AdminNegativeTest extends BaseAPITest {
             "Email message not as expected");
   }
 
-  @Test
+  @Test(description = "Admin sending request to delete user with non - existing" +
+          "user Id, expecting reject response")
   public void deleteNonExistentUser() {
     response = deleteUserRequest.delete(0, tokenNegative.getToken());
 

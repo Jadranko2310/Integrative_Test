@@ -1,4 +1,4 @@
-package setup.common.constants;
+package setup.constants;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -24,7 +24,7 @@ public class RecordConstants {
 
   // INVALID ENTRY
   public static final String INVALID_RECORD_JOB_NMB =
-          dotenv.get("INVALID_RECORD_JOB_NMB=");
+          dotenv.get("INVALID_RECORD_JOB_NMB");
   public static final String INVALID_RECORD_JOB_NAME =
           dotenv.get("INVALID_RECORD_JOB_NAME");
   public static final String INVALID_RECORD_PAYMENT_TYPE =
@@ -38,13 +38,23 @@ public class RecordConstants {
   public static final String INVALID_RECORD_CREDIT =
           dotenv.get("INVALID_RECORD_CREDIT");
 
-  // New Purchase for FE tests
+  // New Purchase Record for FE tests
   public static final String NEW_RECORD_JOB_NMB = dotenv.get("NEW_RECORD_JOB_NMB");
   public static final String NEW_RECORD_JOB_NAME = dotenv.get("NEW_RECORD_JOB_NAME");
   public static final String NEW_RECORD_PURCHASE_FROM =
           dotenv.get("NEW_RECORD_JOB_NAME");
   public static final String NEW_RECORD_PURCHASE_DETAIL=
           dotenv.get("NEW_RECORD_PURCHASE_DETAIL");
-  public static final int NEW_RECORD_INVOICE_TOTAL =
-          Integer.parseInt(dotenv.get("NEW_RECORD_INVOICE_TOTAL"));
+  public static final String NEW_RECORD_INVOICE_TOTAL =
+          dotenv.get("NEW_RECORD_INVOICE_TOTAL");
+
+  // New Purchase Record for FE tests (Admin Entry)
+  public static final String A_NEW_RECORD_JOB_NMB = dotenv.get("A_NEW_RECORD_JOB_NMB");
+  public static final String A_NEW_RECORD_JOB_NAME = dotenv.get("A_NEW_RECORD_JOB_NAME");
+  public static final String A_NEW_RECORD_PURCHASE_FROM =
+          dotenv.get("A_NEW_RECORD_PURCHASE_FROM");
+  public static final String A_NEW_RECORD_PURCHASE_DETAIL=
+          dotenv.get("A_NEW_RECORD_PURCHASE_DETAIL");
+  public static final String A_NEW_RECORD_INVOICE_TOTAL =
+          String.valueOf(Integer.parseInt(dotenv.get("A_NEW_RECORD_INVOICE_TOTAL")));
 }
