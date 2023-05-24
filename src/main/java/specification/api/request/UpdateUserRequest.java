@@ -7,7 +7,7 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import setup.common.constants.APIConstants;
+import setup.constants.APIConstants;
 
 public class UpdateUserRequest {
   public Response update(int userID, String token, UpdateUserRequestBody requestBody) {

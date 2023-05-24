@@ -3,8 +3,8 @@ package data.handling;
 import POJO.response.user_controller.users_list.Content;
 import POJO.response.user_controller.users_list.GetAllUsersResponseBody;
 import io.restassured.response.Response;
-import setup.common.helpers.TokenGenerator;
-import setup.common.constants.UserConstants;
+import Helpers.TokenGenerator;
+import setup.constants.UserConstants;
 import specification.api.request.DeleteUserRequest;
 import specification.api.request.GetUsersListRequest;
 

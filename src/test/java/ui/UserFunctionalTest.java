@@ -5,8 +5,8 @@ import POJO.request.auth_controller.UserType;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
-import setup.common.constants.DataConstants;
-import setup.common.constants.RecordConstants;
+import setup.constants.DataConstants;
+import setup.constants.RecordConstants;
 import setup.ui.base.BaseFrontendTest;
 
 @Epic("FE Tests - User")

@@ -82,7 +82,6 @@ public class AdminHomePage extends BasePage{
   @FindBy(css = "button.ant-btn.ant-btn-default.ant-btn-icon-only")
   private WebElement addRecordBtn;
 
-/*  @FindBy(xpath = "//form/div[1]/div/div[1]/div[1]/input")*/
   @FindBy(css = "div.sc-hAZoDl.kKQbqz input.ant-input:nth-of-type(1)")
   private WebElement emailEntryField;
 
@@ -127,6 +126,10 @@ public class AdminHomePage extends BasePage{
     recordsSideBtn.click();
     softAssert.assertEquals(recordsPageHeadline.getText(), "Records");
     softAssert.assertAll();
+  }
+  public void checkIfValidationMessageIsShowing(String validationMessage) {
+    softAssert.assertEquals(validationMessage, validationMsg.getText());
+    softAssert.assertAll("These are the issues: ");
   }
 
   public void checkIfRecordIsPresent(String recordName, String jobNameToCompare) {
@@ -176,14 +179,9 @@ public class AdminHomePage extends BasePage{
     confirmBtn.click();
   }
 
-  public void checkIfValidationMessageIsShowing(String validationMessage) {
-    softAssert.assertEquals(validationMessage, validationMsg.getText());
-    softAssert.assertAll("These are the issues: ");
-  }
-
-  public void createRecordForRegularUser(String jobNmb, String jobName,
-                                         String purchaseFrom, String purchaseDetail,
-                                         String invoiceTotal) {
+  public void createRecordForUser(String jobNmb, String jobName,
+                                  String purchaseFrom, String purchaseDetail,
+                                  String invoiceTotal) {
     waitForElementToBeClickable(recordsSideBtn, driver);
     recordsSideBtn.click();
     waitForElementToBeClickable(addRecordBtn, driver);

@@ -7,11 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import setup.common.constants.FEConstants;
-import setup.common.constants.UserConstants;
+import setup.constants.FEConstants;
 
 import java.time.Duration;
-
 
 /**
  * Driver properties.

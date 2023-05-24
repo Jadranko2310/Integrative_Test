@@ -13,8 +13,8 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
-import setup.common.helpers.TokenGenerator;
-import setup.common.constants.UserConstants;
+import Helpers.TokenGenerator;
+import setup.constants.UserConstants;
 import specification.api.request.*;
 
 @Epic("API tests - Admin CRUD operations")

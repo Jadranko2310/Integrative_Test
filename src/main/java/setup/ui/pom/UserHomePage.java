@@ -7,8 +7,8 @@ import POJO.frontend.RecordType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import setup.common.constants.UserConstants;
-import setup.common.helpers.TokenGenerator;
+import setup.constants.UserConstants;
+import Helpers.TokenGenerator;
 import setup.ui.base.DriverSetup;
 
 import java.awt.*;
@@ -115,7 +115,6 @@ public class UserHomePage extends BasePage{
             "There are some issues in validation, new record in DB");
     softAssert.assertAll("There are the issues: ");
   }
-
 
   public void updateRecordWithImage(String filePathFromProjectDirectory,
                                     String recordName) throws FileNotFoundException, AWTException, InterruptedException {

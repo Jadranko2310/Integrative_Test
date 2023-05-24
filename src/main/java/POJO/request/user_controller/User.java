@@ -2,7 +2,7 @@ package POJO.request.user_controller;
 
 import lombok.Getter;
 import lombok.Setter;
-import setup.common.constants.UserConstants;
+import setup.constants.UserConstants;
 
 @Getter
 @Setter

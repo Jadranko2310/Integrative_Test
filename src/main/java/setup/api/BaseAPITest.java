@@ -14,7 +14,7 @@ import lombok.Setter;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.asserts.SoftAssert;
-import setup.common.constants.APIConstants;
+import setup.constants.APIConstants;
 
 @Getter
 @Setter

@@ -4,7 +4,7 @@ import data.handling.RecordsDataHandler;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-import setup.common.constants.FEConstants;
+import setup.constants.FEConstants;
 import setup.ui.pom.AdminHomePage;
 import setup.ui.pom.LogInPage;
 import setup.ui.pom.UserHomePage;
@@ -52,6 +52,9 @@ public class BaseFrontendTest {
     driverSetup.closeBrowserTab();
   }
 
+  /**
+   * Clearing test data after TestNG run suite.
+   */
   @AfterSuite
   public void closeBrowserAndClearData() {
     driverSetup.quitBrowser();

@@ -4,7 +4,7 @@ import POJO.request.auth_controller.LogInRequestBody;
 import POJO.response.user_controller.login.MissingCredentialsResponseBody;
 import POJO.response.user_controller.login.NotAuthorizedResponseBody;
 import org.testng.annotations.DataProvider;
-import setup.common.constants.UserConstants;
+import setup.constants.UserConstants;
 
 public class LogInData {
 

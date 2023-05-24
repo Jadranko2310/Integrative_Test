@@ -4,9 +4,8 @@ import POJO.request.records_controller.Record;
 import POJO.request.records_controller.RecordsType;
 import POJO.request.user_controller.User;
 import POJO.request.user_controller.UserType;
-import org.testng.annotations.Test;
-import setup.common.constants.UserConstants;
-import setup.common.helpers.TokenGenerator;
+import setup.constants.UserConstants;
+import Helpers.TokenGenerator;
 import specification.api.request.CreateRecordRequest;
 import specification.api.request.CreateUserRequest;
 

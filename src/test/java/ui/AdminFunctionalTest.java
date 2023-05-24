@@ -7,9 +7,9 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import setup.common.constants.RecordConstants;
-import setup.common.constants.UserConstants;
-import setup.common.helpers.TokenGenerator;
+import setup.constants.RecordConstants;
+import setup.constants.UserConstants;
+import Helpers.TokenGenerator;
 import setup.ui.base.BaseFrontendTest;
 
 @Epic("FE Tests - Admin")

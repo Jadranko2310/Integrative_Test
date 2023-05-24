@@ -2,7 +2,7 @@ package data.handling;
 
 import POJO.request.user_controller.User;
 import org.testng.annotations.DataProvider;
-import setup.common.constants.UserConstants;
+import setup.constants.UserConstants;
 
 public class PreTestDataProvider {
 

@@ -2,8 +2,7 @@ package POJO.frontend;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.bouncycastle.est.CACertsResponse;
-import setup.common.constants.RecordConstants;
+import setup.constants.RecordConstants;
 
 @Getter
 @Setter
