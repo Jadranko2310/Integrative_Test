@@ -1,6 +1,7 @@
 package ui;
 
 import Helpers.UserIDFromList;
+import POJO.frontend.RecordType;
 import POJO.request.auth_controller.UserType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -34,11 +35,6 @@ public class AdminFunctionalTest extends BaseFrontendTest {
   @Test
   public void createNewRecord() {
     logInPage.logInDefinedUser(UserType.ADMIN);
-    adminHomePage.createPurchaseForRegularUser(
-            "SomeName",
-            "SomeName",
-            "something",
-            "something",
-            "12");
+    adminHomePage.createNewPredefinedRecord(RecordType.ADMIN_ENTRY);
   }
 }

@@ -2,7 +2,7 @@ package setup.ui.pom;
 
 import Helpers.AbsolutePath;
 import Helpers.RecordOnList;
-import POJO.frontend.CreateNewRecord;
+import POJO.frontend.NewRecord;
 import POJO.frontend.RecordType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -85,7 +85,7 @@ public class UserHomePage extends BasePage{
   }
 
   public void createJobRecord(RecordType recordType) throws InterruptedException {
-    CreateNewRecord createNewRecord = new CreateNewRecord(recordType);
+    NewRecord createNewRecord = new NewRecord(recordType);
     jobNmbEntry.sendKeys(createNewRecord.getJobNmb());
     jobNameEntry.sendKeys(createNewRecord.getJobName());
     paymentTypeBtn.click();
@@ -98,7 +98,7 @@ public class UserHomePage extends BasePage{
   }
 
   public void checkIfNewRecordInDB(RecordType recordType) throws Exception {
-    CreateNewRecord createNewRecord = new CreateNewRecord(recordType);
+    NewRecord createNewRecord = new NewRecord(recordType);
     String jobName = findOnList.jobName
             (createNewRecord.getJobNmb(), token.getToken());
     softAssert.assertEquals(jobName, createNewRecord.getJobName(),

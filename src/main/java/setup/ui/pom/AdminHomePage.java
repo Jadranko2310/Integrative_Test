@@ -1,5 +1,7 @@
 package setup.ui.pom;
 
+import POJO.frontend.NewRecord;
+import POJO.frontend.RecordType;
 import POJO.request.user_controller.User;
 import POJO.request.user_controller.UserType;
 import org.openqa.selenium.WebDriver;
@@ -132,9 +134,9 @@ public class AdminHomePage extends BasePage{
     softAssert.assertAll("These are the issues: ");
   }
 
-  public void createPurchaseForRegularUser(String jobNmb, String jobName,
-                                           String purchaseFrom, String purchaseDetail,
-                                           String invoiceTotal) {
+  public void createRecordForRegularUser(String jobNmb, String jobName,
+                                         String purchaseFrom, String purchaseDetail,
+                                         String invoiceTotal) {
     waitForElementToBeClickable(records, driver);
     records.click();
     waitForElementToBeClickable(addRecordBtn, driver);
@@ -148,6 +150,24 @@ public class AdminHomePage extends BasePage{
     purchasedFromEntryField.sendKeys(purchaseFrom);
     purchaseDetailEntryField.sendKeys(purchaseDetail);
     invoiceTotalEntryField.sendKeys(invoiceTotal);
+    confirmBtn.click();
+  }
+
+  public void createNewPredefinedRecord(RecordType recordType) {
+    NewRecord record = new NewRecord(recordType);
+    waitForElementToBeClickable(records, driver);
+    records.click();
+    waitForElementToBeClickable(addRecordBtn, driver);
+    addRecordBtn.click();
+    waitForElementToBeClickable(selectUserBtn, driver);
+    selectUserBtn.click();
+    waitForElementToBeClickable(selectFirstUser, driver);
+    selectFirstUser.click();
+    jobNumberEntryField.sendKeys(record.getJobNmb());
+    jobNameEntryField.sendKeys(record.getJobName());
+    purchasedFromEntryField.sendKeys(record.getPurchaseFrom());
+    purchaseDetailEntryField.sendKeys(record.getPurchaseDetail());
+    invoiceTotalEntryField.sendKeys(String.valueOf(record.getInvoiceTotal()));
     confirmBtn.click();
   }
 }
