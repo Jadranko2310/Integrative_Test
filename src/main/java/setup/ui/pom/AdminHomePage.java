@@ -82,16 +82,20 @@ public class AdminHomePage extends BasePage{
   @FindBy(css = "button.ant-btn.ant-btn-default.ant-btn-icon-only")
   private WebElement addRecordBtn;
 
-  @FindBy(xpath = "//form/div[1]/div/div[1]/div[1]/input")
+/*  @FindBy(xpath = "//form/div[1]/div/div[1]/div[1]/input")*/
+  @FindBy(css = "div.sc-hAZoDl.kKQbqz input.ant-input:nth-of-type(1)")
   private WebElement emailEntryField;
 
-  @FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/input")
+  /*@FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/input")*/
+  @FindBy(css = "div.sc-hAZoDl.kKQbqz input.ant-input:nth-of-type(2)")
   private WebElement passEntryField;
 
-  @FindBy(xpath = "//form/div[1]/div/div[3]/div[1]/input")
+  /*@FindBy(xpath = "//form/div[1]/div/div[3]/div[1]/input")*/
+  @FindBy(css = "div.sc-hAZoDl.kKQbqz input.ant-input:nth-of-type(3)")
   private WebElement nameEntryField;
 
-  @FindBy(xpath = "//div/div[4]/div[1]/input")
+/*  @FindBy(xpath = "//div/div[4]/div[1]/input")*/
+  @FindBy(css = "div.sc-hAZoDl.kKQbqz input.ant-input:nth-of-type(4)")
   private WebElement phoneEntryFiled;
 
   @FindBy(css = "div.sc-evZas.bdrJDj")
@@ -102,9 +106,6 @@ public class AdminHomePage extends BasePage{
 
   @FindBy(css = "td.ant-table-cell")
   private WebElement firstRecordOnList;
-
- /* @FindBy(xpath = "//div[2]/div[2]/div/div/div[1]/div[4]")
-  private WebElement jobNameOnRecordDetailsWindow;*/
 
   public WebElement jobNameOnRecordDetailsWindow(String value) {
     return driver.findElement(By.xpath(

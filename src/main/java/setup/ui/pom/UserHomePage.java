@@ -70,7 +70,6 @@ public class UserHomePage extends BasePage{
   @FindBy(css = "button.ant-btn-default")
   private WebElement uploadImageBtn;
 
-/*  @FindBy(xpath = "//div[2]/div[3]/div/button")*/
   @FindBy(xpath = "//*[text()='Confirm']")
   private WebElement confirmUploadImageBtn;
 
