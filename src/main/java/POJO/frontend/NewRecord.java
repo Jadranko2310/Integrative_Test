@@ -12,12 +12,12 @@ public class NewRecord {
   private String jobName;
   private String purchaseFrom;
   private String purchaseDetail;
-  private int invoiceTotal;
+  private String invoiceTotal;
 
   public NewRecord(){}
 
   public NewRecord(String jobNmb, String jobName, String purchaseFrom,
-                   String purchaseDetail, int invoiceTotal) {
+                   String purchaseDetail, String invoiceTotal) {
     this.jobNmb = jobNmb;
     this.jobName = jobName;
     this.purchaseFrom = purchaseFrom;
@@ -39,16 +39,21 @@ public class NewRecord {
         this.jobName = RecordConstants.REGULAR_RECORD_JOB_NAME;
         this.purchaseFrom = RecordConstants.NEW_RECORD_PURCHASE_FROM;
         this.purchaseDetail = RecordConstants.NEW_RECORD_PURCHASE_DETAIL;
-        this.invoiceTotal = Integer.parseInt
-                (RecordConstants.REGULAR_RECORD_TOTAL_PRICE);
+        this.invoiceTotal = RecordConstants.REGULAR_RECORD_TOTAL_PRICE;
       }
       case ADMIN_ENTRY -> {
         this.jobNmb = RecordConstants.A_NEW_RECORD_JOB_NMB;
         this.jobName = RecordConstants.A_NEW_RECORD_JOB_NAME;
         this.purchaseFrom = RecordConstants.A_NEW_RECORD_PURCHASE_FROM;
         this.purchaseDetail = RecordConstants.A_NEW_RECORD_PURCHASE_DETAIL;
-        this.invoiceTotal = Integer.parseInt
-                (RecordConstants.A_NEW_RECORD_INVOICE_TOTAL);
+        this.invoiceTotal = RecordConstants.A_NEW_RECORD_INVOICE_TOTAL;
+      }
+      case INVALID_RECORD -> {
+        this.jobNmb = RecordConstants.INVALID_RECORD_JOB_NMB;
+        this.jobName = RecordConstants.INVALID_RECORD_JOB_NAME;
+        this.purchaseFrom = RecordConstants.A_NEW_RECORD_PURCHASE_FROM;
+        this.purchaseDetail = RecordConstants.INVALID_RECORD_PURCHASE_DETAIL;
+        this.invoiceTotal = RecordConstants.INVALID_RECORD_TOTAL_PRICE;
       }
     }
   }

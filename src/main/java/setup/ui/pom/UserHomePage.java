@@ -106,6 +106,15 @@ public class UserHomePage extends BasePage{
     softAssert.assertAll("There are the issues: ");
   }
 
+  public void checkThatNewRecordIsNotInDB(RecordType recordType) throws Exception {
+    NewRecord createNewRecord = new NewRecord(recordType);
+    String jobName = findOnList.jobName
+            (createNewRecord.getJobNmb(), token.getToken());
+    softAssert.assertEquals(jobName, null,
+            "There are some issues in validation, new record in DB");
+    softAssert.assertAll("There are the issues: ");
+  }
+
 
   public void updateRecordWithImage(String filePathFromProjectDirectory,
                                     String recordName) throws FileNotFoundException, AWTException, InterruptedException {

@@ -6,5 +6,7 @@ public enum RecordType {
 
   EXISTING_RECORD,
 
-  ADMIN_ENTRY
+  ADMIN_ENTRY,
+
+  INVALID_RECORD
 }
