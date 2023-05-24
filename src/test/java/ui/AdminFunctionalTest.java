@@ -31,10 +31,10 @@ public class AdminFunctionalTest extends BaseFrontendTest {
             token.getToken());
     Assert.assertNotNull(newUserId, "User not created");
   }
-
   @Test
-  public void createNewRecord() {
+  public void createNewRecord() throws Exception {
     logInPage.logInDefinedUser(UserType.ADMIN);
     adminHomePage.createNewPredefinedRecord(RecordType.ADMIN_ENTRY);
+    userHomePage.checkIfNewRecordInDB(RecordType.ADMIN_ENTRY);
   }
 }

@@ -34,7 +34,13 @@ public class AdminHomePage extends BasePage{
   @FindBy(xpath = "//div[1]/div/div[3]/div[1]/input")
   private WebElement jobNameEntryField;
 
-  @FindBy(css = "input.ant-input.sc-hHLeRK.vfKRI")
+  @FindBy(xpath = "//div/div[4]/div[1]/div[2]/div/span[2]")
+  private WebElement paymentTypeBtn;
+
+  @FindBy(xpath = "//div[4]/div/div/div/div[2]/div[1]/div/div/div[3]/div")
+  private WebElement companyAccSelection;
+
+  @FindBy(xpath = "//form/div[1]/div/div[5]/div[1]/input")
   private WebElement purchasedFromEntryField;
 
   @FindBy(xpath = "//div[1]/div/div[6]/div[1]/input")
@@ -153,7 +159,7 @@ public class AdminHomePage extends BasePage{
     confirmBtn.click();
   }
 
-  public void createNewPredefinedRecord(RecordType recordType) {
+  public void createNewPredefinedRecord(RecordType recordType) throws InterruptedException {
     NewRecord record = new NewRecord(recordType);
     waitForElementToBeClickable(records, driver);
     records.click();
@@ -165,9 +171,15 @@ public class AdminHomePage extends BasePage{
     selectFirstUser.click();
     jobNumberEntryField.sendKeys(record.getJobNmb());
     jobNameEntryField.sendKeys(record.getJobName());
+    waitForElementToBeClickable(paymentTypeBtn, driver);
+    paymentTypeBtn.click();
+    waitForElementToBeClickable(companyAccSelection, driver);
+    companyAccSelection.click();
     purchasedFromEntryField.sendKeys(record.getPurchaseFrom());
     purchaseDetailEntryField.sendKeys(record.getPurchaseDetail());
     invoiceTotalEntryField.sendKeys(String.valueOf(record.getInvoiceTotal()));
+    waitForElementToBeClickable(confirmBtn, driver);
+    Thread.sleep(3000);
     confirmBtn.click();
   }
 }
