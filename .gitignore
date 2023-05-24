@@ -35,6 +35,7 @@
 
 # Allure
 allure-results/
+allure-reports/
 
 # Target
 target/

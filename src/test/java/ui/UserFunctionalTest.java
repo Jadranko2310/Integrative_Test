@@ -10,7 +10,7 @@ import setup.ui.base.BaseFrontendTest;
 import java.awt.*;
 import java.io.FileNotFoundException;
 
-public class RecordsFunctionalTest extends BaseFrontendTest {
+public class UserFunctionalTest extends BaseFrontendTest {
 
   @Test
   public void logInUser() {

@@ -5,7 +5,7 @@ import POJO.request.auth_controller.UserType;
 import org.testng.annotations.Test;
 import setup.ui.base.BaseFrontendTest;
 
-public class RecordsNegativeTests extends BaseFrontendTest {
+public class UserNegativeTests extends BaseFrontendTest {
 
   @Test
   public void checkValidationOnLogInPage() {

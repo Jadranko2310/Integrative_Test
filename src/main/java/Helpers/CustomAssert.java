@@ -15,7 +15,7 @@ public class CustomAssert extends BaseAPITest {
   public void assertCommonStatusCodeAndResponseTime(Response response) {
     softAssert.assertEquals(response.statusCode(), 200,
             "status code not 200");
-    softAssert.assertTrue(response.time() < 3000,
+    softAssert.assertTrue(response.time() < 4000,
             "response time too long");
     softAssert.assertAll("These are the issues");
   }

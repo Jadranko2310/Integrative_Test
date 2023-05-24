@@ -86,16 +86,13 @@ public class AdminHomePage extends BasePage{
   @FindBy(css = "div.sc-hAZoDl.kKQbqz input.ant-input:nth-of-type(1)")
   private WebElement emailEntryField;
 
-  /*@FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/input")*/
-  @FindBy(css = "div.sc-hAZoDl.kKQbqz input.ant-input:nth-of-type(2)")
+  @FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/input")
   private WebElement passEntryField;
 
-  /*@FindBy(xpath = "//form/div[1]/div/div[3]/div[1]/input")*/
-  @FindBy(css = "div.sc-hAZoDl.kKQbqz input.ant-input:nth-of-type(3)")
+ @FindBy(xpath = "//form/div[1]/div/div[3]/div[1]/input")
   private WebElement nameEntryField;
 
-/*  @FindBy(xpath = "//div/div[4]/div[1]/input")*/
-  @FindBy(css = "div.sc-hAZoDl.kKQbqz input.ant-input:nth-of-type(4)")
+  @FindBy(xpath = "//div/div[4]/div[1]/input")
   private WebElement phoneEntryFiled;
 
   @FindBy(css = "div.sc-evZas.bdrJDj")

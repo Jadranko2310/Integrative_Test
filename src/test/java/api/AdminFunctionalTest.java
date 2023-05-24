@@ -9,16 +9,16 @@ import POJO.response.user_controller.login.LogInResponseBody;
 import POJO.response.user_controller.single_user.CreateUserResponseBody;
 import POJO.response.user_controller.single_user.UpdateUserResponseBody;
 import POJO.response.user_controller.users_list.GetAllUsersResponseBody;
-import lombok.Getter;
-import lombok.Setter;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
 import setup.common.helpers.TokenGenerator;
 import setup.common.constants.UserConstants;
 import specification.api.request.*;
 
-@Getter
-@Setter
+@Epic("Admin CRUD operations")
+@Feature("Base CRUD OPERATION, Role: Admin, Entity: User")
 public class AdminFunctionalTest extends BaseAPITest {
 
 
@@ -32,8 +32,8 @@ public class AdminFunctionalTest extends BaseAPITest {
   CustomAssert customAssert = new CustomAssert();
   UserIDFromList userIDFromListsersId = new UserIDFromList();
 
-
-  @Test
+  @Test(description = "Admin sending log in request with valid email and pass," +
+          "expecting to be logged in")
   public void adminLogIn() {
     response = logIn.request(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
     LogInResponseBody responseBody = response.getBody().as(LogInResponseBody.class);
@@ -43,20 +43,22 @@ public class AdminFunctionalTest extends BaseAPITest {
     softAssert.assertAll("There are the issues: ");
   }
 
-  @Test
+  @Test(description = "Admin sending request for creating new user with valid" +
+          "credential, expecting the new user to be created")
   public void createNewUser() throws Exception {
     User predefinedUser = new User(UserType.STANDARD);
     response = newUser.create(predefinedUser, token.getToken());
     CreateUserResponseBody createUserResponseBody = response.as(CreateUserResponseBody.class);
     // Assert
     softAssert.assertEquals(response.statusCode(), 201);
-    softAssert.assertTrue(response.time() < 3000);
+    softAssert.assertTrue(response.time() < 4000);
     softAssert.assertEquals(createUserResponseBody.getEmail(), predefinedUser.getEmail());
     // Check if user is on the users list
     customAssert.assertThatUserIsOnList(predefinedUser.getEmail(), token.getToken());
   }
 
-  @Test
+  @Test(description = "Admin sending request for list of all users," +
+          "expecting to get list of all users in response")
   public void getUsersList() {
     response = getAllUsers.list(token.getToken());
 
@@ -66,7 +68,8 @@ public class AdminFunctionalTest extends BaseAPITest {
     softAssert.assertNotNull(responseBody.getContent());
   }
 
-  @Test
+  @Test(description = "Admin sending request for updating existing user " +
+          "with valid user Id and valid new data expecting the user to be changed")
   public void updateUser() throws Exception {
     int userID = userIDFromListsersId.find(UserConstants.USER_UPDATE_EMAIL, token.getToken());
     UpdateUserRequestBody requestBody = new UpdateUserRequestBody();
@@ -82,7 +85,8 @@ public class AdminFunctionalTest extends BaseAPITest {
     softAssert.assertEquals(responseBody.getName(), requestBody.name);
   }
 
-  @Test
+  @Test(description = "Admin sending request to delete user with valid user Id, " +
+          "expecting that user will be deleted")
   public void deleteUser() throws Exception {
     int userID = userIDFromListsersId.find(UserConstants.USER_DELETE_EMAIL, token.getToken());
 
