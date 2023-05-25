@@ -15,6 +15,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.asserts.SoftAssert;
 import setup.constants.BackendConstants;
+import specification.api.request.*;
 
 /**
  * Base configuration for API tests that will extend this class.
@@ -27,6 +28,11 @@ public abstract class BaseAPITest {
   protected ResponseSpecification responseSpecification;
   protected Response response;
   protected SoftAssert softAssert;
+  protected LogInRequest logIn;
+  protected CreateUserRequest newUser;
+  protected GetUsersListRequest getAllUsers;
+  protected UpdateUserRequest updateUserRequest;
+  protected DeleteUserRequest deleteUserRequest;
 
   /**
    * Defining request and response specification.
@@ -47,6 +53,11 @@ public abstract class BaseAPITest {
                     .build();
 
     this.softAssert = new SoftAssert();
+    this.logIn = new LogInRequest();
+    this.newUser = new CreateUserRequest();
+    this.getAllUsers = new GetUsersListRequest();
+    this.updateUserRequest = new UpdateUserRequest();
+    this.deleteUserRequest = new DeleteUserRequest();
   }
 
   /**

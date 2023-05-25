@@ -11,107 +11,93 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import setup.ui.base.DriverSetup;
 
-public class AdminHomePage extends BasePage{
+/**
+ * Admin home page web elements and methods.
+ */
+public class AdminHomePage extends BasePage {
   public AdminHomePage(WebDriver driver, String url) throws AWTException {
     super(driver);
     DriverSetup.navigateToUrl(driver, url);
   }
 
-
   // ELEMENTS SECTION
+
+  // Buttons
   @FindBy(css = "span.ant-menu-title-content > a[href='/admins']")
   private WebElement adminsSideBtn;
   @FindBy(css = "span.ant-menu-title-content > a[href='/users']")
   private WebElement usersSideBtn;
-
   @FindBy(css = "span.ant-menu-title-content > a[href='/suppliers']")
   private WebElement suppliersSideBtn;
-
-  @FindBy(css = "div.sc-cCsOjp.bQQQsz")
-  private WebElement adminsPageHeadline;
-
-  @FindBy(css = "div.sc-fytwQQ.iKqmUd")
-  private WebElement usersPageHeadLine;
-
-  @FindBy(css = "div.sc-hKpBwk.kvUaca")
-  private WebElement supplierPageHeadline;
-
- @FindBy(css = "div.sc-dSuTWQ.hIKYzE")
- private WebElement recordsPageHeadline;
- @FindBy(css = "span.ant-menu-title-content > a[href='/records']")
- private WebElement recordsSideBtn;
-
+  @FindBy(css = "span.ant-menu-title-content > a[href='/records']")
+  private WebElement recordsSideBtn;
   @FindBy(xpath = "//div/div[1]/div[1]/div[2]/div/span[2]")
   private WebElement selectUserBtn;
-
-  @FindBy(css = "div.ant-select-item-option-content")
-  private WebElement selectFirstUser;
-
-  @FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/input")
-  private WebElement jobNumberEntryField;
-
-  @FindBy(xpath = "//div[1]/div/div[3]/div[1]/input")
-  private WebElement jobNameEntryField;
-
   @FindBy(xpath = "//div/div[4]/div[1]/div[2]/div/span[2]")
   private WebElement paymentTypeBtn;
-
-  @FindBy(xpath = "//div[4]/div/div/div/div[2]/div[1]/div/div/div[3]/div")
-  private WebElement companyAccSelection;
-
-  @FindBy(xpath = "//form/div[1]/div/div[5]/div[1]/input")
-  private WebElement purchasedFromEntryField;
-
-  @FindBy(xpath = "//div[1]/div/div[6]/div[1]/input")
-  private WebElement purchaseDetailEntryField;
-
-  @FindBy(xpath = "//div/div[7]/div[1]/input")
-  private WebElement invoiceTotalEntryField;
-
   @FindBy(css = "button.ant-btn.ant-btn-default.sc-jqUVSM.sc-bjUoiL.kSLokU.kHYOWb")
-  private WebElement confirm;
-
-
-  @FindBy(css = "input.ant-input.sc-kngDgl.frWszN.input[type=text]")
-  private WebElement searchBar;
-
-  @FindBy(css = "button.ant-btn.ant-btn-default.ant-btn-icon-only.sc-jqUVSM.sc-bZkfAO.kSLokU.kmmRVV")
+  private WebElement confirmBtn;
+  @FindBy(css =
+          "button.ant-btn.ant-btn-default.ant-btn-icon-only.sc-jqUVSM.sc-bZkfAO.kSLokU.kmmRVV")
   private WebElement addUserButton;
-
   @FindBy(css = "button.ant-btn.ant-btn-default.ant-btn-icon-only")
   private WebElement addRecordBtn;
 
+  // Headlines
+  @FindBy(css = "div.sc-cCsOjp.bQQQsz")
+  private WebElement adminsPageHeadline;
+  @FindBy(css = "div.sc-fytwQQ.iKqmUd")
+  private WebElement usersPageHeadLine;
+  @FindBy(css = "div.sc-hKpBwk.kvUaca")
+  private WebElement supplierPageHeadline;
+  @FindBy(css = "div.sc-dSuTWQ.hIKYzE")
+  private WebElement recordsPageHeadline;
+
+  // Entry Fields
+  @FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/input")
+  private WebElement jobNumberEntryField;
+  @FindBy(xpath = "//div[1]/div/div[3]/div[1]/input")
+  private WebElement jobNameEntryField;
+  @FindBy(xpath = "//form/div[1]/div/div[5]/div[1]/input")
+  private WebElement purchasedFromEntryField;
+  @FindBy(xpath = "//div[1]/div/div[6]/div[1]/input")
+  private WebElement purchaseDetailEntryField;
+  @FindBy(xpath = "//div/div[7]/div[1]/input")
+  private WebElement invoiceTotalEntryField;
   @FindBy(css = "div.sc-hAZoDl.kKQbqz input.ant-input:nth-of-type(1)")
   private WebElement emailEntryField;
-
   @FindBy(xpath = "//form/div[1]/div/div[2]/div[1]/input")
   private WebElement passEntryField;
-
- @FindBy(xpath = "//form/div[1]/div/div[3]/div[1]/input")
+  @FindBy(xpath = "//form/div[1]/div/div[3]/div[1]/input")
   private WebElement nameEntryField;
-
   @FindBy(xpath = "//div/div[4]/div[1]/input")
   private WebElement phoneEntryFiled;
 
-  @FindBy(css = "div.sc-evZas.bdrJDj")
-  private WebElement validationMsg;
-
-  @FindBy(css = "button.ant-btn.ant-btn-default.sc-jqUVSM.sc-bjUoiL.kSLokU.kHYOWb")
-  private WebElement confirmBtn;
-
+  // Selections from drop down
+  @FindBy(css = "div.ant-select-item-option-content")
+  private WebElement firstUserSelection;
+  @FindBy(xpath = "//div[4]/div/div/div/div[2]/div[1]/div/div/div[3]/div")
+  private WebElement companyAccSelection;
   @FindBy(css = "td.ant-table-cell")
   private WebElement firstRecordOnList;
 
+  // Search bar
+  @FindBy(css = "input.ant-input.sc-kngDgl.frWszN.input[type=text]")
+  private WebElement searchBar;
+
+  // Text elements
+  @FindBy(css = "div.sc-evZas.bdrJDj")
+  private WebElement validationMsg;
+
   public WebElement jobNameOnRecordDetailsWindow(String value) {
     return driver.findElement(By.xpath(
-            "//div[contains(@class, 'sc-dWINGa') and contains" +
-                    "(@class, 'dkoBEN') and contains(text(), '" + value + "')]"));
+            "//div[contains(@class, 'sc-dWINGa') and contains"
+                    + "(@class, 'dkoBEN') and contains(text(), '" + value + "')]"));
   }
 
 
   // METHOD SECTION
-
-  public void checkIfSideButtonsAreWorking(){
+  public void checkIfSideButtonsAreWorking() {
     waitForElementToBeClickable(adminsSideBtn, driver);
     adminsSideBtn.click();
     softAssert.assertEquals(adminsPageHeadline.getText(), "Admins");
@@ -126,6 +112,7 @@ public class AdminHomePage extends BasePage{
     softAssert.assertEquals(recordsPageHeadline.getText(), "Records");
     softAssert.assertAll();
   }
+
   public void checkIfValidationMessageIsShowing(String validationMessage) {
     softAssert.assertEquals(validationMessage, validationMsg.getText());
     softAssert.assertAll("These are the issues: ");
@@ -137,10 +124,10 @@ public class AdminHomePage extends BasePage{
     waitForElementToBeClickable(searchBar, driver);
     searchBar.sendKeys(recordName);
     firstRecordOnList.click();
-    waitForElementVisibility
-            (jobNameOnRecordDetailsWindow(jobNameToCompare), driver);
-    softAssert.assertEquals
-            (jobNameOnRecordDetailsWindow(jobNameToCompare).getText(), jobNameToCompare,
+    waitForElementVisibility(
+            jobNameOnRecordDetailsWindow(jobNameToCompare), driver);
+    softAssert.assertEquals(
+            jobNameOnRecordDetailsWindow(jobNameToCompare).getText(), jobNameToCompare,
             "Job name is not matching");
     softAssert.assertAll("These are the issues: ");
   }
@@ -187,8 +174,8 @@ public class AdminHomePage extends BasePage{
     addRecordBtn.click();
     waitForElementToBeClickable(selectUserBtn, driver);
     selectUserBtn.click();
-    waitForElementToBeClickable(selectFirstUser, driver);
-    selectFirstUser.click();
+    waitForElementToBeClickable(firstUserSelection, driver);
+    firstUserSelection.click();
     jobNumberEntryField.sendKeys(jobNmb);
     jobNameEntryField.sendKeys(jobName);
     purchasedFromEntryField.sendKeys(purchaseFrom);
@@ -205,8 +192,8 @@ public class AdminHomePage extends BasePage{
     addRecordBtn.click();
     waitForElementToBeClickable(selectUserBtn, driver);
     selectUserBtn.click();
-    waitForElementToBeClickable(selectFirstUser, driver);
-    selectFirstUser.click();
+    waitForElementToBeClickable(firstUserSelection, driver);
+    firstUserSelection.click();
     jobNumberEntryField.sendKeys(record.getJobNmb());
     jobNameEntryField.sendKeys(record.getJobName());
     waitForElementToBeClickable(paymentTypeBtn, driver);

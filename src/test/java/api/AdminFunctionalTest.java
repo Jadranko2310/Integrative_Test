@@ -15,23 +15,14 @@ import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
 import helpers.TokenGenerator;
 import setup.constants.UserConstants;
-import specification.api.request.*;
 
 @Epic("API tests - Admin CRUD operations")
 @Feature("Base CRUD OPERATION, Role: Admin, Entity: User")
 public class AdminFunctionalTest extends BaseAPITest {
 
-  LogInRequest logIn = new LogInRequest();
-  CreateUserRequest newUser = new CreateUserRequest();
-  GetUsersListRequest getAllUsers = new GetUsersListRequest();
-  UpdateUserRequest updateUserRequest = new UpdateUserRequest();
-  DeleteUserRequest deleteRequest = new DeleteUserRequest();
-
   CustomAssert customAssert = new CustomAssert();
   UserIdFromList userIDFromListsersId = new UserIdFromList();
-
   TokenGenerator token = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
-
 
   @Test(description = "Admin sending log in request with valid email and pass," +
           "expecting to be logged in")
@@ -91,7 +82,7 @@ public class AdminFunctionalTest extends BaseAPITest {
   public void deleteUser() throws Exception {
     int userID = userIDFromListsersId.findId(UserConstants.USER_DELETE_EMAIL, token.getToken());
 
-    response = deleteRequest.delete(userID, token.getToken());
+    response = deleteUserRequest.delete(userID, token.getToken());
 
     customAssert.assertCommonStatusCodeAndResponseTime(response);
   }

@@ -16,18 +16,13 @@ import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
 import helpers.TokenGenerator;
 import setup.constants.UserConstants;
-import specification.api.request.*;
+
 @Epic("API Tests - Negative Admin CRUD operations")
 @Feature("Basic CRUD operations, Role: Admin, Entity: User")
 public class AdminNegativeTest extends BaseAPITest {
   TokenGenerator tokenNegative = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
   UserIdFromList usersId = new UserIdFromList();
   CustomAssert customAssert = new CustomAssert();
-  LogInRequest logIn = new LogInRequest();
-  CreateUserRequest newUser = new CreateUserRequest();
-  GetUsersListRequest getAllUsers = new GetUsersListRequest();
-  UpdateUserRequest updateUserRequest = new UpdateUserRequest();
-  DeleteUserRequest deleteUserRequest = new DeleteUserRequest();
 
   @Test(dataProvider = "LogInUnauthorizedData", dataProviderClass = LogInData.class,
   description = "Admin sending log in request with invalid credentials, " +
