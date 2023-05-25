@@ -1,8 +1,13 @@
 package setup.constants;
 
-public class FEConstants {
+import helpers.FileControlUtil;
 
-  public static final  FileControlUtil fileControlURL;
+/**
+ * Constants used for frontend tests.
+ */
+public class FrontendConstants {
+
+  public static final FileControlUtil fileControlURL;
 
   static {
     try {
@@ -13,10 +18,10 @@ public class FEConstants {
   }
 
   // SELENIUM BASE CONFIGURATION
-  public static final int ELEMENT_DETECTION_TIMEOUT = 15;
+  public static final int ELEMENT_DETECTION_TIMEOUT = 10;
   public static final int PAGE_LOAD_TIME = 15;
 
-  // FE URLs
+  // FRONTEND URL's
   public static final String BASE_URL =
           fileControlURL.getValue("BASE_URL");
   public static final String LOG_IN_PAGE =

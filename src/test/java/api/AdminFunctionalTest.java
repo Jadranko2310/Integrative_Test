@@ -21,8 +21,6 @@ import specification.api.request.*;
 @Feature("Base CRUD OPERATION, Role: Admin, Entity: User")
 public class AdminFunctionalTest extends BaseAPITest {
 
-
-  TokenGenerator token = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
   LogInRequest logIn = new LogInRequest();
   CreateUserRequest newUser = new CreateUserRequest();
   GetUsersListRequest getAllUsers = new GetUsersListRequest();
@@ -31,6 +29,9 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   CustomAssert customAssert = new CustomAssert();
   UserIdFromList userIDFromListsersId = new UserIdFromList();
+
+  TokenGenerator token = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
+
 
   @Test(description = "Admin sending log in request with valid email and pass," +
           "expecting to be logged in")

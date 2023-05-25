@@ -6,14 +6,14 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import setup.constants.APIConstants;
+import setup.constants.BackendConstants;
 
 public class GetUsersListRequest {
 
   public Response list(String token) {
     RequestSpecification request = RestAssured
             .given()
-            .baseUri(APIConstants.BASE_URI)
+            .baseUri(BackendConstants.BASE_URI)
             .contentType(ContentType.JSON)
             .filter(new RequestLoggingFilter())
             .filter(new ResponseLoggingFilter())
@@ -25,6 +25,6 @@ public class GetUsersListRequest {
             .param("filterColumn", "all")
             .param("orderColumn", "name")
             .param("orderValue", "ascend")
-            .get(APIConstants.ALL_USERS);
+            .get(BackendConstants.ALL_USERS);
   }
 }

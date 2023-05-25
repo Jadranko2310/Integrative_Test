@@ -4,13 +4,12 @@ import POJO.frontend.NewRecord;
 import POJO.frontend.RecordType;
 import POJO.request.user_controller.User;
 import POJO.request.user_controller.UserType;
+import java.awt.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import setup.ui.base.DriverSetup;
-
-import java.awt.*;
 
 public class AdminHomePage extends BasePage{
   public AdminHomePage(WebDriver driver, String url) throws AWTException {

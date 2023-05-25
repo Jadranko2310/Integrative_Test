@@ -5,7 +5,7 @@ import POJO.request.auth_controller.UserType;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
-import setup.constants.DataConstants;
+import setup.constants.FilesConstants;
 import setup.constants.RecordConstants;
 import setup.ui.base.BaseFrontendTest;
 
@@ -33,7 +33,7 @@ public class UserFunctionalTest extends BaseFrontendTest {
           "to be visible in record details")
   public void editExistingRecord() throws Exception{
     logInPage.logInDefinedUser(UserType.REGULAR);
-    userHomePage.updateRecordWithImage(DataConstants.REGULAR_FILE_RELATIVE_PATH,
+    userHomePage.updateRecordWithImage(FilesConstants.REGULAR_FILE_RELATIVE_PATH,
             RecordConstants.REGULAR_RECORD_JOB_NAME);
     userHomePage.checkIfImageOnRecordIsPresent();
   }

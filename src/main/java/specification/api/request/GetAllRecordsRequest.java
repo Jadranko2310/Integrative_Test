@@ -6,14 +6,14 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import setup.constants.APIConstants;
+import setup.constants.BackendConstants;
 
 public class GetAllRecordsRequest {
 
   public Response list(String token) {
     RequestSpecification request = RestAssured
             .given()
-            .baseUri(APIConstants.BASE_URI)
+            .baseUri(BackendConstants.BASE_URI)
             .contentType(ContentType.JSON)
             .filter(new RequestLoggingFilter())
             .filter(new ResponseLoggingFilter())
@@ -24,6 +24,6 @@ public class GetAllRecordsRequest {
             .param("pageSize", 10)
             .param("orderColumn", "name")
             .param("orderValue", "ascend")
-            .get(APIConstants.GET_ALL_RECORDS_ADMIN);
+            .get(BackendConstants.GET_ALL_RECORDS_ADMIN);
   }
 }

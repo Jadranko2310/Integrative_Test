@@ -7,14 +7,14 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import setup.constants.APIConstants;
+import setup.constants.BackendConstants;
 
 public class LogInRequest {
 
   public Response request(String email, String password) {
     RequestSpecification request = RestAssured
             .given()
-            .baseUri(APIConstants.BASE_URI)
+            .baseUri(BackendConstants.BASE_URI)
             .contentType(ContentType.JSON)
             .filter(new RequestLoggingFilter())
             .filter(new ResponseLoggingFilter())
@@ -22,6 +22,6 @@ public class LogInRequest {
 
     LogInRequestBody requestBody = new LogInRequestBody(email, password);
     request.body(requestBody);
-    return request.post(APIConstants.LOG_IN);
+    return request.post(BackendConstants.LOG_IN);
   }
 }

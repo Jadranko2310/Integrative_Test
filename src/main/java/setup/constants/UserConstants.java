@@ -1,11 +1,9 @@
 package setup.constants;
+
 import io.github.cdimascio.dotenv.Dotenv;
 
 /**
- * Defining all constants needed for project:
- * BE endpoints
- * FE URLS
- * User credentials
+ * Values for tests manipulating with user.
  */
 public class UserConstants {
   static Dotenv dotenv = Dotenv.configure().load();
@@ -23,6 +21,7 @@ public class UserConstants {
   public static final String INVALID_PHONE = dotenv.get("INVALID_PHONE");
 
   // PREP DETAILS
+
   // User - update
   public static final String USER_UPDATE_EMAIL = dotenv.get("USER_UPDATE_EMAIL");
   public static final String USER_UPDATE_PASS = dotenv.get("USER_UPDATE_PASS");
@@ -46,7 +45,6 @@ public class UserConstants {
   public static final String FE_USER_PASS = dotenv.get("FE_USER_PASS");
   public static final String FE_USER_NAME = dotenv.get("FE_USER_NAME");
   public static final String FE_USER_PHONE = dotenv.get("FE_USER_PHONE");
-
 
   // ADMIN
   public static final String ADMIN_EMAIL = dotenv.get("ADMIN_EMAIL");

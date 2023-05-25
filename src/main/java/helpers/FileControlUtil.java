@@ -1,7 +1,10 @@
-package setup.constants;
+package helpers;
 
 import java.util.Properties;
 
+/**
+ * Enables reading values from properties.
+ */
 public class FileControlUtil {
   public Properties properties;
 

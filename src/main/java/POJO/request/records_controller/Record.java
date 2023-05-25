@@ -49,7 +49,7 @@ public class Record {
         this.jobNumber = RecordConstants.REGULAR_RECORD_JOB_NMB;
         this.jobName = RecordConstants.REGULAR_RECORD_JOB_NAME;
         this.paymentType = RecordConstants.REGULAR_RECORD_PAYMENT_TYPE;
-        this.supplierName = RecordConstants.REGULAR_RECORD_SUPLIER;
+        this.supplierName = RecordConstants.REGULAR_RECORD_SUPPLIER;
         this.purchaseDetail = RecordConstants.REGULAR_RECORD_PURCHASE_DETAIL;
         this.totalPrice = RecordConstants.REGULAR_RECORD_TOTAL_PRICE;
         this.credit = RecordConstants.REGULAR_RECORD_CREDIT;
@@ -59,7 +59,7 @@ public class Record {
         this.jobNumber = RecordConstants.INVALID_RECORD_JOB_NMB;
         this.jobName = RecordConstants.INVALID_RECORD_JOB_NAME;
         this.paymentType = Integer.parseInt(RecordConstants.INVALID_RECORD_PAYMENT_TYPE);
-        this.supplierName = RecordConstants.INVALID_RECORD_SUPLIER;
+        this.supplierName = RecordConstants.INVALID_RECORD_SUPPLIER;
         this.purchaseDetail = RecordConstants.INVALID_RECORD_PURCHASE_DETAIL;
         this.totalPrice = RecordConstants.INVALID_RECORD_TOTAL_PRICE;
         this.credit = RecordConstants.INVALID_RECORD_CREDIT;
