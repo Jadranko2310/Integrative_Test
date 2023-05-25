@@ -3,6 +3,9 @@ package POJO.response.user_controller.login;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Invalid response deserialization model.
+ */
 @Getter
 @Setter
 public class MissingCredentialsResponseBody {
@@ -30,9 +33,7 @@ public class MissingCredentialsResponseBody {
     this.email = email;
   }
 
-  public MissingCredentialsResponseBody (String email) {
+  public MissingCredentialsResponseBody(String email) {
     this.email = email;
   }
-
-
 }

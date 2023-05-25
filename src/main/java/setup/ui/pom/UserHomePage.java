@@ -1,14 +1,14 @@
 package setup.ui.pom;
 
-import Helpers.AbsolutePath;
-import Helpers.RecordOnList;
+import helpers.AbsolutePath;
+import helpers.RecordOnList;
 import POJO.frontend.NewRecord;
 import POJO.frontend.RecordType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import setup.constants.UserConstants;
-import Helpers.TokenGenerator;
+import helpers.TokenGenerator;
 import setup.ui.base.DriverSetup;
 
 import java.awt.*;

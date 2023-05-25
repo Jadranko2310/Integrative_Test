@@ -1,6 +1,6 @@
 package ui;
 
-import Helpers.UserIDFromList;
+import helpers.UserIdFromList;
 import POJO.frontend.RecordType;
 import POJO.request.auth_controller.UserType;
 import io.qameta.allure.Epic;
@@ -9,7 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import setup.constants.RecordConstants;
 import setup.constants.UserConstants;
-import Helpers.TokenGenerator;
+import helpers.TokenGenerator;
 import setup.ui.base.BaseFrontendTest;
 
 @Epic("FE Tests - Admin")
@@ -18,7 +18,7 @@ public class AdminFunctionalTest extends BaseFrontendTest {
 
   TokenGenerator token = new TokenGenerator(UserConstants.ADMIN_EMAIL,
           UserConstants.ADMIN_PASS);
-  UserIDFromList userIDFromListsersId = new UserIDFromList();
+  UserIdFromList userIDFromListsersId = new UserIdFromList();
 
   @Test(description = "After admin clicks on side buttons, expecting to be" +
           "navigated to page for each side button")
@@ -41,7 +41,7 @@ public class AdminFunctionalTest extends BaseFrontendTest {
   public void createNewUser() throws Exception {
     logInPage.logInDefinedUser(UserType.ADMIN);
     adminHomePage.createNewUser(POJO.request.user_controller.UserType.FE_CREATE_USER);
-    int newUserId = userIDFromListsersId.find(UserConstants.FE_USER_EMAIL,
+    int newUserId = userIDFromListsersId.findId(UserConstants.FE_USER_EMAIL,
             token.getToken());
     Assert.assertNotNull(newUserId, "User not created");
   }

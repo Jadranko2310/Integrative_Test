@@ -15,7 +15,7 @@ public class LogInRequestBody {
 
   private String password;
 
-  public LogInRequestBody(){}
+  public LogInRequestBody() {}
 
   public LogInRequestBody(String email, String password) {
     this.email = email;
@@ -32,6 +32,8 @@ public class LogInRequestBody {
         this.email = UserConstants.ADMIN_EMAIL;
         this.password = UserConstants.ADMIN_PASS;
       }
+      default -> throw new RuntimeException("User type for login request invalid, "
+              + "please check Log In request Body and request");
     }
   }
 }

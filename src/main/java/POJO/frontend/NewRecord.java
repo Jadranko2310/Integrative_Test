@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import setup.constants.RecordConstants;
 
+/**
+ * Record object.
+ */
 @Getter
 @Setter
 public class NewRecord {
@@ -13,7 +16,7 @@ public class NewRecord {
   private String purchaseDetail;
   private String invoiceTotal;
 
-  public NewRecord(){}
+  public NewRecord() {}
 
   public NewRecord(String jobNmb, String jobName, String purchaseFrom,
                    String purchaseDetail, String invoiceTotal) {
@@ -54,6 +57,7 @@ public class NewRecord {
         this.purchaseDetail = RecordConstants.INVALID_RECORD_PURCHASE_DETAIL;
         this.invoiceTotal = RecordConstants.INVALID_RECORD_TOTAL_PRICE;
       }
+      default -> throw new RuntimeException("The record type is invalid");
     }
   }
 }

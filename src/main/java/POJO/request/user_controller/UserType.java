@@ -1,5 +1,8 @@
 package POJO.request.user_controller;
 
+/**
+ * Needed for setting user.
+ */
 public enum UserType {
   STANDARD,
   NON_VALID,

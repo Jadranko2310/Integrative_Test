@@ -1,11 +1,14 @@
 package POJO.request.records_controller;
 
-import Helpers.UserIDFromList;
+import helpers.UserIdFromList;
 import lombok.Getter;
 import lombok.Setter;
 import setup.constants.RecordConstants;
 import setup.constants.UserConstants;
 
+/**
+ * Record request Body.
+ */
 @Getter
 @Setter
 public class Record {
@@ -19,7 +22,7 @@ public class Record {
   private String totalPrice;
   private String credit;
 
-  public Record(){};
+  public Record() {}
 
   public Record(int userId, String jobNumber, String jobName,
                 int paymentType, String supplierName, String purchaseDetail,
@@ -34,12 +37,12 @@ public class Record {
     this.credit = credit;
   }
 
-  public int getUserId (String token) throws Exception {
-    UserIDFromList userIDFromListsersId = new UserIDFromList();
-    return userIDFromListsersId.find(UserConstants.RECORDS_USER_EMAIL, token);
+  public int getUserId(String token) {
+    UserIdFromList userIdFromListenersId = new UserIdFromList();
+    return userIdFromListenersId.findId(UserConstants.RECORDS_USER_EMAIL, token);
   }
 
-  public Record(RecordsType recordsType, String token) throws Exception {
+  public Record(RecordsType recordsType, String token) {
     switch (recordsType) {
       case REGULAR -> {
         this.userId = getUserId(token);
@@ -61,6 +64,8 @@ public class Record {
         this.totalPrice = RecordConstants.INVALID_RECORD_TOTAL_PRICE;
         this.credit = RecordConstants.INVALID_RECORD_CREDIT;
       }
+      default -> throw new RuntimeException("Records type invalid, please check"
+              + "record object and records type");
     }
   }
 }

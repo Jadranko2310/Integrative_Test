@@ -1,5 +1,9 @@
 package data.handling;
 
+/**
+ * Creating users for test purposes.
+ * Deleting all users after tests.
+ */
 public class UserDataHandler implements IDataHandler {
 
   @Override
@@ -10,7 +14,7 @@ public class UserDataHandler implements IDataHandler {
 
   @Override
   public void cleanData() {
-    UserDataCleanUp adminActivityCleanup = new UserDataCleanUp();
-    adminActivityCleanup.cleanUpUserTestData();
+    UserDataCleanUp userDataCleanUp = new UserDataCleanUp();
+    userDataCleanUp.cleanUpUserTestData();
   }
 }

@@ -1,8 +1,12 @@
 package data.handling;
 
+/**
+ * Data handler interface. Will have implementations based on testing entity and
+ * DB with different test data in different env.
+ */
 public interface IDataHandler {
 
-  public void prepareData() throws Exception;
+  void prepareData() throws Exception;
 
-  public void cleanData();
+  void cleanData();
 }

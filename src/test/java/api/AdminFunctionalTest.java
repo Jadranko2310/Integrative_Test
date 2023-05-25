@@ -1,7 +1,7 @@
 package api;
 
-import Helpers.CustomAssert;
-import Helpers.UserIDFromList;
+import helpers.CustomAssert;
+import helpers.UserIdFromList;
 import POJO.request.user_controller.UpdateUserRequestBody;
 import POJO.request.user_controller.User;
 import POJO.request.user_controller.UserType;
@@ -13,7 +13,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
-import Helpers.TokenGenerator;
+import helpers.TokenGenerator;
 import setup.constants.UserConstants;
 import specification.api.request.*;
 
@@ -30,7 +30,7 @@ public class AdminFunctionalTest extends BaseAPITest {
   DeleteUserRequest deleteRequest = new DeleteUserRequest();
 
   CustomAssert customAssert = new CustomAssert();
-  UserIDFromList userIDFromListsersId = new UserIDFromList();
+  UserIdFromList userIDFromListsersId = new UserIdFromList();
 
   @Test(description = "Admin sending log in request with valid email and pass," +
           "expecting to be logged in")
@@ -71,7 +71,7 @@ public class AdminFunctionalTest extends BaseAPITest {
   @Test(description = "Admin sending request for updating existing user " +
           "with valid user Id and valid new data expecting the user to be changed")
   public void updateUser() throws Exception {
-    int userID = userIDFromListsersId.find(UserConstants.USER_UPDATE_EMAIL, token.getToken());
+    int userID = userIDFromListsersId.findId(UserConstants.USER_UPDATE_EMAIL, token.getToken());
     UpdateUserRequestBody requestBody = new UpdateUserRequestBody();
     requestBody.setEmail("updateduser@gmail.com");
     requestBody.setName("User Updated");
@@ -88,7 +88,7 @@ public class AdminFunctionalTest extends BaseAPITest {
   @Test(description = "Admin sending request to delete user with valid user Id, " +
           "expecting that user will be deleted")
   public void deleteUser() throws Exception {
-    int userID = userIDFromListsersId.find(UserConstants.USER_DELETE_EMAIL, token.getToken());
+    int userID = userIDFromListsersId.findId(UserConstants.USER_DELETE_EMAIL, token.getToken());
 
     response = deleteRequest.delete(userID, token.getToken());
 

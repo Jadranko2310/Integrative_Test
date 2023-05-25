@@ -2,8 +2,10 @@ package POJO.response.user_controller.single_user;
 
 import lombok.Getter;
 import lombok.Setter;
-import specification.api.request.CreateUserRequest;
 
+/**
+ * Create user response deserialization model.
+ */
 @Getter
 @Setter
 public class CreateUserResponseBody {
@@ -14,9 +16,9 @@ public class CreateUserResponseBody {
   private String email;
   private String phone;
 
-  public CreateUserResponseBody(){}
+  public CreateUserResponseBody() {}
 
-  public CreateUserResponseBody Email (String email) {
+  public CreateUserResponseBody Email(String email) {
     CreateUserResponseBody emailResponse = new CreateUserResponseBody();
     this.email = email;
     return emailResponse;

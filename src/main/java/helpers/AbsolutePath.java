@@ -1,11 +1,13 @@
-package Helpers;
+package helpers;
 
+import java.nio.file.Path;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
+/**
+ * Will generate absolute path for file on local machine. It will generate path to
+ * project on local machine and add relative path from parameter.
+ */
 @Getter
 @Setter
 public class AbsolutePath {

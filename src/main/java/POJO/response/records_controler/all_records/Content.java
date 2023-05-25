@@ -1,9 +1,8 @@
 package POJO.response.records_controler.all_records;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter

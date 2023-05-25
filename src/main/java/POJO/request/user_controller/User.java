@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import setup.constants.UserConstants;
 
+/**
+ * User model.
+ */
 @Getter
 @Setter
 public class User {
@@ -13,7 +16,8 @@ public class User {
   private String name;
   private String phone;
 
-  public User(){}
+  public User() {}
+
   public User(String email, String password, String name, String phone) {
     this.email = email;
     this.password = password;
@@ -59,6 +63,8 @@ public class User {
         this.name = UserConstants.FE_USER_NAME;
         this.phone = UserConstants.FE_USER_PHONE;
       }
+      default -> throw new RuntimeException("The user type invalid, please check"
+              + "user type object and user type");
     }
   }
 }
