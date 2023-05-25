@@ -8,6 +8,9 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import setup.constants.BackendConstants;
 
+/**
+ * Delete record request definition.
+ */
 public class DeleteRecordRequest {
 
   public Response delete(int recordId, String token) {

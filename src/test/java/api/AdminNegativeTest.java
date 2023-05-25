@@ -17,7 +17,7 @@ import setup.api.BaseAPITest;
 import helpers.TokenGenerator;
 import setup.constants.UserConstants;
 
-@Epic("API Tests - Negative Admin CRUD operations")
+@Epic("Negative API Tests for basic admin CRUD operations")
 @Feature("Basic CRUD operations, Role: Admin, Entity: User")
 public class AdminNegativeTest extends BaseAPITest {
   TokenGenerator tokenNegative = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
@@ -29,7 +29,7 @@ public class AdminNegativeTest extends BaseAPITest {
           "expecting to get reject response message")
   public void unauthorizedLogIn(LogInRequestBody requestBody,
                                 NotAuthorizedResponseBody expectedResponseBody) {
-    response = logIn.request(requestBody.getEmail(), requestBody.getPassword());
+    response = logIn.logIn(requestBody.getEmail(), requestBody.getPassword());
     NotAuthorizedResponseBody actualResponseBody =
             response.as(NotAuthorizedResponseBody.class);
     softAssert.assertEquals(expectedResponseBody.getMessage(),
@@ -56,7 +56,7 @@ public class AdminNegativeTest extends BaseAPITest {
   @Test(description = "Admin sending request to get list of users with invalid" +
           "token, expecting to get reject response")
   public void getAllUsersWithInvalidToken() {
-    response = getAllUsers.list("no token");
+    response = getAllUsers.getList("no token");
     NotAuthorizedGetAllUsersResponseBody responseBody =
             response.as(NotAuthorizedGetAllUsersResponseBody.class);
 
@@ -67,10 +67,10 @@ public class AdminNegativeTest extends BaseAPITest {
 
   @Test(description = "Admin sending request to update user with invalid " +
           "email attribute, expecting to get reject response")
-  public void updateUserWithInvalidEmailFormat() throws Exception {
+  public void updateUserWithInvalidEmailFormat() {
     int userID = usersId.findId(UserConstants.USER_UPDATE_EMAIL, tokenNegative.getToken());
     UpdateUserRequestBody requestBody = new UpdateUserRequestBody();
-    requestBody.setEmail("notReqularEmail.com");
+    requestBody.setEmail("notRegularEmail.com");
     requestBody.setName("User Updated");
     requestBody.setPhone("+38765111000");
 

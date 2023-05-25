@@ -97,6 +97,8 @@ public class AdminHomePage extends BasePage {
 
 
   // METHOD SECTION
+
+  // Validation
   public void checkIfSideButtonsAreWorking() {
     waitForElementToBeClickable(adminsSideBtn, driver);
     adminsSideBtn.click();
@@ -132,6 +134,7 @@ public class AdminHomePage extends BasePage {
     softAssert.assertAll("These are the issues: ");
   }
 
+  // Making changes in DB
   public void createNewUser(UserType userType) {
     User user = new User(userType);
     waitForElementToBeClickable(usersSideBtn, driver);

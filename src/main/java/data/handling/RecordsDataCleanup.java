@@ -28,7 +28,7 @@ public class RecordsDataCleanup {
   DeleteRecordRequest deleteRecordRequest = new DeleteRecordRequest();
 
   public GetAllRecordsResponseBody getRecordsList() {
-    Response response = getAllRecordsRequest.list(tokenAdmin);
+    Response response = getAllRecordsRequest.getList(tokenAdmin);
     return response.as(GetAllRecordsResponseBody.class);
   }
 

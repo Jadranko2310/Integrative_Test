@@ -16,18 +16,18 @@ import setup.api.BaseAPITest;
 import helpers.TokenGenerator;
 import setup.constants.UserConstants;
 
-@Epic("API tests - Admin CRUD operations")
+@Epic("API tests for admin CRUD operations")
 @Feature("Base CRUD OPERATION, Role: Admin, Entity: User")
 public class AdminFunctionalTest extends BaseAPITest {
 
   CustomAssert customAssert = new CustomAssert();
-  UserIdFromList userIDFromListsersId = new UserIdFromList();
+  UserIdFromList userIdFromListOfUsers = new UserIdFromList();
   TokenGenerator token = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
 
   @Test(description = "Admin sending log in request with valid email and pass," +
           "expecting to be logged in")
   public void adminLogIn() {
-    response = logIn.request(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
+    response = logIn.logIn(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
     LogInResponseBody responseBody = response.getBody().as(LogInResponseBody.class);
 
     customAssert.assertCommonStatusCodeAndResponseTime(response);
@@ -37,7 +37,7 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test(description = "Admin sending request for creating new user with valid" +
           "credential, expecting the new user to be created")
-  public void createNewUser() throws Exception {
+  public void createNewUser() {
     User predefinedUser = new User(UserType.STANDARD);
     response = newUser.create(predefinedUser, token.getToken());
     CreateUserResponseBody createUserResponseBody = response.as(CreateUserResponseBody.class);
@@ -52,7 +52,7 @@ public class AdminFunctionalTest extends BaseAPITest {
   @Test(description = "Admin sending request for list of all users," +
           "expecting to get list of all users in response")
   public void getUsersList() {
-    response = getAllUsers.list(token.getToken());
+    response = getAllUsers.getList(token.getToken());
 
     GetAllUsersResponseBody responseBody = response.as(GetAllUsersResponseBody.class);
 
@@ -62,8 +62,8 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test(description = "Admin sending request for updating existing user " +
           "with valid user Id and valid new data expecting the user to be changed")
-  public void updateUser() throws Exception {
-    int userID = userIDFromListsersId.findId(UserConstants.USER_UPDATE_EMAIL, token.getToken());
+  public void updateUser() {
+    int userID = userIdFromListOfUsers.findId(UserConstants.USER_UPDATE_EMAIL, token.getToken());
     UpdateUserRequestBody requestBody = new UpdateUserRequestBody();
     requestBody.setEmail("updateduser@gmail.com");
     requestBody.setName("User Updated");
@@ -79,8 +79,8 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test(description = "Admin sending request to delete user with valid user Id, " +
           "expecting that user will be deleted")
-  public void deleteUser() throws Exception {
-    int userID = userIDFromListsersId.findId(UserConstants.USER_DELETE_EMAIL, token.getToken());
+  public void deleteUser() {
+    int userID = userIdFromListOfUsers.findId(UserConstants.USER_DELETE_EMAIL, token.getToken());
 
     response = deleteUserRequest.delete(userID, token.getToken());
 

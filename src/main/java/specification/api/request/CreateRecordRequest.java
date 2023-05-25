@@ -9,9 +9,12 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import setup.constants.BackendConstants;
 
+/**
+ * Create new Record request definition.
+ */
 public class CreateRecordRequest {
 
-  public Response create (Record record, String token) {
+  public Response create(Record record, String token) {
     RequestSpecification request = RestAssured
             .given()
             .baseUri(BackendConstants.BASE_URI)

@@ -8,9 +8,12 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import setup.constants.BackendConstants;
 
+/**
+ * Get All users request definition.
+ */
 public class GetUsersListRequest {
 
-  public Response list(String token) {
+  public Response getList(String token) {
     RequestSpecification request = RestAssured
             .given()
             .baseUri(BackendConstants.BASE_URI)

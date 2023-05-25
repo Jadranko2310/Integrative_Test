@@ -5,8 +5,8 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
 import setup.ui.base.BaseFrontendTest;
-@Epic("FE Tests - Admin")
-@Feature("Negative tests, Role - ADMIN, Entity - User, Records")
+@Epic("Frontend Test for role: Admin")
+@Feature("Negative tests, Role: ADMIN, Entity: User, Records")
 public class AdminNegativeTests extends BaseFrontendTest {
 
   @Test(description = "After admin click on '+' on users page and click save on " +

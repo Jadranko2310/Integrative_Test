@@ -24,7 +24,7 @@ public class UserIdFromList {
    * Generating Content list.
    */
   public List<Content> contentList(String token) {
-    Response response = getUsersList.list(token);
+    Response response = getUsersList.getList(token);
     GetAllUsersResponseBody responseBody = response.as(GetAllUsersResponseBody.class);
     return responseBody.getContent();
   }

@@ -25,7 +25,7 @@ public class TokenGenerator extends BaseAPITest {
 
   private String accessToken(String email, String pass) {
     LogInRequest logIn = new LogInRequest();
-    Response response = logIn.request(email, pass);
+    Response response = logIn.logIn(email, pass);
     LogInResponseBody body = response.body().as(LogInResponseBody.class);
 
     return "Bearer " + body.getAccessToken();

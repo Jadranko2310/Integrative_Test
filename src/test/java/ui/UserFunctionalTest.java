@@ -9,8 +9,8 @@ import setup.constants.FilesConstants;
 import setup.constants.RecordConstants;
 import setup.ui.base.BaseFrontendTest;
 
-@Epic("FE Tests - User")
-@Feature("Functional tests, Role - USER, Entity - Records")
+@Epic("Frontend test for role: User")
+@Feature("Functional tests, Role: User, Entity: Records")
 public class UserFunctionalTest extends BaseFrontendTest {
 
   @Test(description = "After user enter valid credentials on login page and clicks" +
@@ -25,7 +25,7 @@ public class UserFunctionalTest extends BaseFrontendTest {
   public void createNewRecord() throws Exception {
     logInPage.logInDefinedUser(UserType.REGULAR);
     userHomePage.createJobRecord(RecordType.NEW_RECORD);
-    userHomePage.checkIfNewRecordInDB(RecordType.NEW_RECORD);
+    userHomePage.checkIfNewRecordIsSaved(RecordType.NEW_RECORD);
   }
 
   @Test(description = "After user click on existing record, click on 'upload image'" +

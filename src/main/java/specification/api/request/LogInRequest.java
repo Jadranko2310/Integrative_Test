@@ -9,9 +9,12 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import setup.constants.BackendConstants;
 
+/**
+ * Log in request definition.
+ */
 public class LogInRequest {
 
-  public Response request(String email, String password) {
+  public Response logIn(String email, String password) {
     RequestSpecification request = RestAssured
             .given()
             .baseUri(BackendConstants.BASE_URI)

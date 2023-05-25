@@ -1,21 +1,22 @@
 package setup.ui.pom;
 
-import helpers.AbsolutePath;
-import helpers.RecordOnList;
 import POJO.frontend.NewRecord;
 import POJO.frontend.RecordType;
+import helpers.AbsolutePath;
+import helpers.RecordOnList;
+import helpers.TokenGenerator;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import setup.constants.UserConstants;
-import helpers.TokenGenerator;
 import setup.ui.base.DriverSetup;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.io.FileNotFoundException;
-
-public class UserHomePage extends BasePage{
+/**
+ * Users home page web elements and methods.
+ */
+public class UserHomePage extends BasePage {
   public UserHomePage(WebDriver driver, String url) throws AWTException {
     super(driver);
     DriverSetup.navigateToUrl(driver, url);
@@ -28,64 +29,87 @@ public class UserHomePage extends BasePage{
 
   // ELEMENTS
 
+  // Buttons
   @FindBy(css = "svg[data-icon='setting']")
   private WebElement settingsBtn;
-
   @FindBy(css = "span.anticon.anticon-logout")
   private WebElement logOutBtn;
-
   @FindBy(css = "a[href='/users-records']")
-  private WebElement records;
-
-  @FindBy(css = "input.ant-input[placeholder='Search']")
-  private WebElement searchBar;
-
-  @FindBy(css = "td.ant-table-cell")
-  private WebElement firstRecordOnList;
-
-  @FindBy(xpath = "//div[1]/div[1]/div[1]/input")
-  private WebElement jobNmbEntry;
-
-  @FindBy(xpath = "//div/div[1]/div[2]/div[1]/input")
-  private WebElement jobNameEntry;
-
+  private WebElement recordsButton;
   @FindBy(css = "span.ant-select-selection-item")
   private WebElement paymentTypeBtn;
-
-  @FindBy(css = "div.ant-select-item-option-content")
-  private WebElement companyOptionOnDropDown;
-
-  @FindBy(xpath = "//div[1]/div[4]/div[1]/input")
-  private WebElement purchaseFromEntry;
-
-  @FindBy(xpath = "//div/div[2]/div[1]/div[1]/input")
-  private WebElement purchaseDetailEntry;
-
-  @FindBy(xpath = "//div/div[2]/div[2]/div[1]/input")
-  private WebElement invoiceTotalEntry;
-
   @FindBy(css = "button.ant-btn.ant-btn-default.sc-jqUVSM.sc-TRNrF.kSLokU.exjpeQ")
   private WebElement createRecordBtn;
-
   @FindBy(css = "button.ant-btn-default")
   private WebElement uploadImageBtn;
-
   @FindBy(xpath = "//*[text()='Confirm']")
   private WebElement confirmUploadImageBtn;
 
+  // Drop down
+  @FindBy(css = "div.ant-select-item-option-content")
+  private WebElement companyOptionOnDropDown;
+
+  // Entry field
+  @FindBy(xpath = "//div[1]/div[1]/div[1]/input")
+  private WebElement jobNmbEntry;
+  @FindBy(xpath = "//div/div[1]/div[2]/div[1]/input")
+  private WebElement jobNameEntry;
+  @FindBy(xpath = "//div[1]/div[4]/div[1]/input")
+  private WebElement purchaseFromEntry;
+  @FindBy(xpath = "//div/div[2]/div[1]/div[1]/input")
+  private WebElement purchaseDetailEntry;
+  @FindBy(xpath = "//div/div[2]/div[2]/div[1]/input")
+  private WebElement invoiceTotalEntry;
+
+  // Select from dop down elements
+  @FindBy(css = "td.ant-table-cell")
+  private WebElement firstRecordOnList;
+
+  // Search bar
+  @FindBy(css = "input.ant-input[placeholder='Search']")
+  private WebElement searchBar;
+
+  // Text
   @FindBy(css = "span.anticon.anticon-eye")
   private WebElement imageInRecordDetails;
 
 
   // METHODS
-  public void checkIfHomePageIsNavigated(){
-    waitForElementToBeClickable(records, driver);
-    softAssert.assertEquals(getTextFromElement(records), "Records",
+  // Validations
+  public void checkIfHomePageIsNavigated() {
+    waitForElementToBeClickable(recordsButton, driver);
+    softAssert.assertEquals(getTextFromElement(recordsButton), "Records",
             "Text not matching");
     softAssert.assertAll("These are the issues: ");
   }
 
-  public void createJobRecord(RecordType recordType) throws InterruptedException {
+  public void checkIfNewRecordIsSaved(RecordType recordType) {
+    NewRecord createNewRecord = new NewRecord(recordType);
+    String jobName = findOnList.jobName(
+            createNewRecord.getJobNmb(), token.getToken());
+    softAssert.assertEquals(jobName, createNewRecord.getJobName(),
+            "Job name not matching");
+    softAssert.assertAll("There are the issues: ");
+  }
+
+  public void checkThatNewRecordIsNotSaved(RecordType recordType) {
+    NewRecord createNewRecord = new NewRecord(recordType);
+    String jobName = findOnList.jobName(
+            createNewRecord.getJobNmb(), token.getToken());
+    softAssert.assertEquals(jobName, null,
+            "There are some issues in validation, new record in DB");
+    softAssert.assertAll("There are the issues: ");
+  }
+
+  public void checkIfImageOnRecordIsPresent() {
+    waitForElementToBeClickable(searchBar, driver);
+    waitForElementVisibility(firstRecordOnList, driver);
+    firstRecordOnList.click();
+    softAssert.assertTrue(imageInRecordDetails.isDisplayed());
+  }
+
+  // Making changes in DB
+  public void createJobRecord(RecordType recordType) {
     NewRecord createNewRecord = new NewRecord(recordType);
     jobNmbEntry.sendKeys(createNewRecord.getJobNmb());
     jobNameEntry.sendKeys(createNewRecord.getJobName());
@@ -98,32 +122,14 @@ public class UserHomePage extends BasePage{
     createRecordBtn.click();
   }
 
-  public void checkIfNewRecordInDB(RecordType recordType) throws Exception {
-    NewRecord createNewRecord = new NewRecord(recordType);
-    String jobName = findOnList.jobName
-            (createNewRecord.getJobNmb(), token.getToken());
-    softAssert.assertEquals(jobName, createNewRecord.getJobName(),
-            "Job name not matching");
-    softAssert.assertAll("There are the issues: ");
-  }
-
-  public void checkThatNewRecordIsNotInDB(RecordType recordType) throws Exception {
-    NewRecord createNewRecord = new NewRecord(recordType);
-    String jobName = findOnList.jobName
-            (createNewRecord.getJobNmb(), token.getToken());
-    softAssert.assertEquals(jobName, null,
-            "There are some issues in validation, new record in DB");
-    softAssert.assertAll("There are the issues: ");
-  }
-
   public void updateRecordWithImage(String filePathFromProjectDirectory,
-                                    String recordName) throws FileNotFoundException, AWTException, InterruptedException {
+                                    String recordName) throws Exception {
     AbsolutePath generatePath = new AbsolutePath();
     String pathToFile = generatePath
             .generateFromRelativePath(filePathFromProjectDirectory);
     StringSelection stringSelection = new StringSelection(pathToFile);
     Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-    records.click();
+    recordsButton.click();
     searchBar.sendKeys(recordName);
     waitForElementVisibility(firstRecordOnList, driver);
     firstRecordOnList.click();
@@ -137,14 +143,8 @@ public class UserHomePage extends BasePage{
     confirmUploadImageBtn.click();
   }
 
-  public void checkIfImageOnRecordIsPresent(){
-    waitForElementToBeClickable(searchBar, driver);
-    waitForElementVisibility(firstRecordOnList, driver);
-    firstRecordOnList.click();
-    softAssert.assertTrue(imageInRecordDetails.isDisplayed());
-  }
-
-  public void logOut(){
+  // Actions
+  public void logOut() {
     waitForElementToBeClickable(settingsBtn, driver);
     settingsBtn.click();
     waitForElementToBeClickable(logOutBtn, driver);

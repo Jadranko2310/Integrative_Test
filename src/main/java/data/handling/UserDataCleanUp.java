@@ -28,7 +28,7 @@ public class UserDataCleanUp {
   DeleteUserRequest deleteUserRequest = new DeleteUserRequest();
 
   public GetAllUsersResponseBody getUsersList() {
-    Response response = getUsers.list(token);
+    Response response = getUsers.getList(token);
     return response.as(GetAllUsersResponseBody.class);
   }
 

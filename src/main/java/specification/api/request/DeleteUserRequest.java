@@ -8,9 +8,12 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import setup.constants.BackendConstants;
 
+/**
+ * Delete user request definition.
+ */
 public class DeleteUserRequest {
 
-  public Response delete(int userID, String token) {
+  public Response delete(int userId, String token) {
     RequestSpecification request = RestAssured
             .given()
             .baseUri(BackendConstants.BASE_URI)
@@ -20,6 +23,6 @@ public class DeleteUserRequest {
             .relaxedHTTPSValidation();
     return request
             .header("Authorization", token)
-            .delete(BackendConstants.DELETE_USER + userID);
+            .delete(BackendConstants.DELETE_USER + userId);
   }
 }

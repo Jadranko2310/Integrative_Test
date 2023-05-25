@@ -9,8 +9,11 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import setup.constants.BackendConstants;
 
+/**
+ * Update user request definition.
+ */
 public class UpdateUserRequest {
-  public Response update(int userID, String token, UpdateUserRequestBody requestBody) {
+  public Response update(int userId, String token, UpdateUserRequestBody requestBody) {
     RequestSpecification request = RestAssured
             .given()
             .baseUri(BackendConstants.BASE_URI)
@@ -21,6 +24,6 @@ public class UpdateUserRequest {
             .body(requestBody);
     return request
             .header("Authorization", token)
-            .put(BackendConstants.UPDATE_USER + userID);
+            .put(BackendConstants.UPDATE_USER + userId);
   }
 }

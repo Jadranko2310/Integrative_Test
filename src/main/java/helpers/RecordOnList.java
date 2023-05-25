@@ -24,7 +24,7 @@ public class RecordOnList {
    * parameter 'Job Number'
    */
   public String jobName(String jobNmb, String token) {
-    Response response = getAllRecordsRequest.list(token);
+    Response response = getAllRecordsRequest.getList(token);
     GetAllRecordsResponseBody responseBody =
             response.as(GetAllRecordsResponseBody.class);
     List<Content> contentList = responseBody.getContent();

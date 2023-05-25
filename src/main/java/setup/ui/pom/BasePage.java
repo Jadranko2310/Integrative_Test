@@ -98,10 +98,16 @@ public class BasePage {
     wait.until(ExpectedConditions.elementToBeClickable(element));
   }
 
+  /**
+   * Hitting enter on web page.
+   */
   public void hitEnter() {
     Keys enter = Keys.ENTER;
   }
 
+  /**
+   * Perform the paste from keyboard.
+   */
   public void paste() throws AWTException {
     robot.keyPress(KeyEvent.VK_CONTROL);
     robot.keyPress(KeyEvent.VK_V);
@@ -109,6 +115,9 @@ public class BasePage {
     robot.keyRelease(KeyEvent.VK_CONTROL);
   }
 
+  /**
+   * Hitting enter after the Windows file explored pop up.
+   */
   public void hitDesktopEnter() {
     robot.keyPress(KeyEvent.VK_ENTER);
     robot.keyRelease(KeyEvent.VK_ENTER);
