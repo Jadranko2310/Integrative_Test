@@ -1,15 +1,14 @@
 package setup.ui.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.time.Duration;
 import lombok.Getter;
 import lombok.Setter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import setup.constants.FEConstants;
-
-import java.time.Duration;
+import setup.constants.FrontendConstants;
 
 /**
  * Driver properties.
@@ -24,7 +23,6 @@ public class DriverSetup {
    * *  Setup based on browser type.
    */
   public DriverSetup(DriverType driverType) {
-
     switch (driverType) {
       case CHROME -> {
         WebDriverManager.chromedriver().setup();
@@ -47,9 +45,9 @@ public class DriverSetup {
    */
   public static void navigateToUrl(WebDriver driver, String url) {
     driver.manage().timeouts()
-            .pageLoadTimeout(Duration.ofSeconds(FEConstants.PAGE_LOAD_TIME));
+            .pageLoadTimeout(Duration.ofSeconds(FrontendConstants.PAGE_LOAD_TIME));
     driver.manage().timeouts()
-            .implicitlyWait(Duration.ofSeconds(FEConstants.ELEMENT_DETECTION_TIMEOUT));
+            .implicitlyWait(Duration.ofSeconds(FrontendConstants.ELEMENT_DETECTION_TIMEOUT));
     driver.get(url);
   }
 

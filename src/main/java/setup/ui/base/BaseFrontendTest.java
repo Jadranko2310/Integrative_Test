@@ -1,15 +1,14 @@
 package setup.ui.base;
 
 import data.handling.RecordsDataHandler;
+import java.awt.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
-import setup.constants.FEConstants;
+import setup.constants.FrontendConstants;
 import setup.ui.pom.AdminHomePage;
 import setup.ui.pom.LogInPage;
 import setup.ui.pom.UserHomePage;
 
-import java.awt.*;
 
 /**
  * TestNG setup and actions.
@@ -17,15 +16,9 @@ import java.awt.*;
 public class BaseFrontendTest {
   protected DriverSetup driverSetup;
   protected WebDriver driver;
-
-  SoftAssert softAssert = new SoftAssert();
-
   protected LogInPage logInPage;
-
   protected UserHomePage userHomePage;
-
   protected AdminHomePage adminHomePage;
-
   RecordsDataHandler recordsDataHandler = new RecordsDataHandler();
 
   /**
@@ -42,9 +35,9 @@ public class BaseFrontendTest {
   public void setupBeforeMethod() throws AWTException {
     driverSetup = new DriverSetup(DriverType.CHROME);
     driver = driverSetup.getDriver();
-    logInPage = new LogInPage(driver, FEConstants.LOG_IN_PAGE);
-    userHomePage = new UserHomePage(driver, FEConstants.USERS_HOME_PAGE);
-    adminHomePage = new AdminHomePage(driver, FEConstants.ADMIN_HOME_PAGE);
+    logInPage = new LogInPage(driver, FrontendConstants.LOG_IN_PAGE);
+    userHomePage = new UserHomePage(driver, FrontendConstants.USERS_HOME_PAGE);
+    adminHomePage = new AdminHomePage(driver, FrontendConstants.ADMIN_HOME_PAGE);
   }
 
   @AfterMethod

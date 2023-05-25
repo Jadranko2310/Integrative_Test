@@ -1,5 +1,8 @@
 package POJO.frontend;
 
+/**
+ * Type defining record object.
+ */
 public enum RecordType {
 
   NEW_RECORD,

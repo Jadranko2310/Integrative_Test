@@ -14,8 +14,12 @@ import lombok.Setter;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.asserts.SoftAssert;
-import setup.constants.APIConstants;
+import setup.constants.BackendConstants;
+import specification.api.request.*;
 
+/**
+ * Base configuration for API tests that will extend this class.
+ */
 @Getter
 @Setter
 public abstract class BaseAPITest {
@@ -24,7 +28,11 @@ public abstract class BaseAPITest {
   protected ResponseSpecification responseSpecification;
   protected Response response;
   protected SoftAssert softAssert;
-
+  protected LogInRequest logIn;
+  protected CreateUserRequest newUser;
+  protected GetUsersListRequest getAllUsers;
+  protected UpdateUserRequest updateUserRequest;
+  protected DeleteUserRequest deleteUserRequest;
 
   /**
    * Defining request and response specification.
@@ -32,7 +40,7 @@ public abstract class BaseAPITest {
   public BaseAPITest() {
     this.request = RestAssured
             .given()
-            .baseUri(APIConstants.BASE_URI)
+            .baseUri(BackendConstants.BASE_URI)
             .contentType(ContentType.JSON)
             .filter(new RequestLoggingFilter())
             .filter(new ResponseLoggingFilter())
@@ -45,12 +53,16 @@ public abstract class BaseAPITest {
                     .build();
 
     this.softAssert = new SoftAssert();
+    this.logIn = new LogInRequest();
+    this.newUser = new CreateUserRequest();
+    this.getAllUsers = new GetUsersListRequest();
+    this.updateUserRequest = new UpdateUserRequest();
+    this.deleteUserRequest = new DeleteUserRequest();
   }
 
   /**
    * TestNG's specification. Defining before and after suite.
    */
-
   UserDataHandler dataHandler = new UserDataHandler();
 
   @BeforeSuite

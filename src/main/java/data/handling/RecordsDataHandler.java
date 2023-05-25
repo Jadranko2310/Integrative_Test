@@ -1,10 +1,14 @@
 package data.handling;
 
-public class RecordsDataHandler implements IDataHandler{
+/**
+ * Creating records and users that will manage records in tests.
+ * Deleting all records and users.
+ */
+public class RecordsDataHandler implements IDataHandler {
   @Override
   public void prepareData() throws Exception {
     RecordsDataPrep recordsDataPrep = new RecordsDataPrep();
-    recordsDataPrep.createUserForRecordsManagement();
+    recordsDataPrep.createUsersForRecordsManagement();
     recordsDataPrep.createRecordsForTesting();
   }
 

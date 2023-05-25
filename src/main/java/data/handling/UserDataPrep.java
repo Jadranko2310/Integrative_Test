@@ -1,24 +1,32 @@
 package data.handling;
 
+import helpers.TokenGenerator;
 import POJO.request.user_controller.User;
 import POJO.request.user_controller.UserType;
-import Helpers.TokenGenerator;
 import setup.constants.UserConstants;
 import specification.api.request.CreateUserRequest;
 
+/**
+ * Creating users needed for testing.
+ */
 public class UserDataPrep {
   private final String token;
 
-  public UserDataPrep() {this.token = tokenGenerator.getToken();}
+  public UserDataPrep() {
+    this.token = tokenGenerator.getToken();
+  }
 
-  TokenGenerator tokenGenerator = new TokenGenerator
-          (UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
+  TokenGenerator tokenGenerator = new TokenGenerator(
+          UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
 
+  /**
+   * Creating users method.
+   */
   public void createUsersForTesting() {
-    CreateUserRequest createUser = new CreateUserRequest();
+    CreateUserRequest userRequest = new CreateUserRequest();
     User userForUpdate = new User(UserType.PRE_FOR_UPDATE);
-    createUser.create(userForUpdate, token);
+    userRequest.create(userForUpdate, token);
     User userForDelete = new User(UserType.PREP_FOR_DELETE);
-    createUser.create(userForDelete, token);
+    userRequest.create(userForDelete, token);
   }
 }

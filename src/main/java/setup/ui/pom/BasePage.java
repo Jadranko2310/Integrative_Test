@@ -1,5 +1,8 @@
 package setup.ui.pom;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.time.Duration;
 import lombok.Getter;
 import lombok.Setter;
 import org.openqa.selenium.Keys;
@@ -11,11 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
-import setup.constants.FEConstants;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.time.Duration;
+import setup.constants.FrontendConstants;
 
 /**
  * Basic actions on Pages.
@@ -85,7 +84,7 @@ public class BasePage {
    */
   public void waitForElementVisibility(WebElement element, WebDriver driver) {
     WebDriverWait wait = new WebDriverWait(
-            driver, Duration.ofSeconds(FEConstants.ELEMENT_DETECTION_TIMEOUT));
+            driver, Duration.ofSeconds(FrontendConstants.ELEMENT_DETECTION_TIMEOUT));
     wait.until(ExpectedConditions.visibilityOf(element));
   }
 
@@ -95,14 +94,20 @@ public class BasePage {
    */
   public void waitForElementToBeClickable(WebElement element, WebDriver driver) {
     WebDriverWait wait = new WebDriverWait(
-            driver, Duration.ofSeconds(FEConstants.ELEMENT_DETECTION_TIMEOUT));
+            driver, Duration.ofSeconds(FrontendConstants.ELEMENT_DETECTION_TIMEOUT));
     wait.until(ExpectedConditions.elementToBeClickable(element));
   }
 
+  /**
+   * Hitting enter on web page.
+   */
   public void hitEnter() {
     Keys enter = Keys.ENTER;
   }
 
+  /**
+   * Perform the paste from keyboard.
+   */
   public void paste() throws AWTException {
     robot.keyPress(KeyEvent.VK_CONTROL);
     robot.keyPress(KeyEvent.VK_V);
@@ -110,7 +115,10 @@ public class BasePage {
     robot.keyRelease(KeyEvent.VK_CONTROL);
   }
 
-  public void hitDesktopEnter() throws AWTException {
+  /**
+   * Hitting enter after the Windows file explored pop up.
+   */
+  public void hitDesktopEnter() {
     robot.keyPress(KeyEvent.VK_ENTER);
     robot.keyRelease(KeyEvent.VK_ENTER);
   }

@@ -6,20 +6,23 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import setup.constants.APIConstants;
+import setup.constants.BackendConstants;
 
+/**
+ * Delete user request definition.
+ */
 public class DeleteUserRequest {
 
-  public Response delete(int userID, String token) {
+  public Response delete(int userId, String token) {
     RequestSpecification request = RestAssured
             .given()
-            .baseUri(APIConstants.BASE_URI)
+            .baseUri(BackendConstants.BASE_URI)
             .contentType(ContentType.JSON)
             .filter(new RequestLoggingFilter())
             .filter(new ResponseLoggingFilter())
             .relaxedHTTPSValidation();
     return request
             .header("Authorization", token)
-            .delete(APIConstants.DELETE_USER + userID);
+            .delete(BackendConstants.DELETE_USER + userId);
   }
 }

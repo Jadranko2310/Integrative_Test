@@ -7,13 +7,16 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import setup.constants.APIConstants;
+import setup.constants.BackendConstants;
 
+/**
+ * Update user request definition.
+ */
 public class UpdateUserRequest {
-  public Response update(int userID, String token, UpdateUserRequestBody requestBody) {
+  public Response update(int userId, String token, UpdateUserRequestBody requestBody) {
     RequestSpecification request = RestAssured
             .given()
-            .baseUri(APIConstants.BASE_URI)
+            .baseUri(BackendConstants.BASE_URI)
             .contentType(ContentType.JSON)
             .filter(new RequestLoggingFilter())
             .filter(new ResponseLoggingFilter())
@@ -21,6 +24,6 @@ public class UpdateUserRequest {
             .body(requestBody);
     return request
             .header("Authorization", token)
-            .put(APIConstants.UPDATE_USER + userID);
+            .put(BackendConstants.UPDATE_USER + userId);
   }
 }

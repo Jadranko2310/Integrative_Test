@@ -1,7 +1,7 @@
 package api;
 
-import Helpers.CustomAssert;
-import Helpers.UserIDFromList;
+import helpers.CustomAssert;
+import helpers.UserIdFromList;
 import POJO.request.user_controller.UpdateUserRequestBody;
 import POJO.request.user_controller.User;
 import POJO.request.user_controller.UserType;
@@ -13,29 +13,21 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
-import Helpers.TokenGenerator;
+import helpers.TokenGenerator;
 import setup.constants.UserConstants;
-import specification.api.request.*;
 
-@Epic("API tests - Admin CRUD operations")
+@Epic("API tests for admin CRUD operations")
 @Feature("Base CRUD OPERATION, Role: Admin, Entity: User")
 public class AdminFunctionalTest extends BaseAPITest {
 
-
-  TokenGenerator token = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
-  LogInRequest logIn = new LogInRequest();
-  CreateUserRequest newUser = new CreateUserRequest();
-  GetUsersListRequest getAllUsers = new GetUsersListRequest();
-  UpdateUserRequest updateUserRequest = new UpdateUserRequest();
-  DeleteUserRequest deleteRequest = new DeleteUserRequest();
-
   CustomAssert customAssert = new CustomAssert();
-  UserIDFromList userIDFromListsersId = new UserIDFromList();
+  UserIdFromList userIdFromListOfUsers = new UserIdFromList();
+  TokenGenerator token = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
 
   @Test(description = "Admin sending log in request with valid email and pass," +
           "expecting to be logged in")
   public void adminLogIn() {
-    response = logIn.request(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
+    response = logIn.logIn(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
     LogInResponseBody responseBody = response.getBody().as(LogInResponseBody.class);
 
     customAssert.assertCommonStatusCodeAndResponseTime(response);
@@ -45,7 +37,7 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test(description = "Admin sending request for creating new user with valid" +
           "credential, expecting the new user to be created")
-  public void createNewUser() throws Exception {
+  public void createNewUser() {
     User predefinedUser = new User(UserType.STANDARD);
     response = newUser.create(predefinedUser, token.getToken());
     CreateUserResponseBody createUserResponseBody = response.as(CreateUserResponseBody.class);
@@ -60,7 +52,7 @@ public class AdminFunctionalTest extends BaseAPITest {
   @Test(description = "Admin sending request for list of all users," +
           "expecting to get list of all users in response")
   public void getUsersList() {
-    response = getAllUsers.list(token.getToken());
+    response = getAllUsers.getList(token.getToken());
 
     GetAllUsersResponseBody responseBody = response.as(GetAllUsersResponseBody.class);
 
@@ -70,8 +62,8 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test(description = "Admin sending request for updating existing user " +
           "with valid user Id and valid new data expecting the user to be changed")
-  public void updateUser() throws Exception {
-    int userID = userIDFromListsersId.find(UserConstants.USER_UPDATE_EMAIL, token.getToken());
+  public void updateUser() {
+    int userID = userIdFromListOfUsers.findId(UserConstants.USER_UPDATE_EMAIL, token.getToken());
     UpdateUserRequestBody requestBody = new UpdateUserRequestBody();
     requestBody.setEmail("updateduser@gmail.com");
     requestBody.setName("User Updated");
@@ -87,10 +79,10 @@ public class AdminFunctionalTest extends BaseAPITest {
 
   @Test(description = "Admin sending request to delete user with valid user Id, " +
           "expecting that user will be deleted")
-  public void deleteUser() throws Exception {
-    int userID = userIDFromListsersId.find(UserConstants.USER_DELETE_EMAIL, token.getToken());
+  public void deleteUser() {
+    int userID = userIdFromListOfUsers.findId(UserConstants.USER_DELETE_EMAIL, token.getToken());
 
-    response = deleteRequest.delete(userID, token.getToken());
+    response = deleteUserRequest.delete(userID, token.getToken());
 
     customAssert.assertCommonStatusCodeAndResponseTime(response);
   }

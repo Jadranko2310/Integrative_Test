@@ -1,17 +1,18 @@
-package Helpers;
+package helpers;
+
 import io.restassured.response.Response;
-import lombok.Getter;
-import lombok.Setter;
 import setup.api.BaseAPITest;
-import specification.api.request.GetUsersListRequest;
 
-@Getter
-@Setter
+/**
+ * Asserts methods containing multiple assert that will be frequent in tests and
+ * complex asserts methods.
+ */
 public class CustomAssert extends BaseAPITest {
+  UserIdFromList userIdFromList = new UserIdFromList();
 
-  GetUsersListRequest getAllUsers = new GetUsersListRequest();
-  UserIDFromList userIDFromList = new UserIDFromList();
-
+  /**
+   * Frequent set of asserts for response 200.
+   */
   public void assertCommonStatusCodeAndResponseTime(Response response) {
     softAssert.assertEquals(response.statusCode(), 200,
             "status code not 200");
@@ -20,6 +21,9 @@ public class CustomAssert extends BaseAPITest {
     softAssert.assertAll("These are the issues");
   }
 
+  /**
+   * Frequent set of asserts for response 200.
+   */
   public void assertBadRequestAndResponseTime(Response response) {
     softAssert.assertEquals(response.statusCode(), 400,
             "status code not 400");
@@ -28,10 +32,13 @@ public class CustomAssert extends BaseAPITest {
     softAssert.assertAll("These are the issues");
   }
 
-  public void assertThatUserIsOnList(String email, String token) throws Exception {
-    userIDFromList.find(email, token);
-    softAssert.assertNotNull(userIDFromList.getId(),
-            "User is not on the list");
-    softAssert.assertAll();
+  /**
+   * Will find id on the users list and then check if list of users id's
+   * contains the id.
+   */
+  public void assertThatUserIsOnList(String email, String token) {
+    int id = userIdFromList.findId(email, token);
+    softAssert.assertTrue(userIdFromList.usersIdList(token).contains(id));
+    softAssert.assertAll("These are the issues: ");
   }
 }

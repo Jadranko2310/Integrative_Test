@@ -1,7 +1,7 @@
 package api;
 
-import Helpers.CustomAssert;
-import Helpers.UserIDFromList;
+import helpers.CustomAssert;
+import helpers.UserIdFromList;
 import POJO.request.auth_controller.LogInRequestBody;
 import POJO.request.user_controller.UpdateUserRequestBody;
 import POJO.request.user_controller.User;
@@ -14,27 +14,22 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.annotations.Test;
 import setup.api.BaseAPITest;
-import Helpers.TokenGenerator;
+import helpers.TokenGenerator;
 import setup.constants.UserConstants;
-import specification.api.request.*;
-@Epic("API Tests - Negative Admin CRUD operations")
+
+@Epic("Negative API Tests for basic admin CRUD operations")
 @Feature("Basic CRUD operations, Role: Admin, Entity: User")
 public class AdminNegativeTest extends BaseAPITest {
   TokenGenerator tokenNegative = new TokenGenerator(UserConstants.ADMIN_EMAIL, UserConstants.ADMIN_PASS);
-  UserIDFromList usersId = new UserIDFromList();
+  UserIdFromList usersId = new UserIdFromList();
   CustomAssert customAssert = new CustomAssert();
-  LogInRequest logIn = new LogInRequest();
-  CreateUserRequest newUser = new CreateUserRequest();
-  GetUsersListRequest getAllUsers = new GetUsersListRequest();
-  UpdateUserRequest updateUserRequest = new UpdateUserRequest();
-  DeleteUserRequest deleteUserRequest = new DeleteUserRequest();
 
   @Test(dataProvider = "LogInUnauthorizedData", dataProviderClass = LogInData.class,
   description = "Admin sending log in request with invalid credentials, " +
           "expecting to get reject response message")
   public void unauthorizedLogIn(LogInRequestBody requestBody,
                                 NotAuthorizedResponseBody expectedResponseBody) {
-    response = logIn.request(requestBody.getEmail(), requestBody.getPassword());
+    response = logIn.logIn(requestBody.getEmail(), requestBody.getPassword());
     NotAuthorizedResponseBody actualResponseBody =
             response.as(NotAuthorizedResponseBody.class);
     softAssert.assertEquals(expectedResponseBody.getMessage(),
@@ -61,7 +56,7 @@ public class AdminNegativeTest extends BaseAPITest {
   @Test(description = "Admin sending request to get list of users with invalid" +
           "token, expecting to get reject response")
   public void getAllUsersWithInvalidToken() {
-    response = getAllUsers.list("no token");
+    response = getAllUsers.getList("no token");
     NotAuthorizedGetAllUsersResponseBody responseBody =
             response.as(NotAuthorizedGetAllUsersResponseBody.class);
 
@@ -72,10 +67,10 @@ public class AdminNegativeTest extends BaseAPITest {
 
   @Test(description = "Admin sending request to update user with invalid " +
           "email attribute, expecting to get reject response")
-  public void updateUserWithInvalidEmailFormat() throws Exception {
-    int userID = usersId.find(UserConstants.USER_UPDATE_EMAIL, tokenNegative.getToken());
+  public void updateUserWithInvalidEmailFormat() {
+    int userID = usersId.findId(UserConstants.USER_UPDATE_EMAIL, tokenNegative.getToken());
     UpdateUserRequestBody requestBody = new UpdateUserRequestBody();
-    requestBody.setEmail("notReqularEmail.com");
+    requestBody.setEmail("notRegularEmail.com");
     requestBody.setName("User Updated");
     requestBody.setPhone("+38765111000");
 
